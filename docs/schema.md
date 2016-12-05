@@ -10,12 +10,13 @@ password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 description     | text      | not null, default = ""
 profile_pic (link)| string  | not null, default = ""
+cover_pic (link)| string    | not null, default = ""
 
 ## Posts
 column Name     | data type | details
 ----------------|-----------|---------------------------
 id              | integer   | not null, primary key
-type            | integer   | not null, index, inclusion: ["text", "photo", "quote", "audio", "video"]
+type            | integer   | not null, index, inclusion: ["text", "pic", "quote", "audio", "video"]
 title           | string    | not null
 content         | string (media = links) | not null
 author_id       | integer   | not null, indexed, foreign key to users
@@ -35,7 +36,7 @@ column Name     | data type | details
 ----------------|-----------|---------------------------
 id              | integer   | not null, primary key
 sheep_id        | integer   | not null, indexed, foreign key to users
-sheperd_id      | integer   | not null, indexed, foreign key to users
+shepherd_id      | integer   | not null, indexed, foreign key to users
 
 ## Likes
 column Name     | data type | details
