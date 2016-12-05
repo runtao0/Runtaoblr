@@ -20,6 +20,7 @@
       author_id: 1,
       previous_post_id: 1,
       source_id: 1
+      updated_at: "Date1"
     }
     20: {
       id: 20
@@ -27,7 +28,8 @@
       body: "Was a long book",
       author_id: 1,
       previous_post_id: 2,
-      source_id: 2
+      source_id: 2,
+      updated_at: "Date2"
     }
   },
   posts: {
@@ -37,7 +39,8 @@
       body: "Was a novel by Mary Shelly",
       author_id: 1,
       previous_post_id: 1,
-      source_id: 1
+      source_id: 1,
+      updated_at: "Date3"
     }
     2: {
       id:2
@@ -45,7 +48,8 @@
       body: "Was a long book",
       author_id: 1,
       previous_post_id: 2,
-      source_id: 2
+      source_id: 2,
+      updated_at: "Date4"
     }
   },
   follows: {
