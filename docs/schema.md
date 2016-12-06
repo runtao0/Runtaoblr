@@ -23,7 +23,7 @@ author_id       | integer   | not null, indexed, foreign key to users
 previous_post_id| integer   | not null, indexed, default = id of self, foreign key to post
 source_id       | integer   | not null, indexed self reference key
 
-## Follows (I though follower and followee were too easy to confuse)
+## Follows (I thought follower and followee were too easy to confuse)
 column Name     | data type | details
 ----------------|-----------|---------------------------
 id              | integer   | not null, primary key
