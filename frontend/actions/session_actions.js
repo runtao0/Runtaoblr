@@ -18,6 +18,8 @@ export const receiveErrors = errors => ({
   errors,
 });
 
+
+
 // thunk action creators
 export function logIn(user) {
   return (dispatch) => {
@@ -40,7 +42,7 @@ export function signUp(user) {
 export function logOut() {
   return (dispatch) => {
     return APIUtil.logOut()
-      .then(() => dispatch(receiveCurrentUser(_nullUser)),
+      .then(() => dispatch(receiveCurrentUser(null)),
         errors => dispatch(receiveErrors(errors))
     );
   };
