@@ -17,7 +17,7 @@
 - `DELETE /api/session`
 
 ### Feed
-- `GET /api/user/#/feed`
+- `GET /api//feed`
 
 ### Post
 - `POST /api/post`
@@ -28,8 +28,12 @@
 
 ### Likes
 - `GET /api/user/#/likes`
+- `POST /api/likes`
+- `DELETE /api/likes`
 
 ### Follows and followers
+- `POST /api/follows`
+- `DELETE /api/follows`
 - `GET /api/user/#/followed`
 - `GET /api/user/#/followers`
 
@@ -38,4 +42,4 @@
 - `GET /api/tags`
 
 ### Explore
-- `GET api/posts/index`
+- `GET api/posts`

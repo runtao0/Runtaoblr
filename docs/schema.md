@@ -23,14 +23,6 @@ author_id       | integer   | not null, indexed, foreign key to users
 previous_post_id| integer   | not null, indexed, default = id of self, foreign key to post
 source_id       | integer   | not null, indexed self reference key
 
-## Reblog count
-column Name     | data type | details
-----------------|-----------|---------------------------
-id              | integer   | not null, primary key
-post_id         | integer   | not null, indexed, foreign key to posts
-count           | integer   | not null, default = 0
-
-
 ## Follows (I though follower and followee were too easy to confuse)
 column Name     | data type | details
 ----------------|-----------|---------------------------
@@ -45,11 +37,17 @@ id              | integer   | not null, primary key
 liked_post_id   | integer   | not null, indexed, foreign key to posts
 liker_id        | integer   | not null, indexed, foreign key to users
 
-## tags
+## Tags
 column Name     | data type | details
 ----------------|-----------|---------------------------
 id              | string    | not null, primary key
-tag_string      | string    | not null, indexed indexed
+tag_string      | string    | not null, indexed unique
+
+## Tag Join Posts
+column Name     | data type | details
+----------------|-----------|---------------------------
+id              | string    | not null, primary key
+tag_id          | integer   | not null, foreign key to tags
 tagged post     | integer   | not null, foreign key to posts
 
 ~~ in a world with more time i might consider making a reblog tree structure since tumblr has many reblog forks and parallel reblog chains while keeping a total reblog count ~~
