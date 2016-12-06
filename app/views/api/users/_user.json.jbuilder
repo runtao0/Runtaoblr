@@ -1,1 +1,8 @@
-user.extract!
+json.id user.id
+json.username user.username
+json.info do
+  json.email user.email
+  json.description user.description
+  json.profile_pic user.profile_pic
+  json.cover_pic user.cover_pic
+end
