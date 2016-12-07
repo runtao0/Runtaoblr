@@ -52,6 +52,11 @@
   border-radius: 5px;
 }
 
+.toggle_buttons:hover, .log_out:hover {
+  background: #393966;
+  transition: background .5s ease;
+}
+
 .signin_form {
   background: #7273a5;
   opacity: .9;
@@ -92,6 +97,12 @@
   display: block;
   padding: 6px;
   border-radius: 3px;
+}
+
+.submit:hover {
+  background: #393966;
+  transition: background .5s ease;
+  cursor: pointer;
 }
 
 .error_list {
