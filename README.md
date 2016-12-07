@@ -14,15 +14,15 @@ Oatnr is a web app inspired by Tumblr built using Ruby on Rails and JS with Reac
 - [ ] Posts form for various post types
 - [ ] Feed/dashboard
 - [ ] Follows
-- [ ] likes
+- [ ] Likes
 - [ ] **BONUS** Reblog (think about doing recursion)
 - [ ] **BONUS** User show pages
 - [ ] **BONUS** Infinite scroll on dashboard
 - [ ] **BONUS** account settings
 - [ ] **BONUS** tags
 more if there's time:
-- [ ] explore
-- [ ] blog suggestions
+- [ ] Explore
+- [ ] Blog suggestions
 
 # Implementation Timeline
 

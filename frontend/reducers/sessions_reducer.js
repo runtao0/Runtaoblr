@@ -6,13 +6,13 @@ import {
   LOGOUT
 } from '../actions/session_actions';
 
-const _nullUser = {
+export const _nullUser = {
   currentUser: null,
   errors: [],
 };
 
 const SessionReducer = (state = _nullUser, action) => {
-  Object.freeze(state)
+  Object.freeze(state);
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       const currentUser = action.currentUser;
@@ -20,8 +20,10 @@ const SessionReducer = (state = _nullUser, action) => {
         currentUser
       });
     case RECEIVE_ERRORS:
+      const newState = Object.assign({}, state);
+      newState.errors = [];
       const errors = action.errors.responseJSON;
-      return merge({}, state, {
+      return merge({}, newState, {
         errors
       });
     default:
