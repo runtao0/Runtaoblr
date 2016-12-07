@@ -19,6 +19,11 @@
   text-align: center;
   opacity: 1;
 }
+.description {
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+}
 
 .button_list {
   float: right;
@@ -85,4 +90,5 @@
   width: 66.6666%;
   margin: auto;
   text-align: center;
+  color: #46477e;
 }
