@@ -15,13 +15,11 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount(){
+		console.log("The component mounted!");
     this.redirectIfLoggedIn();
-		// this.setState({errors: this.props.errors});
+
   }
 
-	// componentDidUpdate() {
-	// 	this.setState({errors: this.props.errors});
-	// }
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
@@ -35,18 +33,13 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-		// debugger
-		// if (this.props.errors) {
-	    return (
-	      <ul className="error_list">
-					{this.props.errors.map((error, ind) => (
-						<li className="error" key={`error-${ind}`}>{ error }</li>
-					))}
-	      </ul>
-	    );
-	  // } else {
-		// 	return <div></div>;
-		// }
+    return (
+      <ul className="error_list">
+				{this.props.errors.map((error, ind) => (
+					<li className="error" key={`error-${ind}`}>{ error }</li>
+				))}
+      </ul>
+    );
   }
 
 
@@ -77,5 +70,4 @@ class SessionForm extends React.Component {
     );
   }
 }
-
 export default SessionForm;

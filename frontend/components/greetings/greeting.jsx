@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 
 const loggedInGreeting = (currentUser, logOut) => {
   return(
-    <header className="log_out">
-      <button onClick={ logOut }>Log Out</button>
+    <header className="log_buttons group">
+      <ul className="button_list">
+        <li><button className="log_out" onClick={ logOut }>Log Out</button></li>
+      </ul>
     </header>
   );
 }

@@ -4,9 +4,9 @@ import { logIn, logOut, signUp } from './actions/session_actions';
 import configureStore from "./store/store";
 import Root from './components/root';
 
-// window.logIn = logIn;
-// window.logOut = logOut;
-// window.signUp = signUp;
+window.logIn = logIn;
+window.logOut = logOut;
+window.signUp = signUp;
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

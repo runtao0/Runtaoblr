@@ -23,3 +23,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SessionForm);
+
+export const SignUpFormContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SessionForm);
+
+export const SignInFormContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SessionForm);

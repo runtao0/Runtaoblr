@@ -8,9 +8,9 @@ export const _nullUser = {
 };
 
 // regular action creators
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
-  currentUser,
+  currentUser
 });
 
 export const receiveErrors = errors => ({
