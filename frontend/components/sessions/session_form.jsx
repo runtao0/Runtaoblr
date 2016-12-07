@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router';
 class SessionForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { username: "", password: "" };
+		this.state = { username: "", password: "", errors: this.props.errors };
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -16,8 +16,12 @@ class SessionForm extends React.Component {
 
   componentDidMount(){
     this.redirectIfLoggedIn();
+		// this.setState({errors: this.props.errors});
   }
 
+	// componentDidUpdate() {
+	// 	this.setState({errors: this.props.errors});
+	// }
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
@@ -31,7 +35,8 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-		if (this.props.errors) {
+		// debugger
+		// if (this.props.errors) {
 	    return (
 	      <ul className="error_list">
 					{this.props.errors.map((error, ind) => (
@@ -39,10 +44,11 @@ class SessionForm extends React.Component {
 					))}
 	      </ul>
 	    );
-	  } else {
-			return <div></div>;
-		}
+	  // } else {
+		// 	return <div></div>;
+		// }
   }
+
 
   render() {
 		// refactor material

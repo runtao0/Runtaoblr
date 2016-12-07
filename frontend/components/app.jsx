@@ -12,6 +12,7 @@ const App = ({ children }) => (
 
     <section className="signin_form">
       <h1 className="runtaoblr">runtaoblr.</h1>
+      <h2 className="description">Come as you are,<br/> leave transformed</h2>
       { children }
     </section>
   </div>
