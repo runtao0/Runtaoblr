@@ -11,20 +11,22 @@ const loggedInGreeting = (currentUser, logOut) => {
   );
 }
 
-const notLoggedInGreeting = () => (
+const notLoggedInGreeting = (demoUser) => (
   <header className="log_buttons group">
     <ul className="button_list">
-      <li><button><Link className="toggle_buttons" to="/login">Log In</Link></button></li>
+      <li><button className="toggle_buttons"><Link to="/login">Log In</Link></button></li>
 
-      <li><button><Link className="toggle_buttons" to="/signup">Sign Up</Link></button></li>
+      <li><button className="toggle_buttons"><Link to="/signup">Sign Up</Link></button></li>
+
+      <li><button className="toggle_buttons" onClick={ demoUser }>Demo User</button></li>
     </ul>
   </header>
 );
 
 // these are unpacked props from container (mapped shit)
-const Greeting = ({ currentUser, logOut}) => {
+const Greeting = ({ currentUser, logOut, demoUser}) => {
   if (currentUser === null) {
-    return notLoggedInGreeting();
+    return notLoggedInGreeting(demoUser);
   } else {
     return loggedInGreeting(currentUser, logOut);
   }
