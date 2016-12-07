@@ -1,12 +1,20 @@
 .auth {
   height: 100vh;
-  background-image: url('welcome_background.gif');
+  // background-image: asset-url('welcome_background.gif');
   background-size: cover;
   overflow: hidden;
   padding: 0 15px;
   min-width: 475px;
   min-height: 300px;
   position: relative;
+}
+
+.bg-1 {
+  background-image: asset-url('bg-1.gif');
+}
+
+.bg-2 {
+  background-image: asset-url('bg-2.gif');
 }
 
 .runtaoblr {
@@ -34,7 +42,7 @@
   float: left;
 }
 
-.toggle_buttons {
+.toggle_buttons, .log_out {
   padding: 5px 10px;
   font-size: 18px;
   line-height: 18px;
