@@ -1,0 +1,88 @@
+.auth {
+  height: 100vh;
+  background-image: url('welcome_background.gif');
+  background-size: cover;
+  overflow: hidden;
+  padding: 0 15px;
+  min-width: 475px;
+  min-height: 300px;
+  position: relative;
+}
+
+.runtaoblr {
+  font-size: 60px;
+  font-family: 'Sumana', serif;
+  font-weight: 700;
+  padding: 0px;
+  line-height: 60px;
+  padding: 0 0 20px 0;
+  text-align: center;
+  opacity: 1;
+}
+
+.button_list {
+  float: right;
+}
+
+.button_list > li {
+  font-size: 36px;
+  float: left;
+}
+
+.toggle_buttons {
+  padding: 5px 10px;
+  font-size: 18px;
+  line-height: 18px;
+  background: #7273a5;
+  opacity: .9;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.signin_form {
+  background: #7273a5;
+  opacity: .9;
+  padding: 30px 30px 40px 30px;
+  width: 310px;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  height: auto;
+  /*display: inline;*/
+}
+
+.login-input {
+  background: white;
+  width: 66.6666%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: #8d8a9c;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.submit {
+  background: #4b4c83;
+  width: 66.6666%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.error_list {
+  width: 66.6666%;
+  margin: auto;
+  text-align: center;
+}

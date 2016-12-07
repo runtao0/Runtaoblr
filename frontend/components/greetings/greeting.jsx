@@ -3,19 +3,20 @@ import { Link } from 'react-router';
 
 const loggedInGreeting = (currentUser, logOut) => {
   return(
-    <header className="header-group">
-      <h1>Greetings! { currentUser.username }</h1>
+    <header className="log_out">
       <button onClick={ logOut }>Log Out</button>
     </header>
   );
 }
 
 const notLoggedInGreeting = () => (
-  <nav>
-    <Link to="/login">Log In</Link>
-    <br/>
-    <Link to="/signup">Sign Up</Link>
-  </nav>
+  <header className="log_buttons group">
+    <ul className="button_list">
+      <li><button><Link className="toggle_buttons" to="/login">Log In</Link></button></li>
+
+      <li><button><Link className="toggle_buttons" to="/signup">Sign Up</Link></button></li>
+    </ul>
+  </header>
 );
 
 // these are unpacked props from container (mapped shit)

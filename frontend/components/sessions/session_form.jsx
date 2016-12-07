@@ -33,9 +33,9 @@ class SessionForm extends React.Component {
   renderErrors() {
 		if (this.props.errors) {
 	    return (
-	      <ul>
+	      <ul className="error_list">
 					{this.props.errors.map((error, ind) => (
-						<li key={`error-${ind}`}>{ error }</li>
+						<li className="error" key={`error-${ind}`}>{ error }</li>
 					))}
 	      </ul>
 	    );
@@ -43,39 +43,29 @@ class SessionForm extends React.Component {
 			return <div></div>;
 		}
   }
-	// renders correct login or signup link
-	navButton() {
-		if (this.props.formType === "login") {
-			return <Link to="/signup">Sign Up</Link>;
-		} else {
-			return <Link to="/login">Log In</Link>;
-		}
-	}
 
   render() {
 		// refactor material
 		const submitButton = (this.props.formType === "login") ? "Log In" : "Create Account";
+
     return(
       <div className="login_form_container">
 				<form onSubmit={this.handleSubmit} className="login-form-box">
-				<h1>Welcome to Runtaoblr!</h1>
-					<h2>Please {this.props.formType} or {this.navButton()} instead</h2>
 					{this.renderErrors()}
 					<div className="login-form">
-						<label> Username:
 							<input type="text"
+								placeholder="Username"
 								value={this.state.username}
 								onChange={this.update("username")}
 								className="login-input" />
-						</label>
-						<label> Password:
 							<input type="password"
+								placeholder="Password"
 								value={this.state.password}
 								onChange={this.update("password")}
 								className="login-input" />
-						</label>
 					</div>
-					<input type="submit" value={submitButton} />
+					<input type="submit"
+						className="submit" value={submitButton} />
 				</form>
       </div>
     );
