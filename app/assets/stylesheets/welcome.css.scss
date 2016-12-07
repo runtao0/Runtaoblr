@@ -69,8 +69,22 @@
   transform: translateX(-50%);
   border-radius: 5px;
   height: auto;
-  /*display: inline;*/
+
+  -webkit-animation-name: raiseForm;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.5s;
 }
+
+@-webkit-keyframes raiseForm {
+  0% {
+    -webkit-transform: translate(-185px, 40px);
+  }
+  100% {
+    -webkit-transform: translate(-185px, 0px);
+  }
+}
+
 
 .login-input {
   background: white;
