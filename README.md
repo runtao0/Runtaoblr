@@ -1,6 +1,6 @@
 #**Oatnr**
 
-Link: [Runtaoblr](runtaoblr.heroku.com)
+Link: [Runtaoblr](runtaoblr.herokuapp.com)
 
 <!-- NOTE DO NOT BE OVERWHELMED, THEY ARE NOT EXPECTING THE FIRST PROPOSAL TO BE
 PERFECT, SO JUST START WITH WHAT YOU HAVE AND EDIT -->
