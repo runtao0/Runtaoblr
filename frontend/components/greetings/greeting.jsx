@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 const loggedInGreeting = (currentUser, logOut) => {
   return(
@@ -10,6 +10,7 @@ const loggedInGreeting = (currentUser, logOut) => {
     </header>
   );
 }
+
 
 const notLoggedInGreeting = (demoUser) => (
   <header className="log_buttons group">
@@ -24,12 +25,15 @@ const notLoggedInGreeting = (demoUser) => (
 );
 
 // these are unpacked props from container (mapped shit)
-const Greeting = ({ currentUser, logOut, demoUser}) => {
+const Greeting = ({ currentUser, logOut, demoUser, router}) => {
+  function logInDemo() {
+    demoUser().then(() => {router.push("/");})
+  }
   if (currentUser === null) {
-    return notLoggedInGreeting(demoUser);
+    return notLoggedInGreeting(logInDemo.bind(this));
   } else {
     return loggedInGreeting(currentUser, logOut);
   }
 }
 
-export default Greeting;
+export default withRouter(Greeting);

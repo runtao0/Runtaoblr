@@ -23,7 +23,8 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    this.props.processForm({user});
+    this.props.processForm({user}).then(() =>{
+			this.props.router.push("/") ;});
   }
 
   update(field) {
@@ -33,6 +34,7 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
+
     return (
       <ul className="error_list">
 				{this.props.errors.map((error, ind) => (
@@ -70,4 +72,4 @@ class SessionForm extends React.Component {
     );
   }
 }
-export default SessionForm;
+export default withRouter(SessionForm);
