@@ -18,7 +18,7 @@ const PostReducer = (state = {}, action) => {
       delete newState[action.post.id];
       return newState;
     case POST_ERRORS:
-      alert(action.error);
+      console.log(action.error.responseText);
       return state;
     default:
       return state;

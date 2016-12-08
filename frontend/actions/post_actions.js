@@ -8,7 +8,7 @@ export const REMOVE_POST = "REMOVE_POST";
 // sync actions
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
-  errors,
+  posts,
 });
 
 export const receiveOnePost = post => ({
@@ -32,7 +32,7 @@ export function createPost(post) {
     // right now all post actions will return all posts
     return APIUtil.createPost(post)
       .then(posts => dispatch(receivePosts(posts)),
-      errors => dispatch(postErrors(errors))
+      errors => dispatch(postError(errors))
     );
   };
 }
@@ -42,7 +42,7 @@ export function editPost(post) {
     // right now all post actions will return all posts
     return APIUtil.editPost(post)
       .then(posts => dispatch(receivePosts(posts)),
-      errors => dispatch(postErrors(errors))
+      errors => dispatch(postError(errors))
     );
   };
 }
@@ -61,7 +61,7 @@ export function requestPosts() {
   return (dispatch) => {
     return APIUtil.fetchPosts()
       .then(posts => dispatch(receivePosts(posts)),
-      errors => dispatch(postErrors(errors))
+      errors => dispatch(postError(errors))
     );
   };
 }
@@ -71,7 +71,7 @@ export function requestOnePost(post_id) {
     // right now all post actions will return all posts
     return APIUtil.fetchOnePost(post_id)
       .then(post => dispatch(receiveOnePost(post)),
-      errors => dispatch(postErrors(errors))
+      errors => dispatch(postError(errors))
     );
   };
 }

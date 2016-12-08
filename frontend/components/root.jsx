@@ -10,6 +10,7 @@ import { receiveErrors } from "../actions/session_actions";
 const Root = ({ store }) => {
 
   const _redirectIfLoggedIn = (nextState, replace) => {
+    store.dispatch(receiveErrors([]));
     const currentUser = store.getState().session.currentUser;
     if (currentUser) {
       replace("/dashboard");
