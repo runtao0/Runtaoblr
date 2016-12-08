@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_save :default_values
 
+  has_many(
+    :posts,
+    class_name: 'Post',
+    primary_key: :id,
+    foreign_key: :author_id
+  )
+
 #fills default values for user settings
   def default_values
     self.description = "Description goes here"
