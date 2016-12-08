@@ -16,7 +16,7 @@ cover_pic (link)| string    | not null, default = ""
 column Name     | data type | details
 ----------------|-----------|---------------------------
 id              | integer   | not null, primary key
-type            | integer   | not null, index, inclusion: ["text", "pic", "quote", "audio", "video"]
+type            | integer   | not null, indexed, inclusion: ["text", "pic", "quote", "audio", "video"]
 title           | string    | not null
 content         | string (media = links) | not null
 author_id       | integer   | not null, indexed, foreign key to users
