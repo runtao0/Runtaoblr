@@ -20,8 +20,8 @@ type            | integer   | not null, indexed, inclusion: ["text", "pic", "quo
 title           | string    | not null
 content         | string (media = links) | not null
 author_id       | integer   | not null, indexed, foreign key to users
-previous_post_id| integer   | not null, indexed, default = id of self, foreign key to post
-source_id       | integer   | not null, indexed self reference key
+previous_post_id| integer   | indexed, default = id of self, foreign key to post
+source_id       | integer   | indexed, self reference key
 
 ## Follows (I thought follower and followee were too easy to confuse)
 column Name     | data type | details
