@@ -11,9 +11,10 @@ class Api::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      render :index
+      # render "api/posts/index"
+      render json: Post.all
     else
-      render :json ["Post could not be created"], status: 422
+      render json: ["Post could not be created"], status: 422
     end
   end
 
@@ -21,9 +22,10 @@ class Api::PostsController < ApplicationController
     @post = Post.find_by(id: params[:post][:id])
     if @post
       @post.destroy
-      render :index
+      # render "api/posts/index"
+      render json: Post.all
     else
-      render :json ["Post could not be found"], status: 404
+      render json: ["Post could not be found"], status: 404
     end
   end
 
@@ -32,15 +34,15 @@ class Api::PostsController < ApplicationController
     @post.title = params[:post][:title]
     @post.content = params[:post][:content]
     if @post.update
-      render :index
+      render "api/posts/index"
     else
-      render :json ["Post could not be edited"], status: 402
+      render json: ["Post could not be edited"], status: 402
     end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:type, :title, :content)
+    params.require(:post).permit(:kind, :title, :content)
   end
 end
