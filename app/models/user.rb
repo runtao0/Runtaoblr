@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  description     :text             not null
+#  profile_pic     :string           not null
+#  cover_pic       :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true
   validates :username, uniqueness: true
@@ -7,6 +22,7 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
   before_save :default_values
+  # will this happen even if I'm editing a user?
 
   has_many(
     :posts,
@@ -14,7 +30,6 @@ class User < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :author_id
   )
-
 #fills default values for user settings
   def default_values
     self.description = "Description goes here"
