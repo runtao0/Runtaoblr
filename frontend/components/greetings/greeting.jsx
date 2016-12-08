@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-const loggedInGreeting = (currentUser, logOut) => {
+const loggedInGreeting = (currentUser, out) => {
   return(
     <header className="log_buttons group">
       <ul className="button_list">
-        <li><button className="log_out" onClick={ logOut }>Log Out</button></li>
+        <li>
+          <button className="log_out" onClick={ out }>
+            Log Out
+          </button>
+        </li>
       </ul>
     </header>
   );
@@ -27,12 +31,16 @@ const notLoggedInGreeting = (demoUser) => (
 // these are unpacked props from container (mapped shit)
 const Greeting = ({ currentUser, logOut, demoUser, router}) => {
   function logInDemo() {
-    demoUser().then(() => {router.push("/");})
+    demoUser().then(() => {router.push("/dashboard");})
+  }
+
+  function out() {
+    logOut().then(() => {router.push("/");})
   }
   if (currentUser === null) {
     return notLoggedInGreeting(logInDemo.bind(this));
   } else {
-    return loggedInGreeting(currentUser, logOut);
+    return loggedInGreeting(currentUser, out.bind(this));
   }
 }
 
