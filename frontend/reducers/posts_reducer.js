@@ -18,8 +18,9 @@ const PostReducer = (state = {}, action) => {
       delete newState[action.post.id];
       return newState;
     case POST_ERRORS:
-      console.log(action.error.responseText);
-      return state;
+      const errors = action.error.responseText;
+      newState = merge( {}, state, { errors });
+      return newState;
     default:
       return state;
   }
