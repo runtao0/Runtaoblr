@@ -30,6 +30,27 @@ class User < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :author_id
   )
+
+# has many followers
+  has_many(
+    :sheep,
+    class_name: 'Follow',
+    primary_key: :id,
+    foreign_key: :sheep_id
+  )
+
+  # follows many users
+  has_many(
+    :sheperds,
+    class_name: 'Follow',
+    primary_key: :id,
+    foreign_key: :sheperd_id
+  )
+
+  #be careful to keep this straight!
+  has_many :followers, through: :sheep
+  has_many :followings, through: :sheperds
+
 #fills default values for user settings
   def default_values
     self.description = "Description goes here"
