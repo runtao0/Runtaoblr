@@ -1,0 +1,26 @@
+.feed_and_sidebar {
+  width: 900px;
+  padding-top: 63px;
+  margin: auto;
+  margin-top: 30px;
+  vertical-align: top;
+}
+
+.dashboard-header {
+  border-bottom: 1px solid #7273a5;
+  background: #46477e;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+.feed {
+  float: left;
+  width: 600px;
+}
+
+.sidebar {
+  float: right;
+  width: 200px;
+  padding: 0 25px
+}

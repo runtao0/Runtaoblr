@@ -45,16 +45,8 @@
   text-align: center;
 }
 
-.button_list {
-  float: right;
-}
-
-.button_list > li {
-  font-size: 36px;
-  float: left;
-}
-
 .toggle_buttons, .log_out {
+  float: right;
   padding: 10px 20px;
   font-size: 18px;
   line-height: 18px;
@@ -137,4 +129,12 @@
   margin: auto;
   text-align: center;
   color: #46477e;
+}
+
+.logo {
+  font-family: "Vast Shadow";
+  float: left;
+  font-size: 60px;
+  line-height: 60px;
+  padding: 0 0 0 20px;
 }

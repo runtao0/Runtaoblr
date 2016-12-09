@@ -1,0 +1,57 @@
+.feed_posts {
+  margin-top: 35px;
+}
+
+.post_whole {
+  width: 100%;
+  height: auto;
+  margin-top: 35px;
+}
+
+.post_body {
+  display: inline-block;
+  width: 470px;
+  color: #414157;
+  background: white;
+  border-radius: 4px;
+}
+
+.post_body > h2 {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.post_body > p {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.post_body > img {
+  width: 100%;
+  height: auto;
+  //take this out later when you have like and reblog buttons
+  padding-bottom: 50px;
+}
+
+.post_profile_pic {
+  width: 66px;
+  height: 66px;
+  background-size: cover;
+  background-position: center center;
+  padding: 0 25px;
+  display: inline-block;
+}
+
+.post_profile_pic > img {
+  border-radius: 4px;
+}
+
+.feed {
+  padding-bottom: 50px;
+}
+
+footer {
+  height: 100px;
+}

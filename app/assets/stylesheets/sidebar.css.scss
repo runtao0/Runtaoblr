@@ -1,0 +1,36 @@
+.suggestion_profile_pic {
+  width: 30px;
+  height: 30px;
+  background-position: center center;
+  display: inline-block;
+}
+
+.suggestion_profile_pic > img {
+  border-radius: 4px;
+}
+
+ h3 {
+  margin: 0;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0 0 0 20px;
+  text-align: center;
+}
+
+.follow_suggestion:not(first-child) {
+  padding: 10px 0;
+}
+
+.follow_suggestion:first-child {
+  padding-top: 10px;
+}
+
+.follow_suggestion {
+  border-bottom: 1px solid #7273a5;
+}
+
+.sidebar > h1 {
+  text-align: center;
+  border-bottom: 1px solid #7273a5;
+}

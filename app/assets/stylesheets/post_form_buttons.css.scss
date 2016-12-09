@@ -1,0 +1,93 @@
+.post_buttons {
+  display: inline-block;
+  width: 470px;
+  height: 100px;
+  vertical-align: bottom;
+  font-weight: 300;
+  // float: right;
+}
+
+.post_form {
+  display: inline-block;
+  width: 470px;
+  color: #414157;
+  background: white;
+  border-radius: 4px;
+}
+
+.post_button_list {
+  background: white;
+  color: #414157;
+  font-size: 14px;
+  height: 100%;
+  border-radius: 4px;
+
+// margin-bottom: 20px;
+// padding: 17px 0;
+// width: 352px;
+// background: #fff;
+// border-radius: 3px;
+// position: relative;
+// right: -85px;
+}
+
+.post_button {
+  display: inline;
+  margin: 0 25px;
+  font-size: 18px;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.post_button > button {
+  font-size: inherit;
+  font-weight: 300;
+}
+
+.profile_pic {
+  width: 66px;
+  height: 66px;
+  background-position: center center;
+  padding: 0 25px;
+  display: inline-block;
+}
+
+.profile_pic > img {
+  border-radius: 4px;
+}
+
+.text_icon {
+  content: image_url("035-file-text.png");
+  width: 35px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pic_icon {
+  content: image_url("015-images.png");
+  width: 35px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.quote_icon {
+  content: image_url("120-quotes-left.png");
+  width: 35px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.audio_icon {
+  content: image_url("018-music.png");
+  width: 35px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.video_icon {
+  content: image_url("021-video-camera.png");
+  width: 35px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
