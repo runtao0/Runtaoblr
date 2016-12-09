@@ -6,51 +6,90 @@ import PostFormContainer from '../post_form/post_form_container';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    // this.renderFeedPosts = this.renderFeedPosts.bind(this);
     console.log(props);
+
+    this.renderFeedPosts = this.renderFeedPosts.bind(this);
+    this.renderSuggestions = this.renderSuggestions.bind(this);
   }
 
-  // renderFeedPosts(props.posts) {
-  //   return (posts.map((post) => {
-  //     return post.id;
-  //   }));
-  // }
+  renderFeedPosts() {
+    // debugger
+    return this.props.posts.reverse().map((post, ind) => {
+      if (post.kind === "text") {
+        return (
+          <li key={ind} className="post_whole">
+            <section className="post_profile_pic">
+              <img src={post.profile_pic}/>
+            </section>
+            <section className="post_body">
+              <h2>{post.title}</h2>
+              <p>{post.content}</p>
+            </section>
+          </li>
+        );
+      } else if (post.kind === "pic") {
+        return (
+          <li key={ind} className="post_whole">
+            <section className="post_profile_pic">
+              <img src={post.profile_pic} />
+            </section>
+            <section className="post_body">
+              <h2>{post.title}</h2>
+              <img src={post.content} />
+            </section>
+          </li>
+        );
+      }
+    });
+  }
+
+  renderSuggestions() {
+    return this.props.suggestions.map((suggestion, ind) => {
+      return (
+        <li key={ind} className="follow_suggestion">
+          <section className="suggestion_profile_pic">
+            <img src={suggestion.profile_pic} />
+          </section>
+          <h3>
+            {suggestion.username}
+          </h3>
+        </li>
+      );
+    });
+  }
 
   componentDidMount() {
     // load feed here!
+    this.props.requestPosts();
+    this.props.requestSuggestions();
   }
 
   render() {
     return(
-      <div className="dashboard_main">
-        <section className="header group">
+      <div className="dashboard">
+        <section className="dashboard-header group">
           <GreetingContainer/>
         </section>
 
-        <section className="sidebar group">
-          <h1>Filler until tomorrow</h1>
-        </section>
+        <div className="feed_and_sidebar">
+          <section className="sidebar group">
+            <h1>People to follow</h1>
+            <ul className="suggestion_list">
+              {this.renderSuggestions()}
+            </ul>
+          </section>
 
-        <PostFormContainer/>
-        <section className="feed">
-          <ul className="feed_posts">
-          </ul>
-        </section>
+          <section className="feed">
+            <PostFormContainer/>
+            <ul className="feed_posts">
+              {this.renderFeedPosts()}
+            </ul>
+          </section>
+        </div>
+        <footer></footer>
       </div>
     );
   }
 }
-// <li>{this.renderFeedPosts()}</li>
 
 export default withRouter(Dashboard);
-
-// return(
-//   <div className="dashboard">
-//     <header>
-//       <section className="action_buttons">
-//         <GreetingContainer/>
-//       </section>
-//     </header>
-//     { this.props.children }
-//   </div>
-// );

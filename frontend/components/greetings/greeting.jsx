@@ -3,7 +3,8 @@ import { Link, withRouter } from 'react-router';
 
 const loggedInGreeting = (currentUser, out) => {
   return(
-    <header className="log_buttons group">
+    <header className="header group">
+      <div className="logo">r</div>
       <ul className="button_list">
         <li>
           <button className="log_out" onClick={ out }>
@@ -18,12 +19,12 @@ const loggedInGreeting = (currentUser, out) => {
 
 const notLoggedInGreeting = (demoUser) => (
   <header className="log_buttons group">
+    <div className="logo">r</div>
     <ul className="button_list">
+      <li><button className="toggle_buttons" onClick={ demoUser }>Demo User</button></li>
       <li><button className="toggle_buttons"><Link to="/login">Log In</Link></button></li>
-
       <li><button className="toggle_buttons"><Link to="/signup">Sign Up</Link></button></li>
 
-      <li><button className="toggle_buttons" onClick={ demoUser }>Demo User</button></li>
     </ul>
   </header>
 );
