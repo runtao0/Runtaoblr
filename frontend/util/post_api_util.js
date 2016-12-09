@@ -22,14 +22,14 @@ export function destroyPost(post) {
 }
 
 export function fetchPosts() {
-  return $ajax({
+  return $.ajax({
     method: "GET",
     url: "api/posts",
   });
 }
 
 export function fetchOnePost(post_id) {
-  return $ajax({
+  return $.ajax({
     method: "GET",
     url: `api/post/${post_id}`,
   });
