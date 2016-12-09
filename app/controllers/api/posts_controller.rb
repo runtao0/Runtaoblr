@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
-    render json: Post.all
+    @all_posts = Post.includes(:author).all
   end
 
   def show
@@ -12,7 +12,8 @@ class Api::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       # render "api/posts/index"
-      render json: Post.all
+      @all_posts = Post.includes(:author).all
+      render :index
     else
       render json: ["Post could not be created"], status: 422
     end

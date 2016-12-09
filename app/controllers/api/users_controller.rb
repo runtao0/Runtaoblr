@@ -15,6 +15,10 @@ class Api::UsersController<ApplicationController
     @user = current_user
   end
 
+  def index
+    @rand_users = User.where.not(id: current_user.id).order("RANDOM()").limit(5)
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)

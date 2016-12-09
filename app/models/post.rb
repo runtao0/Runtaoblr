@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   validates :kind, inclusion: { in: %w(text pic quote audio video), message: "Not a valid post type" }
 
   belongs_to(
-    :user,
+    :author,
     class_name: 'User',
     primary_key: :id,
     foreign_key: :author_id
