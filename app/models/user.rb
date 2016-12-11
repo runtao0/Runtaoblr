@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
     :sheep,
     class_name: 'Follow',
     primary_key: :id,
-    foreign_key: :sheep_id
+    # the current_user is the sheperd
+    foreign_key: :sheperd_id
   )
 
   # follows many users
@@ -44,12 +45,15 @@ class User < ActiveRecord::Base
     :sheperds,
     class_name: 'Follow',
     primary_key: :id,
-    foreign_key: :sheperd_id
+    foreign_key: :sheep_id
   )
 
   #be careful to keep this straight!
-  has_many :followers, through: :sheep
-  has_many :followings, through: :sheperds
+  has_many :followers, through: :sheep, source: :sheep_user
+  has_many :followings, through: :sheperds, source: :sheperd_user
+
+  has_many :followed_posts, through: :followings, source: :posts
+
 
 #fills default values for user settings
   def default_values

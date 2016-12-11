@@ -21,15 +21,23 @@ class Api::UsersController<ApplicationController
 
   def follow
     # how is the id being passed? THROUGH THE DATA IN AJAX!!
-    current_user.followings.new(params[:id])
+    # interpolate into the url route
+    new_follow = Follow.new(sheperd_id: params[:id], sheep_id: current_user.id)
+    if new_follow.save
+      render json: ["success"]
+    else
+      render json: new_follow.errors.full_messages, status: 422
+    end
     #what should I render?
   end
 
   def unfollow
-    # find the follow in follows Table
-    #destroy it!
-    #what should be rendered??
-    #something that indicates success??
+    new_unfollow = Follow.find_by(sheep_id: current_user.id, sheperd_id: params[:id])
+    if new_unfollow.destroy
+      render json: ["success"]
+    else
+      render json: new_unfollow.errors.full_messages, status: 422
+    end
   end
 
   private

@@ -15,7 +15,7 @@ class Api::PostsController < ApplicationController
       @all_posts = Post.includes(:author).all
       render :index
     else
-      render json: ["Post could not be created"], status: 422
+      render json: @all_posts.errors.full_messages, status: 422
     end
   end
 

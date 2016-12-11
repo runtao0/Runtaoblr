@@ -53,6 +53,7 @@ class Dashboard extends React.Component {
           <h3>
             {suggestion.username}
           </h3>
+          <button></button>
         </li>
       );
     });
