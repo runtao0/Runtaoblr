@@ -33,8 +33,18 @@ class Post < ActiveRecord::Base
 
   has_many :liker_users, through: :likes, source: :liker
 
+  def self.feed_posts(user_id)
+    self.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")
+        .where("sheep_id = :id OR author_id = :id", id: user_id)
+        .order("created_at DESC")
+  end
+
   def liked_by_user?(user)
     likes.exists?(liker_id: user.id)
+  end
+
+  def notes_count
+    Like.where(liked_post_id: self.id).count
   end
 
 end

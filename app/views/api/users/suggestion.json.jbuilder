@@ -1,3 +1,3 @@
-json.array! @rand_users do |user|
+json.array! @suggested_users do |user|
   json.partial! 'api/users/user', user: user
 end

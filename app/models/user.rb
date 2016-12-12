@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
     self.cover_pic ||= default_cover_pic
   end
 
+  def self.suggestions(user_id)
+    sheperd_ids = User.find(user_id).sheperds.pluck(:sheperd_id) << user_id
+    suggestions = User.where.not(id: sheperd_ids)
+  end
+
+
   def password=(pw)
     @password = pw
     self.password_digest = BCrypt::Password.create(pw)

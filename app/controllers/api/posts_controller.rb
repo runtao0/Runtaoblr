@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
-  def index
-    @all_posts = Post.includes(:author).all
-  end
+  # def index
+  #   @all_posts = Post.includes(:author).all
+  # end
 
   def show
     render json: Post.find(params[:id])
