@@ -23,12 +23,14 @@ class Feed extends React.Component {
       if (liked) {
         const posts = this.state.posts;
         posts[id].liked = false;
+        posts[id].notes -= 1;
         this.props.unlike(id).then(() => {
           this.setState({ posts });
         });
       } else {
         const posts = this.state.posts;
         posts[id].liked = true;
+        posts[id].notes += 1;
         this.props.like(id).then(() => {
           this.setState({ posts });
         });
@@ -48,6 +50,7 @@ class Feed extends React.Component {
             <section className="post_body">
               <h2>{post.title}</h2>
               <p>{post.content}</p>
+              <h3>Notes: {post.notes}</h3>
               <button onClick={this.handleLike(post.liked, post.id)}>{buttonDisplay}</button>
             </section>
           </li>
@@ -61,6 +64,7 @@ class Feed extends React.Component {
             <section className="post_body">
               <h2>{post.title}</h2>
               <img src={post.content} />
+              <h3>Notes: {post.notes}</h3>
               <button onClick={this.handleLike(post.liked, post.id)}>{buttonDisplay}</button>
             </section>
           </li>
