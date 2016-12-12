@@ -4,7 +4,6 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    # Will this work???
     render json: Post.find(params[:id])
   end
 
@@ -20,7 +19,7 @@ class Api::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by(id: params[:post][:id])
+    @post = current_user.posts.find_by(id: params[:id])
     if @post
       @post.destroy
       # render "api/posts/index"
@@ -39,6 +38,25 @@ class Api::PostsController < ApplicationController
     else
       render json: ["Post could not be edited"], status: 402
     end
+  end
+
+  def like
+    new_like = Like.new(liked_post_id: params[:id], liker_id: current_user.id)
+    if new_like.save
+      render json: ["success"]
+    else
+      render json: new_like.errors.full_messages, status: 422
+    end
+  end
+
+  def unlike
+    new_unlike = Like.find_by(liked_post_id: params[:id], liker_id: current_user.id)
+    if new_unlike.destroy
+      render json: ["success"]
+    else
+      render json: new_unlike.errors.full_messages, status: 422
+    end
+
   end
 
   private

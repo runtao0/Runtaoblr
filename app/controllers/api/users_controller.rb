@@ -19,6 +19,19 @@ class Api::UsersController<ApplicationController
     @rand_users = User.where.not(id: current_user.id).order("RANDOM()").limit(5)
   end
 
+  def feed
+    # followed_blogs = current_user.followings.all.map do |following|
+    #   following.id
+    # end << current_user.id
+    # @feed_posts = Post.includes(:author)
+    #                   .where("author_id IN (?)", followed_blogs)
+    #                   .order("created_at DESC")
+    @feed_posts = Post.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")
+                      .where("sheep_id = :id OR author_id = :id", id: current_user.id)
+                      .order("created_at DESC")
+    # @feed_posts = Post.feed_posts(current_user)
+  end
+
   def follow
     # how is the id being passed? THROUGH THE DATA IN AJAX!!
     # interpolate into the url route

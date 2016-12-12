@@ -24,4 +24,17 @@ class Post < ActiveRecord::Base
     foreign_key: :author_id
   )
 
+  has_many(
+    :likes,
+    class_name: "Like",
+    primary_key: :id,
+    foreign_key: :liked_post_id
+  )
+
+  has_many :liker_users, through: :likes, source: :liker
+
+  def liked_by_user?(user)
+    likes.exists?(liker_id: user.id)
+  end
+
 end

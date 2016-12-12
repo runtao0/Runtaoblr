@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  after_initialize :ensure_session_token
-  before_save :default_values
+  after_initialize :ensure_session_token, :default_values
   # will this happen even if I'm editing a user?
 
+# is author to many posts
   has_many(
     :posts,
     class_name: 'Post',
@@ -52,14 +52,24 @@ class User < ActiveRecord::Base
   has_many :followers, through: :sheep, source: :sheep_user
   has_many :followings, through: :sheperds, source: :sheperd_user
 
+# will this association work?
   has_many :followed_posts, through: :followings, source: :posts
 
+# likes many posts
+  has_many(
+    :likes,
+    class_name: "Like",
+    primary_key: :id,
+    foreign_key: :liker_id
+  )
+
+  has_many :liked_posts, through: :likes, source: :liked_post
 
 #fills default values for user settings
   def default_values
-    self.description = "Description goes here"
-    self.profile_pic = default_prof_pic
-    self.cover_pic = default_cover_pic
+    self.description ||= "Description goes here"
+    self.profile_pic ||= default_prof_pic
+    self.cover_pic ||= default_cover_pic
   end
 
   def password=(pw)
