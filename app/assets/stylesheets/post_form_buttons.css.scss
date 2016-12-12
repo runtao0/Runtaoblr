@@ -19,7 +19,7 @@
   background: white;
   color: #414157;
   font-size: 14px;
-  height: 100%;
+  padding: 20px 0;
   border-radius: 4px;
 
 // margin-bottom: 20px;
@@ -35,13 +35,19 @@
   display: inline;
   margin: 0 25px;
   font-size: 18px;
-  height: 100%;
   vertical-align: bottom;
 }
+
 
 .post_button > button {
   font-size: inherit;
   font-weight: 300;
+}
+
+.post_button > button:hover {
+  div {
+    transform: translateY(-10px);
+  };
 }
 
 .profile_pic {
