@@ -7,14 +7,14 @@ export function fetchSuggestions() {
 
 export function follow(idToFollow) {
   return $.ajax({
-    method: "GET",
+    method: "POST",
     url: `api/users/${idToFollow}/follow`,
   });
 }
 
 export function unfollow(idToUnfollow) {
   return $.ajax({
-    method: "GET",
+    method: "POST",
     url: `api/users/${idToUnfollow}/unfollow`,
   });
 }

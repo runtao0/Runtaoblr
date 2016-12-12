@@ -4,6 +4,7 @@ import { allPosts, allSuggestions } from '../../reducers/selectors';
 import { requestPosts, requestOnePost, createPost, editPost, destroyPost }
 from '../../actions/post_actions';
 import { requestSuggestions } from '../../actions/user_actions';
+import { follow, unfollow } from '../../util/user_api_util';
 
 const mapStateToProps = ({ session, posts, suggestions }) => ({
   currentUser: session.currentUser,
@@ -18,6 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   editPost: (post) => dispatch(editPost(post)),
   destroyPost: (post) => dispatch(destroyPost(post)),
   requestSuggestions: () => dispatch(requestSuggestions()),
+  follow: (id) => follow(id),
+  unfollow: (id) => unfollow(id),
 });
 
 export default connect(

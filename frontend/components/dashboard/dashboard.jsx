@@ -2,14 +2,40 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import GreetingContainer from '../greetings/greeting_container';
 import PostFormContainer from '../post_form/post_form_container';
+// import sidebarContainer from '../siderbar/sidebar_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.state = {
+      suggestions: [{
+        id: 0,
+        follow: false,
+      }]
+    };
+    this.handleFollow = this.handleFollow.bind(this);
 
     this.renderFeedPosts = this.renderFeedPosts.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
+  }
+
+  handleFollow(follow, id, index) {
+    return (e) => {
+      e.preventDefault();
+      if (follow) {
+        const suggestions = this.state.suggestions;
+        suggestions[index].follow = false;
+        this.props.unfollow(id).then(() => {
+          this.setState({suggestions});
+        });
+      } else {
+        const suggestions = this.state.suggestions;
+        suggestions[index].follow = true;
+        this.props.follow(id).then(() => {
+          this.setState({suggestions});
+        });
+      }
+    };
   }
 
   renderFeedPosts() {
@@ -44,7 +70,8 @@ class Dashboard extends React.Component {
   }
 
   renderSuggestions() {
-    return this.props.suggestions.map((suggestion, ind) => {
+    return (this.state.suggestions.map((suggestion, ind) => {
+      const buttonDisplay = suggestion.follow ? "unfollow" : "follow";
       return (
         <li key={ind} className="follow_suggestion">
           <section className="suggestion_profile_pic">
@@ -53,16 +80,21 @@ class Dashboard extends React.Component {
           <h3>
             {suggestion.username}
           </h3>
-          <button></button>
+          <button onClick={this.handleFollow(suggestion.follow, suggestion.id, ind)}>
+            {buttonDisplay}
+          </button>
         </li>
       );
-    });
+    })
+  );
   }
 
   componentDidMount() {
     // load feed here!
     this.props.requestPosts();
-    this.props.requestSuggestions();
+    this.props.requestSuggestions().then(() => {
+      this.setState({ suggestions: this.props.suggestions });
+    });
   }
 
   render() {

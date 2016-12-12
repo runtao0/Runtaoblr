@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
     :posts,
     class_name: 'Post',
     primary_key: :id,
-    foreign_key: :author_id
+    foreign_key: :author_id,
+    dependent: :destroy
   )
-
 # has many followers
   has_many(
     :sheep,
@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save
     self.session_token
+  end
+
+  def follows?(user)
+    sheperds.exists?(sheperd_id: user.id)
   end
 
   private
