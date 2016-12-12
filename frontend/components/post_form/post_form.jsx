@@ -8,7 +8,7 @@ class PostForm extends React.Component {
       post: {kind: "", title: "", content: "" },
       buttons: true
     };
-    this.profile_pic = this.props.currentUser.info.profile_pic;
+    this.profile_pic = this.props.currentUser.profile_pic;
     this.changeDisplay = this.changeDisplay.bind(this);
     this.resetDisplay = this.resetDisplay.bind(this);
     this.update = this.update.bind(this);

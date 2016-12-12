@@ -24,7 +24,7 @@ export function destroyPost(post) {
 export function fetchPosts() {
   return $.ajax({
     method: "GET",
-    url: "api/posts",
+    url: "api/users/feed",
   });
 }
 
@@ -32,6 +32,20 @@ export function fetchOnePost(post_id) {
   return $.ajax({
     method: "GET",
     url: `api/post/${post_id}`,
+  });
+}
+
+export function like(idToLike) {
+  return $.ajax({
+    method: "POST",
+    url: `api/posts/${idToLike}/like`,
+  });
+}
+
+export function unlike(idToUnlike) {
+  return $.ajax({
+    method: "POST",
+    url: `api/posts/${idToUnlike}/unlike`,
   });
 }
 
