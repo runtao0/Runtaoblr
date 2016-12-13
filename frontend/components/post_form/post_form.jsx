@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -93,26 +94,31 @@ class PostForm extends React.Component {
       );
     } else {
       return (
-        <div className="post_form_container">
+        <ReactCSSTransitionGroup
+          className="post_form_container group"
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
           <div className="profile_pic">
             <img src={this.profile_pic}></img>
           </div>
           <section className="post_form">
-            <h1>{this.props.currentUser.username} ♥ </h1>
-            <form onSubmit={this.handleSubmit}>
+            <form className="form_content" onSubmit={this.handleSubmit}>
+              <h1>{this.props.currentUser.username} ♥ </h1>
               <input type="text"
                 placeholder="Title"
                 value={this.state.title}
                 onChange={this.update("title")}
                 className="post_title-input"/>
               <textarea placeholder="Your content here"
-                onChange={this.update("content")}/>
-              <br/>
-              <input type="submit" value="Post"/>
+                onChange={this.update("content")}
+                rows="3"/>
             </form>
-            <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-          </section>
-        </div>
+              <button className="submit_post"
+                      onClick={this.handleSubmit}>Post</button>
+              <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+            </section>
+        </ReactCSSTransitionGroup>
       );
     }
   }

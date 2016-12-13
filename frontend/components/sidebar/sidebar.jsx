@@ -37,16 +37,18 @@ class Sidebar extends React.Component {
 
   renderSuggestions() {
     return (allSuggestions(this.state.suggestions).map((suggestion, ind) => {
-      const buttonDisplay = suggestion.follow ? "unfollow" : "follow";
+      const buttonClass = suggestion.follow ? "sidebar-unfollow" : "sidebar-follow";
+      const buttonDisplay = suggestion.follow ? "-" : "+";
       return (
-        <li key={ind} className="follow_suggestion">
+        <li key={ind} className="follow_suggestion group">
           <section className="suggestion_profile_pic">
             <img src={suggestion.profile_pic} />
           </section>
           <h3>
             {suggestion.username}
           </h3>
-          <button onClick={this.handleFollow(suggestion.follow, suggestion.id, ind)}>
+          <button onClick={this.handleFollow(suggestion.follow, suggestion.id, ind)}
+            className={buttonClass}>
             {buttonDisplay}
           </button>
         </li>

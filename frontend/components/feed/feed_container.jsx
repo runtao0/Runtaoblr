@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
   requestOnePost: (post_id) => dispatch(requestOnePost(post_id)),
   editPost: (post) => dispatch(editPost(post)),
   destroyPost: (post) => dispatch(destroyPost(post)),
-  // follow: (id) => follow(id),
-  // unfollow: (id) => unfollow(id),
+  follow: (id) => follow(id),
+  unfollow: (id) => unfollow(id),
   like: (id) => like(id),
   unlike: (id) => unlike(id),
 });
