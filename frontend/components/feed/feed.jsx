@@ -131,6 +131,10 @@ class Feed extends React.Component {
     });
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({ posts: newProps.posts });
+  }
+
   render () {
     return (
       <ul className="feed_posts">

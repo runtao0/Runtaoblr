@@ -11,11 +11,15 @@ class Api::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       # render "api/posts/index"
-      @all_posts = Post.includes(:author).all
-      render :index
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
     else
-      render json: @all_posts.errors.full_messages, status: 422
+      render json: @post.errors.full_messages, status: 422
     end
+  end
+
+  def feed
+    @feed_posts = Post.feed_posts(current_user.id)
   end
 
   def destroy

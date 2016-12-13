@@ -19,10 +19,6 @@ class Api::UsersController<ApplicationController
   #   @rand_users = User.where.not(id: current_user.id).order("RANDOM()").limit(5)
   # end
 
-  def feed
-    @feed_posts = Post.feed_posts(current_user.id)
-  end
-
   def suggestion
     @suggested_users = User.suggestions(current_user.id)
   end

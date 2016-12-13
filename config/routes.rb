@@ -10,7 +10,6 @@ Rails.application.routes.draw do
         post :unfollow
       end
       collection do
-        get :feed
         get :suggestion
       end
     end
@@ -19,6 +18,9 @@ Rails.application.routes.draw do
       member do
         post :like
         post :unlike
+      end
+      collection do
+        get :feed
       end
     end
   end

@@ -24,7 +24,7 @@ export function destroyPost(post) {
 export function fetchPosts() {
   return $.ajax({
     method: "GET",
-    url: "api/users/feed",
+    url: "api/posts/feed",
   });
 }
 
