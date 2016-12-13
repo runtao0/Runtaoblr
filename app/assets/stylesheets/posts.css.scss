@@ -17,12 +17,14 @@
 }
 
 .post_body > h2 {
+  padding: 0 10px;
   margin: 10px;
   font-size: 18px;
   font-weight: 600;
 }
 
 .post_body > p {
+  padding: 0 10px;
   margin: 10px;
   font-size: 18px;
   font-weight: 300;
@@ -32,20 +34,67 @@
   width: 100%;
   height: auto;
   //take this out later when you have like and reblog buttons
-  padding-bottom: 50px;
+}
+
+.post_body > h3 {
+  float: left;
+  font-size: 16px;
+  padding: 10px 20px;
+  color: #7273a5;
+  font-weight: 400;
+}
+
+.like, .unlike {
+  font-size: 20px;
+  float: right;
+  padding: 5px 20px;
+  transform: scaleX(1.2);
+}
+
+.like {
+  color: #7273a5;
+}
+
+.unlike {
+  color: red;
 }
 
 .post_profile_pic {
   width: 66px;
   height: 66px;
   background-size: cover;
-  background-position: center center;
-  padding: 0 25px;
+  // background-position: center center;
+  margin: 0 25px;
   display: inline-block;
+  position: relative;
+}
+
+.post_profile_pic > .follow,
+.post_profile_pic > .unfollow {
+  position: absolute;
+  background: grey;
+  opacity: .6;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  left: 1px;
+  top: 0;
+  display: none;
+  transform: scaleX(1.2);
+  padding: 0 6px;
+}
+
+.post_profile_pic:hover {
+  .follow,
+  .unfollow {
+    display: inline;
+  }
 }
 
 .post_profile_pic > img {
   border-radius: 4px;
+  display: inline;
+  position: relative;
 }
 
 .feed {

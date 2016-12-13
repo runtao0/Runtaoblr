@@ -18,19 +18,25 @@
   text-align: center;
 }
 
-.follow_suggestion:not(first-child) {
-  padding: 10px 0;
-}
-
-.follow_suggestion:first-child {
-  padding-top: 10px;
-}
-
 .follow_suggestion {
   border-bottom: 1px solid #7273a5;
+  padding: 10px 20px 10px 15px;
 }
 
 .sidebar > h1 {
   text-align: center;
   border-bottom: 1px solid #7273a5;
+}
+
+.sidebar-follow, .sidebar-unfollow {
+  float: right;
+  background: #7273a5;
+  opacity: .6;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline;
+  transform: scaleX(1.2);
+  padding: 0 6px;
+  margin-top: 5px;
 }
