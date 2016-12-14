@@ -40,15 +40,15 @@ class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const post = this.state.post;
-    if (post.title || post.content){
+    if (!post.title || !post.content){
+      alert("Your post cannot be blank");
+    } else {
       this.props.createPost({ post }).then(() =>{
         this.setState({
           post: {kind: "", title: "", content: "" },
           modal: false
         });
       });
-    } else {
-      alert("Your post cannot be blank");
     }
   }
 
