@@ -7,3 +7,4 @@ json.kind post.kind
 json.liked post.liked_by_user?(current_user)
 json.follow current_user.follows?(post.author)
 json.notes post.notes_count
+json.own current_user.post?(post)

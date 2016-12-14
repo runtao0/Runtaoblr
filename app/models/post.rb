@@ -37,6 +37,7 @@ class Post < ActiveRecord::Base
     self.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")
         .where("sheep_id = :id OR author_id = :id", id: user_id)
         .order("created_at DESC")
+        .uniq
   end
 
   def liked_by_user?(user)
