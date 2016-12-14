@@ -36,12 +36,12 @@ Follow.create(sheep_id: runtao.id, sheperd_id: naomi.id)
 Follow.create(sheep_id: runtao.id, sheperd_id: togepi.id)
 
 Post.destroy_all
-2.times{ butterfree.posts.create(type: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-2.times{ runtao.posts.create(type: "text", title: "testing!", content: "Runtaoblr is awesome!") }
-2.times{ mudkip.posts.create(type: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-3.times{ mudkip.posts.create(type: "text", title: "MUDKIP MUD", content: "Runtaoblr is awesome!") }
-2.times{ magikarp.posts.create(type: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-2.times{ magikarp.posts.create(type: "text", title: "MAGIKARP", content: "Karp karp karp!") }
-2.times{ jynx.posts.create(type: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-3.times{ naomi.posts.create(type: "text", title: "Wow!", content: "I did not want to be here, I was made to be here!") }
-2.times{ wes.posts.create(type: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
+2.times{ butterfree.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
+2.times{ runtao.posts.create(kind: "text", title: "testing!", content: "Runtaoblr is awesome!") }
+2.times{ mudkip.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
+3.times{ mudkip.posts.create(kind: "text", title: "MUDKIP MUD", content: "Runtaoblr is awesome!") }
+2.times{ magikarp.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
+2.times{ magikarp.posts.create(kind: "text", title: "MAGIKARP", content: "Karp karp karp!") }
+2.times{ jynx.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
+3.times{ naomi.posts.create(kind: "text", title: "Wow!", content: "I did not want to be here, I was made to be here!") }
+2.times{ wes.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
