@@ -5,19 +5,18 @@ export function createPost(post) {
     data: post,
   });
 }
-export function editPost(post_id) {
+export function editPost(post) {
   return $.ajax({
     method: "PATCH",
-    url: `api/posts/${post_id}`,
+    url: `api/posts/${post.id}`,
     data: post,
   });
 }
 
 export function destroyPost(post) {
   return $.ajax({
-    method: "POST",
-    url: "api/posts",
-    data: post,
+    method: "DELETE",
+    url: `api/posts/${post.id}`,
   });
 }
 
