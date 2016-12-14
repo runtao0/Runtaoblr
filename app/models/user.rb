@@ -2,15 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  description     :text             not null
-#  profile_pic     :string           not null
-#  cover_pic       :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                         :integer          not null, primary key
+#  username                   :string           not null
+#  password_digest            :string           not null
+#  session_token              :string           not null
+#  description                :text             not null
+#  profile_pic                :string           not null
+#  cover_pic                  :string           not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  profile_image_file_name    :string
+#  profile_image_content_type :string
+#  profile_image_file_size    :integer
+#  profile_image_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
@@ -65,6 +69,14 @@ class User < ActiveRecord::Base
 
   has_many :liked_posts, through: :likes, source: :liked_post
 
+  has_attached_file :profile_image, styles: {
+    big: "600x600#",
+    small: "66x66#"
+  }
+  validates_attachment_content_type(
+    :profile_image,
+    content_type: /\Aimage\/.*\Z/
+  )
 #fills default values for user settings
   def default_values
     self.description ||= "Description goes here"

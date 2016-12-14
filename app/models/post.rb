@@ -2,19 +2,23 @@
 #
 # Table name: posts
 #
-#  id               :integer          not null, primary key
-#  kind             :string           not null
-#  title            :string           not null
-#  content          :text             not null
-#  author_id        :integer          not null
-#  previous_post_id :integer
-#  source_id        :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                         :integer          not null, primary key
+#  kind                       :string           not null
+#  title                      :string           not null
+#  content                    :text
+#  author_id                  :integer          not null
+#  previous_post_id           :integer
+#  source_id                  :integer
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  media_content_file_name    :string
+#  media_content_content_type :string
+#  media_content_file_size    :integer
+#  media_content_updated_at   :datetime
 #
 
 class Post < ActiveRecord::Base
-  validates :kind, :title, :content, :author_id, presence: true
+  validates :kind, :title, :author_id, presence: true
   validates :kind, inclusion: { in: %w(text pic quote audio video), message: "Not a valid post type" }
 
   belongs_to(
@@ -32,6 +36,8 @@ class Post < ActiveRecord::Base
   )
 
   has_many :liker_users, through: :likes, source: :liker
+
+  has_attached_file :media_content
 
   def self.feed_posts(user_id)
     self.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")

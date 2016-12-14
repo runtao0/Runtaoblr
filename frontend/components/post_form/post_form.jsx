@@ -6,7 +6,7 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: {kind: "", title: "", content: "" },
+      post: {kind: "", title: "", content: " " },
       buttons: true
     };
     this.profile_pic = this.props.currentUser.profile_pic;
@@ -14,13 +14,14 @@ class PostForm extends React.Component {
     this.resetDisplay = this.resetDisplay.bind(this);
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.ImageForm = this.ImageForm.bind(this);
   }
 
   changeDisplay(atype) {
     // neato!
     return () => {
       this.setState({
-        post: { kind: atype },
+        post: { kind: atype, title: "", content: " " },
         buttons: false
       });
     };
@@ -30,7 +31,7 @@ class PostForm extends React.Component {
     const confirmDeletDraft = confirm("Are you sure you want to throw away your post?");
     if (confirmDeletDraft === true) {
       this.setState({
-        post: {kind: "", title: "", content: "" },
+        post: {kind: "", title: "", content: " " },
         buttons: true
       });
     }
@@ -44,7 +45,7 @@ class PostForm extends React.Component {
     } else {
       this.props.createPost({ post }).then(() =>{
         this.setState({
-          post: {kind: "", title: "", content: "" },
+          post: {kind: "", title: "", content: " " },
           buttons: true
         });
       });
@@ -59,6 +60,31 @@ class PostForm extends React.Component {
         post
       });
     };
+  }
+
+  ImageForm () {
+    return (
+      <div className="post_form_container group">
+        <div className="profile_pic">
+          <img src={this.profile_pic}></img>
+        </div>
+        <section className="post_form">
+          <form className="form_content" onSubmit={this.handleSubmit}>
+            <h1>{this.props.currentUser.username} ♥ </h1>
+            <input type="text"
+              placeholder="Title"
+              value={this.state.title}
+              onChange={this.update("title")}
+              className="post_title-input"/>
+            <input type="file" id="image_input_field" name="file"
+              onChange={this.update("media_content")}/>
+          </form>
+          <button className="submit_post"
+                  onClick={this.handleSubmit}>Post</button>
+          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+        </section>
+      </div>
+    );
   }
 
   render() {
@@ -101,29 +127,33 @@ class PostForm extends React.Component {
           </div>
         );
       } else {
-        return (
-          <div className="post_form_container group">
-            <div className="profile_pic">
-              <img src={this.profile_pic}></img>
+        if (this.state.post.kind === "pic") {
+          return this.ImageForm();
+        } else {
+          return (
+            <div className="post_form_container group">
+              <div className="profile_pic">
+                <img src={this.profile_pic}></img>
+              </div>
+              <section className="post_form">
+                <form className="form_content" onSubmit={this.handleSubmit}>
+                  <h1>{this.props.currentUser.username} ♥ </h1>
+                  <input type="text"
+                    placeholder="Title"
+                    value={this.state.title}
+                    onChange={this.update("title")}
+                    className="post_title-input"/>
+                  <textarea placeholder="Your content here"
+                    onChange={this.update("content")}
+                    rows="3"/>
+                </form>
+                <button className="submit_post"
+                        onClick={this.handleSubmit}>Post</button>
+                <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+              </section>
             </div>
-            <section className="post_form">
-              <form className="form_content" onSubmit={this.handleSubmit}>
-                <h1>{this.props.currentUser.username} ♥ </h1>
-                <input type="text"
-                  placeholder="Title"
-                  value={this.state.title}
-                  onChange={this.update("title")}
-                  className="post_title-input"/>
-                <textarea placeholder="Your content here"
-                  onChange={this.update("content")}
-                  rows="3"/>
-              </form>
-              <button className="submit_post"
-                      onClick={this.handleSubmit}>Post</button>
-              <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-            </section>
-          </div>
-        );
+          );
+        }
       }
     } else {
         return <div></div>;

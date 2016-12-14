@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>practice pic upload</title>
+  </head>
+  <body>
+    <form role="form" action="" name="devis" id="devis" method="post" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="societe">Company</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control input-md col-md-8" name="societe" value="" maxlength="" id="societe">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="message"><span class="required">* </span>Message</label>
+            <div class="col-md-8">
+                <textarea rows="5" name="message" class="form-control input-md col-md-8" maxlength="" required="" style="resize:none;" id="message"></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="input_file">
+            <label class="control-label col-md-4" for="image_input_field">Logo</label>
+            <div class="col-md-8">
+            <div class="input-group uploaddiv">
+                <span class="input-group-btn">
+                    <span class="btn btn-default btn-file">
+                        Parcourir <input type="file" id="image_input_field" name="file">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly="">
+            </div>
+            </div>
+        </div>
+    <div class="form-group">
+    <div class="form-actions col-md-9 col-md-offset-3 text-right">
+        <input type="submit" value="Envoyer" name="" class="btn btn-primary" id="submit">
+        <input type="reset" value="Annuler" name="" class="btn btn-default" id="reset">
+        </div>
+    </div>
+    </fieldset>
+</form>
+  </body>
+</html>
