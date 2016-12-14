@@ -1,0 +1,42 @@
+.suggestion_profile_pic {
+  width: 30px;
+  height: 30px;
+  background-position: center center;
+  display: inline-block;
+}
+
+.suggestion_profile_pic > img {
+  border-radius: 4px;
+}
+
+ h3 {
+  margin: 0;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0 0 0 20px;
+  text-align: center;
+}
+
+.follow_suggestion {
+  border-bottom: 1px solid #7273a5;
+  padding: 10px 20px 10px 15px;
+}
+
+.sidebar > h1 {
+  text-align: center;
+  border-bottom: 1px solid #7273a5;
+}
+
+.sidebar-follow, .sidebar-unfollow {
+  float: right;
+  background: #7273a5;
+  opacity: .6;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline;
+  transform: scaleX(1.2);
+  padding: 0 6px;
+  margin-top: 5px;
+}

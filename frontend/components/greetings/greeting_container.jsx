@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import { logIn, signUp, logOut } from '../../actions/session_actions';
 import Greeting from './greeting';
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({ session }) => {
+  return {
   currentUser: session.currentUser
-});
-
+}}
+//  move this to the back end, don't let ppl see
 const DEMO = { user: { username: "runtao", password: "runtao" } };
 
 const mapDispatchToProps = (dispatch) => ({

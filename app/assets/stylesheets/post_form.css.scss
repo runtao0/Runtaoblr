@@ -1,0 +1,70 @@
+.post_form {
+  display: inline-block;
+  width: 470px;
+  color: #414157;
+  background: white;
+  border-radius: 4px;
+}
+
+.form_content {
+  padding: 10px 20px 10px 20px;
+}
+
+.form_content > h1 {
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.form_content > input[type=text] {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+}
+.form_content > textarea {
+  display: block;
+  width: 98%;
+  font-size: inherit;
+  rows: 5;
+  resize: none;
+}
+.form_content > form {
+  display: inline-block;
+}
+
+.submit_post, .close_post_form {
+  font-size: 12px;
+  line-height: 12px;
+  display: inline-block;
+
+  color: white;
+  width: auto;
+  height:auto;
+  font-size: inherit;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 20px;
+}
+
+.submit_post {
+  float: right;
+  background: #5a5df9;
+}
+
+.close_post_form {
+  float: left;
+  background: #707180;
+}
+
+
+
+// ADD MODAL
+// .blackout {
+//   position: absolute;
+//   margin: auto;
+//   height: 100vh;
+//   width: 100vh;
+//   z-index: 1;
+//   background: #46477e;
+//   opacity: 60%;
+// }

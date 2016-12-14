@@ -4,8 +4,8 @@ import GreetingContainer from './greetings/greeting_container';
 
 class App extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {bg: this.chooseBG()};
   }
 
@@ -22,12 +22,9 @@ class App extends React.Component {
   render () {
     return (
       <div className={ "auth group " + this.state.bg}>
-        <header>
-          <section className="action_buttons">
-            <GreetingContainer/>
-          </section>
-        </header>
-
+        <section className="action_buttons">
+          <GreetingContainer/>
+        </section>
         <section className="signin_form">
           <h1 className="runtaoblr">runtaoblr.</h1>
           <h2 className="description">Come as you are,<br/> leave transformed</h2>
