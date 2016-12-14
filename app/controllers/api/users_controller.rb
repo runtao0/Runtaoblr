@@ -15,6 +15,35 @@ class Api::UsersController<ApplicationController
     @user = current_user
   end
 
+  # def index
+  #   @rand_users = User.where.not(id: current_user.id).order("RANDOM()").limit(5)
+  # end
+
+  def suggestion
+    @suggested_users = User.suggestions(current_user.id)
+  end
+
+  def follow
+    # how is the id being passed? THROUGH THE DATA IN AJAX!!
+    # interpolate into the url route
+    new_follow = Follow.new(sheperd_id: params[:id], sheep_id: current_user.id)
+    if new_follow.save
+      render json: ["success"]
+    else
+      render json: new_follow.errors.full_messages, status: 422
+    end
+    #what should I render?
+  end
+
+  def unfollow
+    new_unfollow = Follow.find_by(sheep_id: current_user.id, sheperd_id: params[:id])
+    if new_unfollow.destroy
+      render json: ["success"]
+    else
+      render json: new_unfollow.errors.full_messages, status: 422
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)

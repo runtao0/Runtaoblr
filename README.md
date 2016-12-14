@@ -1,4 +1,4 @@
-#**Oatnr**
+#**Runtaoblr**
 
 Link: [Runtaoblr](runtaoblr.herokuapp.com)
 
@@ -9,8 +9,8 @@ PERFECT, SO JUST START WITH WHAT YOU HAVE AND EDIT -->
 
 Oatnr is a web app inspired by Tumblr built using Ruby on Rails and JS with React and Redux. By W9D5, I will have successfully implemented the following features with smooth navigation, no bugs, a plethora of seed data and awesome CSS styling (this was heavily appropriated from the sample):
 
-- [ ] Hosting on Heroku
-- [ ] New account, login, and guest/demo login
+- [ x ] Hosting on Heroku
+- [ x ] New account, login, and guest/demo login
 - [ ] Posts form for various post types
 - [ ] Feed/dashboard
 - [ ] Follows
