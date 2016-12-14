@@ -31,7 +31,7 @@
   display: inline-block;
 }
 
-.submit_post, .close_post_form {
+.submit_post, .close_post_form, .delete_post {
   font-size: 12px;
   line-height: 12px;
   display: inline-block;
@@ -54,6 +54,10 @@
 .close_post_form {
   float: left;
   background: #707180;
+}
+
+.delete_post {
+  background: red;
 }
 
 

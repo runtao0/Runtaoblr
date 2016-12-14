@@ -16,32 +16,57 @@
   border-radius: 4px;
 }
 
-.post_body > h2 {
+.post_body h2 {
   padding: 0 10px;
   margin: 10px;
   font-size: 18px;
   font-weight: 600;
 }
 
-.post_body > p {
+.post_body p {
   padding: 0 10px;
   margin: 10px;
   font-size: 18px;
   font-weight: 300;
 }
 
-.post_body > img {
+.post_body img {
   width: 100%;
   height: auto;
   //take this out later when you have like and reblog buttons
 }
 
-.post_body > h3 {
+.post_body h3 {
   float: left;
   font-size: 16px;
   padding: 10px 20px;
   color: #7273a5;
   font-weight: 400;
+}
+
+.post_buttons {
+  float: right;
+  display: inline;
+  width: auto;
+  height: auto;
+  position: relative;
+  margin-right: 15px;
+}
+
+.post_edit {
+  position: absolute;
+  background: asset-url("edit1.png");
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  left: 15px;
+}
+
+.edit_post_buttons {
+  position: relative;
+  width: 100px;
+  float: right;
 }
 
 .like, .unlike {
@@ -53,6 +78,10 @@
 
 .like {
   color: #7273a5;
+}
+
+.like:hover {
+  color: #595974;
 }
 
 .unlike {
@@ -103,4 +132,8 @@
 
 footer {
   height: 100px;
+}
+
+.post_form_container.edit {
+  margin-top: 35px;
 }
