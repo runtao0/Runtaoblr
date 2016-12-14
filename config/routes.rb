@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       member do
         post :like
         post :unlike
+        post :follow
+        post :unfollow
       end
       collection do
         get :feed

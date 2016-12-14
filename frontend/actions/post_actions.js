@@ -37,9 +37,42 @@ export function createPost(post) {
   };
 }
 
+export function likePost(post) {
+  return (dispatch) => {
+    return APIUtil.likePost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+
+export function unlikePost(post) {
+  return (dispatch) => {
+    return APIUtil.unlikePost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+export function followPost(post) {
+  return (dispatch) => {
+    return APIUtil.followPost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+export function unfollowPost(post) {
+  return (dispatch) => {
+    return APIUtil.unfollowPost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+
 export function editPost(post) {
   return (dispatch) => {
-    // right now all post actions will return all posts
     return APIUtil.editPost(post)
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postError(errors))
@@ -49,7 +82,6 @@ export function editPost(post) {
 
 export function destroyPost(post) {
   return (dispatch) => {
-    // right now all post actions will return all posts
     return APIUtil.destroyPost(post)
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postErrors(errors))
@@ -68,7 +100,6 @@ export function requestPosts() {
 
 export function requestOnePost(post_id) {
   return (dispatch) => {
-    // right now all post actions will return all posts
     return APIUtil.fetchOnePost(post_id)
       .then(post => dispatch(receiveOnePost(post)),
       errors => dispatch(postError(errors))

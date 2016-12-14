@@ -47,7 +47,8 @@ class Api::PostsController < ApplicationController
   def like
     new_like = Like.new(liked_post_id: params[:id], liker_id: current_user.id)
     if new_like.save
-      render json: ["success"]
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
     else
       render json: new_like.errors.full_messages, status: 422
     end
@@ -56,11 +57,34 @@ class Api::PostsController < ApplicationController
   def unlike
     new_unlike = Like.find_by(liked_post_id: params[:id], liker_id: current_user.id)
     if new_unlike.destroy
-      render json: ["success"]
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
     else
       render json: new_unlike.errors.full_messages, status: 422
     end
 
+  end
+
+  def follow
+    post = Post.find(params[:id])
+    new_follow = Follow.new(sheperd_id: post.author_id, sheep_id: current_user.id)
+    if new_follow.save
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
+    else
+      render json: new_follow.errors.full_messages, status: 422
+    end
+  end
+
+  def unfollow
+    post = Post.find(params[:id])
+    new_unfollow = Follow.find_by(sheperd_id: post.author_id, sheep_id: current_user.id)
+    if new_unfollow.destroy
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
+    else
+      render json: new_unfollow.errors.full_messages, status: 422
+    end
   end
 
   private

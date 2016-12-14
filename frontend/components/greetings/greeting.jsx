@@ -36,8 +36,10 @@ const Greeting = ({ currentUser, logOut, demoUser, router}) => {
   }
 
   function out() {
-    logOut().then(() => {router.push("/");})
+    return logOut().then(() => {
+      router.push("/");})
   }
+
   if (currentUser === null) {
     return notLoggedInGreeting(logInDemo.bind(this));
   } else {

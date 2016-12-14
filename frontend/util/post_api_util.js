@@ -35,17 +35,29 @@ export function fetchOnePost(post_id) {
   });
 }
 
-export function like(idToLike) {
+export function likePost(post) {
   return $.ajax({
     method: "POST",
-    url: `api/posts/${idToLike}/like`,
+    url: `api/posts/${post.id}/like`,
   });
 }
 
-export function unlike(idToUnlike) {
+export function unlikePost(post) {
   return $.ajax({
     method: "POST",
-    url: `api/posts/${idToUnlike}/unlike`,
+    url: `api/posts/${post.id}/unlike`,
+  });
+}
+export function followPost(post) {
+  return $.ajax({
+    method: "POST",
+    url: `api/posts/${post.id}/follow`,
+  });
+}
+export function unfollowPost(post) {
+  return $.ajax({
+    method: "POST",
+    url: `api/posts/${post.id}/unfollow`,
   });
 }
 
