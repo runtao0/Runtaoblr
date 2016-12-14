@@ -7,14 +7,14 @@ PERFECT, SO JUST START WITH WHAT YOU HAVE AND EDIT -->
 
 #**Minimum Viable Product**
 
-Oatnr is a web app inspired by Tumblr built using Ruby on Rails and JS with React and Redux. By W9D5, I will have successfully implemented the following features with smooth navigation, no bugs, a plethora of seed data and awesome CSS styling (this was heavily appropriated from the sample):
+Runtaoblr is a web app inspired by Tumblr built using Ruby on Rails and JS with React and Redux. By W9D5, I will have successfully implemented the following features with smooth navigation, no bugs, a plethora of seed data and awesome CSS styling (this was heavily appropriated from the sample):
 
-- [ x ] Hosting on Heroku
-- [ x ] New account, login, and guest/demo login
-- [ ] Posts form for various post types
-- [ ] Feed/dashboard
-- [ ] Follows
-- [ ] Likes
+- [x] Hosting on Heroku
+- [x] New account, login, and guest/demo login
+- [x] Posts form for various post types
+- [x] Feed/dashboard
+- [x] Follows
+- [x] Likes
 - [ ] **BONUS** Reblog (think about doing recursion)
 - [ ] **BONUS** User show pages
 - [ ] **BONUS** Infinite scroll on dashboard

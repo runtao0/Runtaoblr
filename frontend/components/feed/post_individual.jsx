@@ -145,14 +145,13 @@ class PostIndividual extends React.Component {
 
   renderFollowButton(post) {
     const followButtonDisplay = post.follow ? "unfollow" : "follow";
-    const followContent = post.follow ? "-" : "+";
     if (post.own) {
       return (<div/>);
     } else {
       return (
         <button className={ followButtonDisplay }
           onClick={ this.handleFollow(post) }>
-          { followContent }
+          { followButtonDisplay }
         </button>
       );
     }
