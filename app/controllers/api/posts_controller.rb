@@ -23,22 +23,21 @@ class Api::PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = current_user.posts.find(params[:id])
     if @post
       @post.destroy
-      # render "api/posts/index"
-      render json: Post.all
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
     else
       render json: ["Post could not be found"], status: 404
     end
   end
 
   def update
-    @post = Post.find_by(id: params[:post][:id])
-    @post.title = params[:post][:title]
-    @post.content = params[:post][:content]
-    if @post.update
-      render "api/posts/index"
+    @post = Post.find(params[:id])
+    if @post.update(title: params[:title], content: params[:content])
+      @feed_posts = Post.feed_posts(current_user.id)
+      render :feed
     else
       render json: ["Post could not be edited"], status: 402
     end

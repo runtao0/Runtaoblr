@@ -78,7 +78,8 @@ class User < ActiveRecord::Base
 
   def self.suggestions(user_id)
     sheperd_ids = User.find(user_id).sheperds.pluck(:sheperd_id) << user_id
-    suggestions = User.where.not(id: sheperd_ids)
+
+    suggestions = User.where.not(id: sheperd_ids).limit(5)
   end
 
 
