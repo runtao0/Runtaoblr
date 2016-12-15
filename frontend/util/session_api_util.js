@@ -20,3 +20,21 @@ export function logOut() {
     url: "api/session",
   });
 }
+
+export function showUser() {
+  return $.ajax({
+    method: "GET",
+    url: "api/users/show",
+  });
+}
+
+export function editUser(user) {
+  return $.ajax({
+    method: "PATCH",
+    url: "api/users/update",
+    dataType: "json",
+    contentType: false,
+    processData: false,
+    data: user,
+  });
+}

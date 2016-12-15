@@ -17,6 +17,15 @@ class PostForm extends React.Component {
     this.ImageForm = this.ImageForm.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.handlePicSubmit = this.handlePicSubmit.bind(this);
+    this.getImage = this.getImage.bind(this);
+  }
+
+  getImage() {
+    if (this.state.post.imageURL) {
+      return <img src={this.state.post.imageURL}/>;
+    } else {
+      return <h2>Select a file!</h2>;
+    }
   }
 
   changeDisplay(atype) {
@@ -67,7 +76,6 @@ class PostForm extends React.Component {
   updateFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
-
     const title = this.state.post.title;
     const kind = this.state.post.kind;
     if (file) {
@@ -83,9 +91,7 @@ class PostForm extends React.Component {
         },
         buttons: false,
       });
-      debugger
     }.bind(this);
-
   }
 
   handlePicSubmit(e) {
@@ -130,7 +136,7 @@ class PostForm extends React.Component {
               encType="multipart/form-data"
               onChange={this.updateFile} />
           </form>
-          <img src={ this.state.post.imageUrl } />
+          {this.getImage()}
           <button className="submit_post"
                   onClick={this.handlePicSubmit}>Post</button>
           <button className="close_post_form" onClick={this.resetDisplay}>Close</button>

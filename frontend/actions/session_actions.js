@@ -17,6 +17,24 @@ export const receiveErrors = errors => ({
 
 
 // thunk action creators
+export function showUser() {
+  return (dispatch) => {
+    return APIUtil.showUser()
+      .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
+        errors => dispatch(receiveErrors(errors))
+      );
+  };
+}
+
+export function editUser(user) {
+  return (dispatch) => {
+    return APIUtil.editUser(user)
+      .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
+        errors => dispatch(receiveErrors(errors))
+      );
+  };
+}
+
 export function logIn(user) {
   return (dispatch) => {
     return APIUtil.logIn(user)
