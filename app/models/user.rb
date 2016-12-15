@@ -8,13 +8,16 @@
 #  session_token              :string           not null
 #  description                :text             not null
 #  profile_pic                :string           not null
-#  cover_pic                  :string           not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  profile_image_file_name    :string
 #  profile_image_content_type :string
 #  profile_image_file_size    :integer
 #  profile_image_updated_at   :datetime
+#  cover_pic_file_name        :string
+#  cover_pic_content_type     :string
+#  cover_pic_file_size        :integer
+#  cover_pic_updated_at       :datetime
 #
 
 class User < ActiveRecord::Base
@@ -69,19 +72,23 @@ class User < ActiveRecord::Base
 
   has_many :liked_posts, through: :likes, source: :liked_post
 
-  has_attached_file :profile_image, styles: {
-    big: "600x600#",
+  has_attached_file :profile_image, default_url: "default_profile.jpg", styles: {
+    big: "500x500#",
     small: "66x66#"
   }
   validates_attachment_content_type(
     :profile_image,
     content_type: /\Aimage\/.*\Z/
   )
+
+  has_attached_file :cover_pic, default_url: "default_cover_pic.jpg"
+  validates_attachment_content_type(
+    :cover_pic,
+    content_type: /\Aimage\/.*\Z/
+  )
 #fills default values for user settings
   def default_values
     self.description ||= "Description goes here"
-    self.profile_pic ||= default_prof_pic
-    self.cover_pic ||= default_cover_pic
   end
 
   def post?(post)
@@ -128,11 +135,4 @@ class User < ActiveRecord::Base
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
 
-  def default_prof_pic
-    "http://www.nationalturk.com/en/wp-content/uploads/2010/08/Naomi-Campbell.jpg"
-  end
-
-  def default_cover_pic
-    "http://www.vh1.com/news/wp-content/uploads/blog.vh1.com/2005/02/83462-52169785_10.jpg"
-  end
 end
