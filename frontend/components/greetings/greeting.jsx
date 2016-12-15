@@ -7,6 +7,15 @@ const loggedInGreeting = (currentUser, out) => {
       <div className="logo">r</div>
       <ul className="button_list">
         <li>
+          <button className="toggle_buttons"><Link to="/following">Followings</Link></button>
+        </li>
+        <li>
+          <button className="toggle_buttons"><Link to="/dashboard">Dashboard</Link></button>
+        </li>
+        <li>
+          <button className="toggle_buttons"><Link to="/user_settings">User Settings</Link></button>
+        </li>
+        <li>
           <button className="log_out" onClick={ out }>
             Log Out
           </button>

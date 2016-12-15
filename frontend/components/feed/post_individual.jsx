@@ -134,10 +134,16 @@ class PostIndividual extends React.Component {
   }
 
   renderPicPost(post) {
+    let imageURL;
+    if (post.media === "/media_contents/original/missing.png") {
+      imageURL = post.content;
+    } else {
+      imageURL = post.media;
+    }
     return(
       <div>
         <h2>{ post.title }</h2>
-        <img src={ post.content } />
+        <img src={ imageURL } />
         <h3>{ post.notes } notes</h3>
       </div>
     );

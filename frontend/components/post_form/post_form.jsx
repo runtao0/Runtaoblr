@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import { post_style } from './post_form_style';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -9,19 +8,22 @@ class PostForm extends React.Component {
       post: {kind: "", title: "", content: " " },
       buttons: true
     };
+
     this.profile_pic = this.props.currentUser.profile_pic;
     this.changeDisplay = this.changeDisplay.bind(this);
     this.resetDisplay = this.resetDisplay.bind(this);
     this.update = this.update.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextSubmit = this.handleTextSubmit.bind(this);
     this.ImageForm = this.ImageForm.bind(this);
+    this.updateFile = this.updateFile.bind(this);
+    this.handlePicSubmit = this.handlePicSubmit.bind(this);
   }
 
   changeDisplay(atype) {
     // neato!
     return () => {
       this.setState({
-        post: { kind: atype, title: "", content: " " },
+        post: { kind: atype, title: "", content: "" },
         buttons: false
       });
     };
@@ -31,13 +33,13 @@ class PostForm extends React.Component {
     const confirmDeletDraft = confirm("Are you sure you want to throw away your post?");
     if (confirmDeletDraft === true) {
       this.setState({
-        post: {kind: "", title: "", content: " " },
+        post: {kind: "", title: "", content: "" },
         buttons: true
       });
     }
   }
 
-  handleSubmit(e) {
+  handleTextSubmit(e) {
     e.preventDefault();
     const post = this.state.post;
     if (!post.title || !post.content){
@@ -45,7 +47,7 @@ class PostForm extends React.Component {
     } else {
       this.props.createPost({ post }).then(() =>{
         this.setState({
-          post: {kind: "", title: "", content: " " },
+          post: {kind: "", title: "", content: "" },
           buttons: true
         });
       });
@@ -62,25 +64,75 @@ class PostForm extends React.Component {
     };
   }
 
+  updateFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+
+    const title = this.state.post.title;
+    const kind = this.state.post.kind;
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+    fileReader.onloadend = function () {
+      this.setState({
+        post: {
+          kind,
+          title,
+          imageFile: file,
+          imageURL: fileReader.result
+        },
+        buttons: false,
+      });
+      debugger
+    }.bind(this);
+
+  }
+
+  handlePicSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("post[title]", this.state.post.title);
+    formData.append("post[media_content]", this.state.post.imageFile);
+    formData.append("post[kind]", this.state.post.kind);
+    // post request, then reset to buttons
+    this.props.createPost(formData).then(() =>{
+      this.setState({
+        post: {kind: "", title: "", content: "" },
+        buttons: true
+      });
+    });
+  }
+
+  preview() {
+    if (this.state.post.imageUrl) {
+      return <img src={ this.state.post.imageUrl } />;
+    } else {
+      return <div/>;
+    }
+  }
+
   ImageForm () {
+
     return (
       <div className="post_form_container group">
         <div className="profile_pic">
           <img src={this.profile_pic}></img>
         </div>
         <section className="post_form">
-          <form className="form_content" onSubmit={this.handleSubmit}>
+          <form className="form_content">
             <h1>{this.props.currentUser.username} ♥ </h1>
             <input type="text"
               placeholder="Title"
               value={this.state.title}
               onChange={this.update("title")}
               className="post_title-input"/>
-            <input type="file" id="image_input_field" name="file"
-              onChange={this.update("media_content")}/>
+            <input type="file" className="image_input_field" name="file"
+              encType="multipart/form-data"
+              onChange={this.updateFile} />
           </form>
+          <img src={ this.state.post.imageUrl } />
           <button className="submit_post"
-                  onClick={this.handleSubmit}>Post</button>
+                  onClick={this.handlePicSubmit}>Post</button>
           <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
         </section>
       </div>
@@ -136,7 +188,7 @@ class PostForm extends React.Component {
                 <img src={this.profile_pic}></img>
               </div>
               <section className="post_form">
-                <form className="form_content" onSubmit={this.handleSubmit}>
+                <form className="form_content" onSubmit={this.handleTextSubmit}>
                   <h1>{this.props.currentUser.username} ♥ </h1>
                   <input type="text"
                     placeholder="Title"
@@ -148,7 +200,7 @@ class PostForm extends React.Component {
                     rows="3"/>
                 </form>
                 <button className="submit_post"
-                        onClick={this.handleSubmit}>Post</button>
+                        onClick={this.handleTextSubmit}>Post</button>
                 <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
               </section>
             </div>
