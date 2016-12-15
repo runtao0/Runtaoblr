@@ -94,6 +94,10 @@ class User < ActiveRecord::Base
     suggestions = User.where.not(id: sheperd_ids).limit(5)
   end
 
+  def followed_users
+    followings = User.where("id IN (:sheperds)", sheperds: self.sheperds.pluck(:sheperd_id))
+  end
+
 
   def password=(pw)
     @password = pw

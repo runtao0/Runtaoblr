@@ -37,7 +37,12 @@ class Post < ActiveRecord::Base
 
   has_many :liker_users, through: :likes, source: :liker
 
-  has_attached_file :media_content
+  has_attached_file :media_content, #default_url: "edit1.png",
+  styles: {
+    big: "600x600#",
+    small: "66x66#"
+  }
+  validates_attachment_content_type :media_content, content_type: /\Aimage\/.*\Z/
 
   def self.feed_posts(user_id)
     self.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")
