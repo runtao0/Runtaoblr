@@ -5,6 +5,13 @@ export function fetchSuggestions() {
   });
 }
 
+export function fetchFollowings() {
+  return $.ajax({
+    method: "GET",
+    url: "api/users/followings",
+  });
+}
+
 export function follow(idToFollow) {
   return $.ajax({
     method: "POST",

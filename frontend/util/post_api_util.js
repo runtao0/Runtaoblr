@@ -2,6 +2,9 @@ export function createPost(post) {
   return $.ajax({
     method: "POST",
     url: "api/posts",
+    dataType: "json",
+    contentType: false,
+    processData: false,
     data: post,
   });
 }
