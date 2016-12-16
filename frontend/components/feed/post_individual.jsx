@@ -16,7 +16,39 @@ class PostIndividual extends React.Component {
     this.update = this.update.bind(this);
     this.resetDisplay = this.resetDisplay.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleVideoEdit = this.handleVideoEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.renderAudioPost = this.renderAudioPost.bind(this);
+    this.getVideo = this.getVideo.bind(this);
+    this.parseYoutube = this.parseYoutube.bind(this);
+    this.editVideo = this.editVideo.bind(this);
+  }
+
+  getImage(post) {
+    if (post.media !== "/media_contents/original/missing.png") {
+      return <img src={post.media}/>;
+    } else {
+      return <img src={post.content}/>;
+    }
+  }
+
+  parseYoutube() {
+    if (this.state.post.content.includes("youtube")) {
+      const youtubeURL = this.state.post.content.split("&")[0];
+      const embedded = "http://youtube.com/embed/"
+                        .concat(youtubeURL.substr(youtubeURL.length - 11));
+      return embedded;
+    } else {
+      return false;
+    }
+  }
+
+  getVideo() {
+    if (this.parseYoutube()) {
+      return (<iframe width="560" height="315" src={ this.parseYoutube() } ></iframe>);
+    } else {
+      return (<h2>This is not a valid youtube video</h2>);
+    }
   }
 
   update(field) {
@@ -54,6 +86,24 @@ class PostIndividual extends React.Component {
     if (!post.title || !post.content){
       alert("Your edit cannot be blank");
     } else {
+      this.props.editPost(post).then(() =>{
+        this.setState({
+          post,
+          edit: false,
+        });
+      });
+    }
+  }
+
+  handleVideoEdit(e) {
+    e.preventDefault();
+    const post = this.state.post;
+    if (!post.title || !post.content){
+      alert("Your edit cannot be blank");
+    } else {
+      if (this.parseYoutube()) {
+        post.content = this.parseYoutube();
+      }
       this.props.editPost(post).then(() =>{
         this.setState({
           post,
@@ -133,6 +183,26 @@ class PostIndividual extends React.Component {
     );
   }
 
+  renderAudioPost(post) {
+    return(
+      <div>
+        <h2>{ post.title }</h2>
+        <audio src={ post.content } controls/>
+        <h3>{ post.notes } notes</h3>
+      </div>
+    );
+  }
+
+  renderVideoPost(post) {
+    return(
+      <div>
+        <h2>{ post.title }</h2>
+          <iframe width="560" height="315" src={ post.content } ></iframe>
+        <h3>{ post.notes } notes</h3>
+      </div>
+    );
+  }
+
   renderPicPost(post) {
     let imageURL;
     if (post.media === "/media_contents/original/missing.png") {
@@ -163,32 +233,108 @@ class PostIndividual extends React.Component {
     }
   }
 
+  editText(post) {
+    return (
+      <div className="post_form_container edit group">
+        <div className="profile_pic">
+          <img src={ post.profile_pic }></img>
+        </div>
+        <section className="post_form">
+          <form className="form_content">
+            <h1>{this.props.currentUser.username} ♥ </h1>
+            <input type="text"
+              value={this.state.post.title}
+              onChange={this.update("title")}
+              className="post_title-input"/>
+            <textarea value={this.state.post.content}
+              onChange={this.update("content")}
+              rows="3"/>
+          </form>
+          <button className="submit_post"
+                  onClick={this.handleEdit}>Edit</button>
+          <button className="delete_post"
+            onClick={this.handleDelete}>Delete</button>
+          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+        </section>
+      </div>
+    );
+  }
+
+  editVideo() {
+    return (
+      <div className="post_form_container edit group">
+        <div className="profile_pic">
+          <img src={ this.state.post.profile_pic }></img>
+        </div>
+        <section className="post_form">
+          <form className="form_content">
+            <h1>{this.props.currentUser.username} ♥ </h1>
+            <input type="text"
+              value={this.state.post.title}
+              onChange={this.update("title")}
+              className="post_title-input"/>
+            { this.getVideo () }
+            <textarea value={this.state.post.content}
+              onChange={this.update("content")}
+              rows="3"/>
+          </form>
+          <button className="submit_post"
+                  onClick={this.handleVideoEdit}>Edit</button>
+          <button className="delete_post"
+            onClick={this.handleDelete}>Delete</button>
+          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+        </section>
+      </div>
+    );
+  }
+
+  editPic(post) {
+    let picContent;
+    if (post.media === "/media_contents/original/missing.png") {
+      picContent = (<textarea placeholder={post.content}
+      onChange={this.update("content")}
+      rows="3"/>);
+    } else {
+      picContent = (<input type="file" className="image_input_field" name="file"
+      encType="multipart/form-data"
+      onChange={this.updateFile} />);
+    }
+    return (
+      <div className="post_form_container edit group">
+        <div className="profile_pic">
+          <img src={ post.profile_pic }></img>
+        </div>
+        <section className="post_form">
+          <form className="form_content">
+            <h1>{this.props.currentUser.username} ♥ </h1>
+            <input type="text"
+              placeholder="Title"
+              value={this.state.title}
+              onChange={this.update("title")}
+              className="post_title-input"/>
+            { this.getImage(post) }
+            { picContent }
+          </form>
+          <button className="submit_post"
+                  onClick={this.handlePicSubmit}>Post</button>
+          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
+        </section>
+      </div>
+    );
+  }
+
   render(post = this.state.post) {
       if (this.state.edit) {
-        return (
-          <div className="post_form_container edit group">
-            <div className="profile_pic">
-              <img src={ post.profile_pic }></img>
-            </div>
-            <section className="post_form">
-              <form className="form_content">
-                <h1>{this.props.currentUser.username} ♥ </h1>
-                <input type="text"
-                  value={this.state.post.title}
-                  onChange={this.update("title")}
-                  className="post_title-input"/>
-                <textarea value={this.state.post.content}
-                  onChange={this.update("content")}
-                  rows="3"/>
-              </form>
-              <button className="submit_post"
-                      onClick={this.handleEdit}>Edit</button>
-              <button className="delete_post"
-                onClick={this.handleDelete}>Delete</button>
-              <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-            </section>
-          </div>
-        );
+          switch(post.kind){
+            case("text"):
+              return this.editText(post);
+            case("pic"):
+              return this.editPic(post);
+            case("video"):
+              return this.editVideo();
+            default:
+              return this.editText(post);
+          }
       } else {
       const likeButtonDisplay = post.liked ? "unlike" : "like";
       let post_body;
@@ -199,6 +345,12 @@ class PostIndividual extends React.Component {
           break;
         case "pic":
           post_body = this.renderPicPost(post);
+          break;
+        case "audio":
+          post_body = this.renderAudioPost(post);
+          break;
+        case "video":
+          post_body = this.renderVideoPost(post);
           break;
         default:
           post_body = this.renderTextPost(post);

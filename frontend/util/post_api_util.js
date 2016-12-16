@@ -1,4 +1,4 @@
-export function createPost(post) {
+export function createImagePost(post) {
   return $.ajax({
     method: "POST",
     url: "api/posts",
@@ -8,6 +8,17 @@ export function createPost(post) {
     data: post,
   });
 }
+
+export function createPost(post) {
+  return $.ajax({
+    method: "POST",
+    url: "api/posts",
+    dataType: "json",
+    data: post,
+  });
+}
+
+
 export function editPost(post) {
   return $.ajax({
     method: "PATCH",

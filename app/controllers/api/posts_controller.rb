@@ -91,4 +91,5 @@ class Api::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:kind, :title, :content, :media_content)
   end
+
 end

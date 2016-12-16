@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PostForm from './post_form';
-import { createPost } from '../../actions/post_actions';
+import { createPost, createImagePost } from '../../actions/post_actions';
 
 const mapStateToProps = ({ session }) => ({
   currentUser: session.currentUser,
@@ -8,6 +8,7 @@ const mapStateToProps = ({ session }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   createPost: (post) => dispatch(createPost(post)),
+  createImagePost: (post) => dispatch(createImagePost(post))
 })
 
 export default connect(

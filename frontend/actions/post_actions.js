@@ -37,6 +37,16 @@ export function createPost(post) {
   };
 }
 
+export function createImagePost(post) {
+  return (dispatch) => {
+    // right now all post actions will return all posts
+    return APIUtil.createImagePost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+
 export function likePost(post) {
   return (dispatch) => {
     return APIUtil.likePost(post)

@@ -21,6 +21,8 @@ class Post < ActiveRecord::Base
   validates :kind, :title, :author_id, presence: true
   validates :kind, inclusion: { in: %w(text pic quote audio video), message: "Not a valid post type" }
 
+  before_save :youtube_reformat
+
   belongs_to(
     :author,
     class_name: 'User',
@@ -42,7 +44,7 @@ class Post < ActiveRecord::Base
     big: "600x600#",
     small: "66x66#"
   }
-  validates_attachment_content_type :media_content, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :media_content, content_type: [/\Aimage\/.*\Z/, 'audio/mp3', 'audio/mpeg']
 
   def self.feed_posts(user_id)
     self.joins("LEFT OUTER JOIN follows ON author_id = sheperd_id")
@@ -57,6 +59,16 @@ class Post < ActiveRecord::Base
 
   def notes_count
     Like.where(liked_post_id: self.id).count
+  end
+
+  def youtube_reformat
+    if self.kind == "video" && self.content.index("youtube")
+      youtubeURL = self.content.split("&")[0].reverse
+      needed = youtubeURL[0..10].reverse
+      self.content = "http://youtube.com/embed/" + needed
+    else
+      self.content
+    end
   end
 
 end
