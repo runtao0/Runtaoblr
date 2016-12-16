@@ -12,7 +12,7 @@ runtao = User.create(username: "runtao", password: "runtao",
   profile_image: open("http://cdn.bulbagarden.net/upload/thumb/a/a4/186Politoed.png/250px-186Politoed.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 david = User.create(username: "davidKarp", password: "davidKarp",
   profile_image: open("http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
-wes = User.create(username: "wes", password: "weswes"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
+wes = User.create(username: "wes", password: "weswes", profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 rupaul = User.create(username: "rupaul", password: "rupaulcharles",
   profile_image: open("https://67.media.tumblr.com/avatar_1d835b1d9d98_128.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 naomi = User.create(username: "naomi", password: "campbell"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
