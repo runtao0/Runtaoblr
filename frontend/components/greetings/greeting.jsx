@@ -7,9 +7,6 @@ const loggedInGreeting = (currentUser, out) => {
       <div className="logo">r</div>
       <ul className="button_list">
         <li>
-          <button className="toggle_buttons"><Link to="/following">Followings</Link></button>
-        </li>
-        <li>
           <button className="toggle_buttons"><Link to="/dashboard">Dashboard</Link></button>
         </li>
         <li>
@@ -25,6 +22,9 @@ const loggedInGreeting = (currentUser, out) => {
   );
 }
 
+// <li>
+//   <button className="toggle_buttons"><Link to="/following">Followings</Link></button>
+// </li>
 
 const notLoggedInGreeting = (demoUser) => (
   <header className="log_buttons group">

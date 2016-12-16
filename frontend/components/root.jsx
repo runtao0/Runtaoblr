@@ -35,11 +35,11 @@ const Root = ({ store }) => {
           <Route path="/signup" component={ SignUpFormContainer } onEnter={_redirectIfLoggedIn} />
         </Route>
         <Route path="/dashboard" component={ DashboardContainer } onEnter={_redirectIfNotLoggedIn} />
-        <Route path="/following" component={ FollowingContainer } onEnter={_redirectIfNotLoggedIn} />
         <Route path="/user_settings" component={ UserSettingsContainer } onEnter={_redirectIfNotLoggedIn} />
       </Router>
     </Provider>);
 }
 
+// <Route path="/following" component={ FollowingContainer } onEnter={_redirectIfNotLoggedIn} />
 // <IndexRoute component={SessionFormContainer} />
 export default Root;
