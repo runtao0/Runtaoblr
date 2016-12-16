@@ -90,7 +90,7 @@ class PostIndividual extends React.Component {
   parseYoutube() {
     if (this.state.post.content.includes("youtube")) {
       const youtubeURL = this.state.post.content.split("&")[0];
-      const embedded = "http://youtube.com/embed/"
+      const embedded = "https://youtube.com/embed/"
                         .concat(youtubeURL.substr(youtubeURL.length - 11));
       return embedded;
     } else {

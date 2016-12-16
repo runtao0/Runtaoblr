@@ -65,7 +65,7 @@ class Post < ActiveRecord::Base
     if self.kind == "video" && self.content.index("youtube")
       youtubeURL = self.content.split("&")[0].reverse
       needed = youtubeURL[0..10].reverse
-      self.content = "http://youtube.com/embed/" + needed
+      self.content = "https://youtube.com/embed/" + needed
     else
       self.content
     end
