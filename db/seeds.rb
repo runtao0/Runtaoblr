@@ -15,7 +15,7 @@ david = User.create(username: "davidKarp", password: "davidKarp",
 wes = User.create(username: "wes", password: "weswes", profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 rupaul = User.create(username: "rupaul", password: "rupaulcharles",
   profile_image: open("https://67.media.tumblr.com/avatar_1d835b1d9d98_128.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
-naomi = User.create(username: "naomi", password: "campbell"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
+naomi = User.create(username: "naomi", password: "campbell", profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 pikachu = User.create(username: "pikachu", password: "pikachu", profile_image: open("http://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/250px-025Pikachu.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 dratini = User.create(username: "dratini", password: "dratini", profile_image: open("http://cdn.bulbagarden.net/upload/thumb/c/cc/147Dratini.png/250px-147Dratini.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
 jynx = User.create(username: "jynx", password: "jynxjynx", profile_image: open("http://cdn.bulbagarden.net/upload/thumb/7/7c/124Jynx.png/250px-124Jynx.png"), profile_pic: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
@@ -46,4 +46,4 @@ Post.destroy_all
 2.times{ jynx.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
 3.times{ naomi.posts.create(kind: "text", title: "Wow!", content: "I did not want to be here, I was made to be here!") }
 2.times{ wes.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-2.times{ rupaul.posts.create(kind: "video", title: "youuuu neeeee neeeded me", content: "https://www.youtube.com/watch?v=wfN4PVaOU5Q")
+2.times{ rupaul.posts.create(kind: "video", title: "youuuu neeeee neeeded me", content: "https://www.youtube.com/watch?v=wfN4PVaOU5Q") }
