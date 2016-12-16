@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import { allPosts } from '../../reducers/selectors';
 import PostsContainer from './posts_container';
+import Infinite from 'react-infinite';
 
 class Feed extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Feed extends React.Component {
   //   const something = this.renderFeedPosts();
   //   return something;
   // }
-  
+
   render () {
     return (
       <ul className="feed_posts">

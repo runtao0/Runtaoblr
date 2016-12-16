@@ -22,13 +22,68 @@ class PostIndividual extends React.Component {
     this.getVideo = this.getVideo.bind(this);
     this.parseYoutube = this.parseYoutube.bind(this);
     this.editVideo = this.editVideo.bind(this);
+    this.editPic = this.editPic.bind(this);
+    this.handlePicSubmit = this.handlePicSubmit.bind(this);
+    this.getImage = this.getImage.bind(this);
+    this.editText = this.editText.bind(this);
+    this.updateFile = this.updateFile.bind(this);
   }
 
-  getImage(post) {
-    if (post.media !== "/media_contents/original/missing.png") {
-      return <img src={post.media}/>;
+  updateFile(e) {
+    // const title = this.state.post.title;
+    // const id = this.state.post.id;
+    // const content = this.state.post.content;
+    const file = e.currentTarget.files[0];
+    const post = this.state.post;
+    const fileReader = new FileReader();
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+    post.media = file;
+    fileReader.onloadend = function () {
+      this.setState({
+        post,
+        //   media: file,
+        //   title,
+        //   id,
+        //
+        //   content,
+        // },
+        imageURL: fileReader.result,
+        buttons: false,
+      });
+    }.bind(this);
+  }
+
+  handlePicSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("post[title]", this.state.post.title);
+    formData.append("id", this.state.post.id);
+    if (this.state.imageURL) {
+      formData.append("post[media_content]", this.state.post.media);
+    }
+    formData.append("post[kind]", this.state.post.kind);
+    formData.append("post[content]", this.state.post.content);
+    const post = this.state.post;
+    // post request, then reset to buttons
+    this.props.editPicPost(formData).then(() =>{
+      this.setState({
+        post: this.props.post,
+        edit: false,
+      });
+    });
+  }
+
+  getImage() {
+    if (this.state.imageURL) {
+      return <img src={this.state.imageURL}/>;
     } else {
-      return <img src={post.content}/>;
+      if (this.state.post.media !== "/media_contents/original/missing.png") {
+        return <img src={this.state.post.media}/>;
+      } else {
+        return <img src={this.state.post.content}/>;
+      }
     }
   }
 
@@ -233,11 +288,11 @@ class PostIndividual extends React.Component {
     }
   }
 
-  editText(post) {
+  editText() {
     return (
       <div className="post_form_container edit group">
         <div className="profile_pic">
-          <img src={ post.profile_pic }></img>
+          <img src={ this.state.post.profile_pic }></img>
         </div>
         <section className="post_form">
           <form className="form_content">
@@ -288,35 +343,41 @@ class PostIndividual extends React.Component {
     );
   }
 
-  editPic(post) {
+  editPic() {
     let picContent;
-    if (post.media === "/media_contents/original/missing.png") {
-      picContent = (<textarea placeholder={post.content}
+    let submit_button;
+    if (this.state.post.media === "/media_contents/original/missing.png") {
+      picContent = (<textarea placeholder={this.state.post.content}
       onChange={this.update("content")}
       rows="3"/>);
+      submit_button = (<button className="submit_post"
+              onClick={this.handleEdit}>Edit</button>);
     } else {
       picContent = (<input type="file" className="image_input_field" name="file"
       encType="multipart/form-data"
       onChange={this.updateFile} />);
+      submit_button = (<button className="submit_post"
+              onClick={this.handlePicSubmit}>Edit</button>);
     }
     return (
       <div className="post_form_container edit group">
         <div className="profile_pic">
-          <img src={ post.profile_pic }></img>
+          <img src={ this.state.post.profile_pic }></img>
         </div>
         <section className="post_form">
           <form className="form_content">
             <h1>{this.props.currentUser.username} ♥ </h1>
             <input type="text"
               placeholder="Title"
-              value={this.state.title}
+              value={ this.state.post.title }
               onChange={this.update("title")}
               className="post_title-input"/>
-            { this.getImage(post) }
+            { this.getImage() }
             { picContent }
           </form>
-          <button className="submit_post"
-                  onClick={this.handlePicSubmit}>Post</button>
+          { submit_button }
+          <button className="delete_post"
+            onClick={this.handleDelete}>Delete</button>
           <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
         </section>
       </div>
@@ -327,13 +388,13 @@ class PostIndividual extends React.Component {
       if (this.state.edit) {
           switch(post.kind){
             case("text"):
-              return this.editText(post);
+              return this.editText();
             case("pic"):
-              return this.editPic(post);
+              return this.editPic();
             case("video"):
               return this.editVideo();
             default:
-              return this.editText(post);
+              return this.editText();
           }
       } else {
       const likeButtonDisplay = post.liked ? "unlike" : "like";

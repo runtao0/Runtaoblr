@@ -90,6 +90,15 @@ export function editPost(post) {
   };
 }
 
+export function editPicPost(post) {
+  return (dispatch) => {
+    return APIUtil.editPicPost(post)
+      .then(posts => dispatch(receivePosts(posts)),
+      errors => dispatch(postError(errors))
+    );
+  };
+}
+
 export function destroyPost(post) {
   return (dispatch) => {
     return APIUtil.destroyPost(post)
@@ -99,9 +108,9 @@ export function destroyPost(post) {
   };
 }
 
-export function requestPosts() {
+export function requestPosts(last_post_id) {
   return (dispatch) => {
-    return APIUtil.fetchPosts()
+    return APIUtil.fetchPosts(last_post_id)
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postError(errors))
     );

@@ -27,6 +27,16 @@ export function editPost(post) {
   });
 }
 
+export function editPicPost(post) {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/posts/${post.get("id")}`,
+    contentType: false,
+    processData: false,
+    data: post,
+  });
+}
+
 export function destroyPost(post) {
   return $.ajax({
     method: "DELETE",
