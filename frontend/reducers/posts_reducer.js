@@ -4,7 +4,7 @@ import { RECEIVE_POSTS, RECEIVE_ONE_POST, POST_ERRORS, REMOVE_POST } from '../ac
 
 const PostReducer = (state = {}, action) => {
   Object.freeze(state);
-  let newState = {};
+  let newState = merge( {}, state);
   switch(action.type) {
     case RECEIVE_POSTS:
       action.posts.forEach(post => newState[post.id] = post);
