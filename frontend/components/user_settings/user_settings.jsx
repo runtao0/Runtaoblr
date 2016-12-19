@@ -92,7 +92,6 @@ class UserSettings extends React.Component {
       formData.append("user[cover_pic]", this.state.currentUser.cover_pic);
     }
     if (this.state.newProfile !== null) {
-      debugger
       formData.append("user[profile_image]", this.state.currentUser.profile_image);
     }
     formData.append("user[username]", this.state.currentUser.username);
