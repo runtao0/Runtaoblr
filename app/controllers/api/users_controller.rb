@@ -10,6 +10,7 @@ class Api::UsersController<ApplicationController
   end
 
   def update
+    debugger
     if current_user.update(update_params)
       @user = current_user
       render :show

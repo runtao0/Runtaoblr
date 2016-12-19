@@ -34,7 +34,6 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-
     @post = Post.find(params[:id])
     if @post.update(post_params)
       @feed_posts = Post.includes(:author).feed_posts(current_user.id)

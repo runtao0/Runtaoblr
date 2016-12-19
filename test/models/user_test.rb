@@ -7,7 +7,6 @@
 #  password_digest            :string           not null
 #  session_token              :string           not null
 #  description                :text             not null
-#  profile_pic                :string           not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  profile_image_file_name    :string
