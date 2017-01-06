@@ -11,11 +11,14 @@ const PostReducer = (state = {}, action) => {
       return newState;
     // do I even need RECEIVE_ONE_POST?
     case RECEIVE_ONE_POST:
-      const post = {[action.post.id]: action.post};
+      const post = {[action.post[0].id]: action.post[0]};
       return merge({}, state, post);
     case REMOVE_POST:
       newState = merge({}, state);
-      delete newState[action.post.id];
+      debugger
+      for (let i = 0; i < action.posts.length; i++) {
+        delete newState[action.posts[i].id];
+      }
       return newState;
     case POST_ERRORS:
       const errors = action.error.responseText;
