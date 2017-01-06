@@ -21,8 +21,6 @@ Rails.application.routes.draw do
         post :unlike
         post :follow
         post :unfollow
-      end
-      collection do
         get :feed
       end
     end
