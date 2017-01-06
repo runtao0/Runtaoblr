@@ -4,6 +4,7 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_ONE_POST = "RECEIVE_ONE_POST";
 export const POST_ERRORS = "POST_ERRORS";
 export const REMOVE_POST = "REMOVE_POST";
+export const REMOVE_UNFOLLOW = "REMOVE_UNFOLLOW";
 
 // sync actions
 export const receivePosts = posts => ({
@@ -19,6 +20,11 @@ export const receiveOnePost = post => ({
 export const removePosts = posts => ({
   type: REMOVE_POST,
   posts,
+});
+
+export const removeUnfollowPosts = id => ({
+  type: REMOVE_UNFOLLOW,
+  id,
 });
 
 export const postError = error => ({
@@ -41,7 +47,7 @@ export function createImagePost(post) {
   return (dispatch) => {
     // right now all post actions will return all posts
     return APIUtil.createImagePost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };
@@ -64,18 +70,18 @@ export function unlikePost(post) {
     );
   };
 }
-export function followPost(post) {
-  return (dispatch) => {
-    return APIUtil.followPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
-      errors => dispatch(postError(errors))
-    );
-  };
-}
+// export function followPost(post) {
+//   return (dispatch) => {
+//     return APIUtil.followPost(post)
+//       .then(posts => dispatch(receivePosts(posts)),
+//       errors => dispatch(postError(errors))
+//     );
+//   };
+// }
 export function unfollowPost(post) {
   return (dispatch) => {
     return APIUtil.unfollowPost(post)
-      .then(posts => dispatch(removePosts(posts)),
+      .then(() => dispatch(removeUnfollowPosts(post.author_id)),
       errors => dispatch(postError(errors))
     );
   };
@@ -84,7 +90,7 @@ export function unfollowPost(post) {
 export function editPost(post) {
   return (dispatch) => {
     return APIUtil.editPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };
@@ -93,7 +99,7 @@ export function editPost(post) {
 export function editPicPost(post) {
   return (dispatch) => {
     return APIUtil.editPicPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };

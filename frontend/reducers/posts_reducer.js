@@ -1,6 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
-import { RECEIVE_POSTS, RECEIVE_ONE_POST, POST_ERRORS, REMOVE_POST } from '../actions/post_actions';
+import { RECEIVE_POSTS, RECEIVE_ONE_POST, POST_ERRORS, REMOVE_POST, REMOVE_UNFOLLOW } from '../actions/post_actions';
 
 const PostReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -15,9 +15,14 @@ const PostReducer = (state = {}, action) => {
       return merge({}, state, post);
     case REMOVE_POST:
       newState = merge({}, state);
-      debugger
       for (let i = 0; i < action.posts.length; i++) {
         delete newState[action.posts[i].id];
+      }
+      return newState;
+    case REMOVE_UNFOLLOW:
+      newState = merge({}, state);
+      for ( let post_id in newState ) {
+        if (newState[post_id].author_id === action.id) delete newState[post_id];
       }
       return newState;
     case POST_ERRORS:

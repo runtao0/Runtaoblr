@@ -20,9 +20,10 @@ export function createPost(post) {
 
 
 export function editPost(post) {
+  debugger
   return $.ajax({
     method: "PATCH",
-    url: `api/posts/${post.id}`,
+    url: `api/posts/${post.post.id}`,
     data: post,
   });
 }
