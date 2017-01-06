@@ -46,15 +46,15 @@ class Api::UsersController<ApplicationController
     end
   end
 
-  def unfollow
-    new_unfollow = Follow.find_by(sheep_id: current_user.id, sheperd_id: params[:id])
-    if new_unfollow.destroy
-      @suggested_users = User.suggestions(current_user.id)
-      render :suggestion
-    else
-      render json: new_unfollow.errors.full_messages, status: 422
-    end
-  end
+  # def unfollow
+  #   new_unfollow = Follow.find_by(sheep_id: current_user.id, sheperd_id: params[:id])
+  #   if new_unfollow.destroy
+  #     @suggested_users = User.suggestions(current_user.id)
+  #     render :suggestion
+  #   else
+  #     render json: new_unfollow.errors.full_messages, status: 422
+  #   end
+  # end
 
   private
   def user_params

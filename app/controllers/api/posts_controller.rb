@@ -38,7 +38,7 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      @feed_posts = Post.includes(:author).feed_posts(current_user.id)
+      @feed_posts = [@post]
       render :feed
     else
       render json: @post.errors.full_messages, status: 422
@@ -68,23 +68,22 @@ class Api::PostsController < ApplicationController
 
   end
 
-  def follow
-    post = Post.find(params[:id])
-    new_follow = Follow.new(sheperd_id: post.author_id, sheep_id: current_user.id)
-    if new_follow.save
-      @feed_posts = Post.includes(:author).feed_posts(current_user.id)
-      render :feed
-    else
-      render json: new_follow.errors.full_messages, status: 422
-    end
-  end
+  # def follow
+  #   post = Post.find(params[:id])
+  #   new_follow = Follow.new(sheperd_id: post.author_id, sheep_id: current_user.id)
+  #   if new_follow.save
+  #     @feed_posts = Post.includes(:author).feed_posts(current_user.id)
+  #     render :feed
+  #   else
+  #     render json: new_follow.errors.full_messages, status: 422
+  #   end
+  # end
 
   def unfollow
     post = Post.find(params[:id])
     new_unfollow = Follow.find_by(sheperd_id: post.author_id, sheep_id: current_user.id)
     if new_unfollow.destroy
-      @feed_posts = Post.includes(:author).feed_posts(current_user.id).where(:author_id => post.author_id);
-      render :feed
+      render json: {}
     else
       render json: new_unfollow.errors.full_messages, status: 422
     end
