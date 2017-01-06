@@ -44,10 +44,10 @@ export function destroyPost(post) {
   });
 }
 
-export function fetchPosts() {
+export function fetchPosts(page = 1) {
   return $.ajax({
     method: "GET",
-    url: "api/posts/feed",
+    url: `api/posts/${page}/feed`,
   });
 }
 
@@ -71,12 +71,14 @@ export function unlikePost(post) {
     url: `api/posts/${post.id}/unlike`,
   });
 }
+
 export function followPost(post) {
   return $.ajax({
     method: "POST",
     url: `api/posts/${post.id}/follow`,
   });
 }
+
 export function unfollowPost(post) {
   return $.ajax({
     method: "POST",
