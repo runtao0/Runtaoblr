@@ -15,14 +15,13 @@ Runtaoblr is a web app inspired by Tumblr built using Ruby on Rails and JS with 
 - [x] Feed/dashboard
 - [x] Follows
 - [x] Likes
-- [ ] **BONUS** Reblog (think about doing recursion)
-- [ ] **BONUS** User show pages
+- [x] Account settings
 - [ ] **BONUS** Infinite scroll on dashboard
-- [ ] **BONUS** account settings
+- [ ] **BONUS** User show pages
+- [ ] **BONUS** Explore/Search
+- [ ] **BONUS** Reblog (think about doing recursion)
 - [ ] **BONUS** tags
 more if there's time:
-- [ ] Explore
-- [ ] Blog suggestions
 
 # Implementation Timeline
 

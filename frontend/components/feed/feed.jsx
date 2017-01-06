@@ -26,16 +26,6 @@ class Feed extends React.Component {
     this.props.requestPosts();
   }
 
-  // componentDidUpdate() {
-  //   console.log("updated!");
-  //   console.log(this.props);
-  // }
-
-  // anotherFunction() {
-  //   const something = this.renderFeedPosts();
-  //   return something;
-  // }
-
   render () {
     return (
       <ul className="feed_posts">

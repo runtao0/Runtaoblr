@@ -65,7 +65,7 @@ class PostForm extends React.Component {
 
   getImage() {
     if (this.state.post.imageURL) {
-      return <img src={this.state.post.imageURL}/>;
+      return <img src={ this.state.post.imageURL }/>;
     } else {
       return <h2 className="select-image">Select a file!</h2>;
     }

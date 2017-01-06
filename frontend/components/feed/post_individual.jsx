@@ -30,9 +30,6 @@ class PostIndividual extends React.Component {
   }
 
   updateFile(e) {
-    // const title = this.state.post.title;
-    // const id = this.state.post.id;
-    // const content = this.state.post.content;
     const file = e.currentTarget.files[0];
     const post = this.state.post;
     const fileReader = new FileReader();
@@ -43,12 +40,6 @@ class PostIndividual extends React.Component {
     fileReader.onloadend = function () {
       this.setState({
         post,
-        //   media: file,
-        //   title,
-        //   id,
-        //
-        //   content,
-        // },
         imageURL: fileReader.result,
         buttons: false,
       });
@@ -66,7 +57,6 @@ class PostIndividual extends React.Component {
     formData.append("post[kind]", this.state.post.kind);
     formData.append("post[content]", this.state.post.content);
     const post = this.state.post;
-    // post request, then reset to buttons
     this.props.editPicPost(formData).then(() =>{
       this.setState({
         post: this.props.post,
@@ -141,7 +131,7 @@ class PostIndividual extends React.Component {
     if (!post.title || !post.content){
       alert("Your edit cannot be blank");
     } else {
-      this.props.editPost(post).then(() =>{
+      this.props.editPost({post}).then(() =>{
         this.setState({
           post,
           edit: false,
@@ -184,6 +174,7 @@ class PostIndividual extends React.Component {
         newPost.liked = false;
         newPost.notes -= 1;
         this.props.unlikePost(post).then(() => {
+          // newPost.notes = this.props.post.notes;
           this.setState({
             post: newPost,
             edit: false,
