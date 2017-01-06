@@ -1,8 +1,13 @@
 .feed_posts {
+  box-sizing: content-box;
   margin-top: 35px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  width: 100%;
+  padding: 0 15px 0 0 ;
 }
 
-.post_whole {
+.post_whole:not(:first-child) {
   width: 100%;
   height: auto;
   margin-top: 35px;
@@ -51,7 +56,7 @@
   width: auto;
   height: auto;
   position: relative;
-  margin-right: 15px;
+  margin-right: 115px;
 }
 
 .post_edit {
@@ -128,7 +133,9 @@
 }
 
 .feed {
+  width: 700px;
   padding-bottom: 50px;
+  overflow: hidden;
 }
 
 footer {
