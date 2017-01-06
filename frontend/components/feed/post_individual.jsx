@@ -200,12 +200,12 @@ class PostIndividual extends React.Component {
       if (post.follow) {
         const newPost = this.state;
         newPost.follow = false;
-        this.props.unfollow(post).then(() => {
-          this.setState({
-            post: newPost,
-            edit: false,
-          });
-        });
+        this.props.unfollow(post); //.then(() => {
+        //   this.setState({
+        //     post: newPost,
+        //     edit: false,
+        //   });
+        // });
       } else {
         const newPost = this.state;
         newPost.follow = true;
