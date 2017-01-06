@@ -1,6 +1,5 @@
 class Api::SessionsController < ApplicationController
   def create
-    # debugger
     @user = User.find_by_credentials(
       params[:user][:username],
       params[:user][:password]
@@ -9,7 +8,6 @@ class Api::SessionsController < ApplicationController
       log_in(@user)
       render "api/users/show"
     else
-      # debugger
       render json: ["Incorrect username/password"], status: 422
     end
   end

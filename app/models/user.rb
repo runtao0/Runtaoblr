@@ -94,10 +94,10 @@ class User < ActiveRecord::Base
     self.id == post.author_id
   end
 
-  def self.suggestions(user_id)
+  def self.suggestions(user_id, limit)
     sheperd_ids = User.find(user_id).sheperds.pluck(:sheperd_id) << user_id
 
-    suggestions = User.where.not(id: sheperd_ids).limit(5)
+    suggestions = User.where.not(id: sheperd_ids).order("RANDOM()").limit(limit)
   end
 
   def followed_users

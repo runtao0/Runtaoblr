@@ -26,8 +26,9 @@ class Api::UsersController<ApplicationController
   #   @rand_users = User.where.not(id: current_user.id).order("RANDOM()").limit(5)
   # end
 
+# This is going to cause duplications, so improve later
   def suggestion
-    @suggested_users = User.suggestions(current_user.id)
+    @suggested_users = User.suggestions(current_user.id, 5)
   end
 
   def followings
@@ -37,7 +38,8 @@ class Api::UsersController<ApplicationController
   def follow
     new_follow = Follow.new(sheperd_id: params[:id], sheep_id: current_user.id)
     if new_follow.save
-      @suggested_users = User.suggestions(current_user.id)
+      @suggested_users = User.suggestions(current_user.id, 1)
+      # debugger
       render :suggestion
     else
       render json: new_follow.errors.full_messages, status: 422
