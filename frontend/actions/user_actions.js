@@ -4,6 +4,7 @@ export const RECEIVE_SUGGESTIONS = "RECEIVE_SUGGESTIONS";
 export const SUGGESTION_ERRORS = "SUGGESTION_ERRORS";
 export const RECEIVE_FOLLOWINGS = "RECEIVE_FOLLOWINGS";
 export const FOLLOWINGS_ERRORS = "FOLLOWINGS_ERRORS";
+export const SWAP_SUGGESTION = "SWAP_SUGGESTION";
 
 // sync
 export const receiveSuggestions = suggestions => ({
@@ -11,14 +12,15 @@ export const receiveSuggestions = suggestions => ({
   suggestions,
 });
 
+export const swapSuggestion = (suggestion, id) => ({
+  type: SWAP_SUGGESTION,
+  suggestion,
+  id,
+});
+
 export const suggestionError = error => ({
   type: SUGGESTION_ERRORS,
   error,
-});
-
-export const receiveFollowings = followings => ({
-  type: RECEIVE_FOLLOWINGS,
-  followings,
 });
 
 export const followingsError = error => ({
@@ -45,16 +47,7 @@ export function requestFollowings() {
   };
 }
 
-export function followInFollowings(id) {
-  return (dispatch) => {
-    return APIUtil.follow(id)
-      .then(followings => dispatch(receiveFollowings(followings)),
-      error => dispatch(followingsError(error))
-    );
-  };
-}
-
-export function unfollowInFollowings(id) {
+export function unfollow(id) {
   return (dispatch) => {
     return APIUtil.unfollow(id)
       .then(followings => dispatch(receiveFollowings(followings)),
@@ -63,20 +56,20 @@ export function unfollowInFollowings(id) {
   };
 }
 
-export function followInSuggestion(id) {
+export function follow(id) {
   return (dispatch) => {
     return APIUtil.follow(id)
-      .then(suggestions => dispatch(receiveSuggestions(suggestions)),
-      error => dispatch(followingsError(error))
-    );
-  };
-}
+      .then(suggestion => dispatch(swapSuggestion(suggestion, id)),
+      error => dispatch(suggestionError(error)));
 
-export function unfollowInSuggestion(id) {
-  return (dispatch) => {
-    return APIUtil.unfollow(id)
-      .then(suggestions => dispatch(receiveSuggestions(suggestions)),
-      error => dispatch(followingsError(error))
-    );
   };
 }
+//
+// export function followInSuggestion(id) {
+//   return (dispatch) => {
+//     return APIUtil.follow(id)
+//       .then(suggestions => dispatch(receiveSuggestions(suggestions)),
+//       error => dispatch(followingsError(error))
+//     );
+//   };
+// }

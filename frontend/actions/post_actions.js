@@ -16,9 +16,9 @@ export const receiveOnePost = post => ({
   post,
 });
 
-export const removePost = post => ({
+export const removePosts = posts => ({
   type: REMOVE_POST,
-  post,
+  posts,
 });
 
 export const postError = error => ({
@@ -31,7 +31,7 @@ export function createPost(post) {
   return (dispatch) => {
     // right now all post actions will return all posts
     return APIUtil.createPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };
@@ -50,7 +50,7 @@ export function createImagePost(post) {
 export function likePost(post) {
   return (dispatch) => {
     return APIUtil.likePost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };
@@ -59,7 +59,7 @@ export function likePost(post) {
 export function unlikePost(post) {
   return (dispatch) => {
     return APIUtil.unlikePost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
   };
@@ -75,7 +75,7 @@ export function followPost(post) {
 export function unfollowPost(post) {
   return (dispatch) => {
     return APIUtil.unfollowPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then(posts => dispatch(removePosts(posts)),
       errors => dispatch(postError(errors))
     );
   };
@@ -102,15 +102,15 @@ export function editPicPost(post) {
 export function destroyPost(post) {
   return (dispatch) => {
     return APIUtil.destroyPost(post)
-      .then(posts => dispatch(receivePosts(posts)),
+      .then((post) => dispatch(removePosts(post)),
       errors => dispatch(postErrors(errors))
     );
   };
 }
 
-export function requestPosts(last_post_id) {
+export function requestPosts() {
   return (dispatch) => {
-    return APIUtil.fetchPosts(last_post_id)
+    return APIUtil.fetchPosts()
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postError(errors))
     );
