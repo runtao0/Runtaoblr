@@ -9,7 +9,6 @@ class Sidebar extends React.Component {
     this.state = {
       suggestions: [{
         id: 0,
-        follow: false,
       }],
     };
 
@@ -19,24 +18,22 @@ class Sidebar extends React.Component {
   handleFollow(follow, id) {
     return (e) => {
       e.preventDefault();
-      if (follow) {
-        const suggestions = this.state.suggestions;
-        suggestions[id].follow = false;
-        this.props.unfollow(id).then(() => {
-          this.setState({ suggestions });
-        });
-      } else {
-        const suggestions = this.state.suggestions;
-        suggestions[id].follow = true;
-        this.props.follow(id).then(() => {
-          this.setState({ suggestions });
-        });
-      }
+      // if (follow) {
+      //   const suggestions = this.state.suggestions;
+      //   // suggestions[id].follow = false;
+      //   this.props.unfollow(id).then(() => {
+      //     this.setState({ suggestions });
+      //   });
+      // } else {
+      //   const suggestions = this.state.suggestions;
+        // suggestions[id].follow = true;
+        this.props.follow(id);
+      // }
     };
   }
 
   renderSuggestions() {
-    return (allSuggestions(this.state.suggestions).map((suggestion, ind) => {
+    return (allSuggestions(this.props.suggestions).map((suggestion, ind) => {
       const buttonClass = suggestion.follow ? "sidebar-unfollow" : "sidebar-follow";
       const buttonDisplay = suggestion.follow ? "-" : "+";
       return (
@@ -58,9 +55,7 @@ class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSuggestions().then(() => {
-      this.setState({ suggestions: this.props.suggestions });
-    });
+    this.props.requestSuggestions();
   }
 
   render() {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Sidebar from './sidebar';
-import { follow, unfollow } from '../../util/user_api_util';
-import { requestSuggestions } from '../../actions/user_actions';
+import { requestSuggestions,
+          follow, unfollow } from '../../actions/user_actions';
 
 const mapStateToProps = ({ session, suggestions }) => ({
   currentUser: session.currentUser,
@@ -10,8 +10,8 @@ const mapStateToProps = ({ session, suggestions }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   requestSuggestions: () => dispatch(requestSuggestions()),
-  follow: (id) => follow(id),
-  unfollow: (id) => unfollow(id),
+  follow: (id) => dispatch(follow(id)),
+  unfollow: (id) => dispatch(unfollow(id)),
 });
 
 export default connect(
