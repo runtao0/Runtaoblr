@@ -7,6 +7,7 @@ const PostReducer = (state = {}, action) => {
   let newState = merge( {}, state);
   switch(action.type) {
     case RECEIVE_POSTS:
+      // const newerState = {};
       action.posts.forEach(post => newState[post.id] = post);
       return newState;
     // do I even need RECEIVE_ONE_POST?

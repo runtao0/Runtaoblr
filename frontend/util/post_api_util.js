@@ -20,7 +20,6 @@ export function createPost(post) {
 
 
 export function editPost(post) {
-  debugger
   return $.ajax({
     method: "PATCH",
     url: `api/posts/${post.post.id}`,
@@ -45,7 +44,7 @@ export function destroyPost(post) {
   });
 }
 
-export function fetchPosts(page = 1) {
+export function fetchPosts(page) {
   return $.ajax({
     method: "GET",
     url: `api/posts/${page}/feed`,
