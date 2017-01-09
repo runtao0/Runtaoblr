@@ -22,6 +22,7 @@ class Api::PostsController < ApplicationController
 
   def feed
     @feed_posts = Post.includes(:author).feed_posts(current_user.id).page(params[:id]).per(10)
+    # debugger
   end
 
   def destroy
