@@ -415,7 +415,7 @@ class PostIndividual extends React.Component {
         edit_button = <div></div>;
       }
         return (
-          <li className="post_whole">
+          <div className="post_whole">
             <section className="post_profile_pic">
               <img src={ post.profile_pic }/>
               { this.renderFollowButton(post) }
@@ -428,7 +428,7 @@ class PostIndividual extends React.Component {
                   className={ likeButtonDisplay }>♥</button>
               </section>
             </section>
-          </li>
+          </div>
         );
     }
   }

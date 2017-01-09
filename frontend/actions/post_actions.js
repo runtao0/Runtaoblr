@@ -114,9 +114,9 @@ export function destroyPost(post) {
   };
 }
 
-export function requestPosts() {
+export function requestPosts(page) {
   return (dispatch) => {
-    return APIUtil.fetchPosts()
+    return APIUtil.fetchPosts(page)
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postError(errors))
     );

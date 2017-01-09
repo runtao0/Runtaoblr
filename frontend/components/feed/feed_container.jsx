@@ -9,7 +9,7 @@ const mapStateToProps = ({ session, posts }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestPosts: () => dispatch(requestPosts()),
+  requestPosts: (page) => dispatch(requestPosts(page)),
   requestOnePost: (post_id) => dispatch(requestOnePost(post_id)),
 });
 
