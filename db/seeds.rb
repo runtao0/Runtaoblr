@@ -19,7 +19,7 @@ User.create(username: "wes", password: "weswes",
   profile_image: open("http://vignette2.wikia.nocookie.net/zelda/images/e/e1/Link_Artwork_2_\(The_Minish_Cap\).png/revision/latest/scale-to-width-down/150?cb=20090805031736"))
 rupaul =
 User.create(username: "rupaul", password: "rupaulcharles",
-  profile_image: open("https://67.media.tumblr.com/avatar_1d835b1d9d98_128.png"))
+  profile_image: open("http://worldofwonder.net/wp-content/uploads/2014/06/rupaul-covergurlz.png"))
 naomi =
 User.create(username: "naomi", password: "campbell",
 profile_image: "http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg")
