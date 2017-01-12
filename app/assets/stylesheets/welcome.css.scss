@@ -1,3 +1,7 @@
+a {
+  height: auto;
+}
+
 .auth {
   height: 100vh;
   // background-image: asset-url('welcome_background.gif');
@@ -50,19 +54,19 @@
   padding: 10px 20px;
   font-size: 18px;
   line-height: 18px;
-  background: #7273a5;
+  background: rgba(0, 0, 0, 0.7);
   opacity: .85;
   margin: 10px;
   border-radius: 5px;
 }
 
 .toggle_buttons:hover, .log_out:hover {
-  background: #393966;
+  background: rgba(0, 0, 0, 0.9);
   transition: background .5s ease;
 }
 
 .signin_form {
-  background: #7273a5;
+  background: rgba(0, 0, 0, 0.7);
   opacity: .85;
   padding: 30px 30px 40px 30px;
   width: 310px;
@@ -118,7 +122,7 @@
 }
 
 .submit:hover {
-  background: #393966;
+  background: rgba(0, 0, 0, 0.9);
   transition: background .5s ease;
 }
 
@@ -130,6 +134,7 @@
 }
 
 .logo {
+  color: rgba(0, 0, 0, 0.7);
   font-family: "Vast Shadow";
   float: left;
   font-size: 60px;

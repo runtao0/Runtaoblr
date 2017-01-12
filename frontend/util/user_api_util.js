@@ -32,3 +32,10 @@ export function unfollow(idToUnfollow) {
     url: `api/users/${idToUnfollow}/unfollow`,
   });
 }
+
+export function fetchUserBlog(username) {
+  return $.ajax({
+    method: "GET",
+    url: `api/users/${username}`,
+  });
+}

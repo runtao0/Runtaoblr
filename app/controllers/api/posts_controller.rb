@@ -22,7 +22,16 @@ class Api::PostsController < ApplicationController
 
   def feed
     @feed_posts = Post.includes(:author).feed_posts(current_user.id).page(params[:id]).per(10)
-    # debugger
+  end
+
+  def blog_posts
+    blog_user = User.find_by(:id => params[:id])
+    if blog_user
+      @feed_posts = blog_user.posts.order(:created_at => :desc).page(params[:page]).per(18)
+      render :feed
+    else
+      render json: blog_user.errors.full_messages, status: 404
+    end
   end
 
   def destroy

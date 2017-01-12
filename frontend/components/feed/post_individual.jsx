@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router';
 
 class PostIndividual extends React.Component {
   constructor(props) {
@@ -7,6 +8,8 @@ class PostIndividual extends React.Component {
       post: props.post,
       edit: false,
     };
+
+    const linkToUserBlog = `/${this.props.post.author}`;
 
     this.handleLike = this.handleLike.bind(this);
     this.handleFollow = this.handleFollow.bind(this);
@@ -27,6 +30,7 @@ class PostIndividual extends React.Component {
     this.getImage = this.getImage.bind(this);
     this.editText = this.editText.bind(this);
     this.updateFile = this.updateFile.bind(this);
+    this.addProfPic = this.addProfPic.bind(this);
   }
 
   updateFile(e) {
@@ -219,6 +223,22 @@ class PostIndividual extends React.Component {
     };
   }
 
+  addProfPic(post) {
+    const linkToUserBlog = `/${this.state.post.username}`;
+    if (this.props.blog) {
+      return <div/>;
+    } else {
+      return (
+        <Link to={linkToUserBlog}>
+        <div className="post_profile_pic">
+          <img src={ this.state.post.profile_pic }></img>
+          { this.renderFollowButton(this.state.post) }
+        </div>
+        </Link>
+      );
+    }
+  }
+
   renderTextPost(post) {
     return(
       <div>
@@ -282,9 +302,7 @@ class PostIndividual extends React.Component {
   editText() {
     return (
       <div className="post_form_container edit group">
-        <div className="profile_pic">
-          <img src={ this.state.post.profile_pic }></img>
-        </div>
+        { this.addProfPic() }
         <section className="post_form">
           <form className="form_content">
             <h1>{this.props.currentUser.username} ♥ </h1>
@@ -309,9 +327,7 @@ class PostIndividual extends React.Component {
   editVideo() {
     return (
       <div className="post_form_container edit group">
-        <div className="profile_pic">
-          <img src={ this.state.post.profile_pic }></img>
-        </div>
+        { this.addProfPic() }
         <section className="post_form">
           <form className="form_content">
             <h1>{this.props.currentUser.username} ♥ </h1>
@@ -352,9 +368,7 @@ class PostIndividual extends React.Component {
     }
     return (
       <div className="post_form_container edit group">
-        <div className="profile_pic">
-          <img src={ this.state.post.profile_pic }></img>
-        </div>
+        { this.addProfPic() }
         <section className="post_form">
           <form className="form_content">
             <h1>{this.props.currentUser.username} ♥ </h1>
@@ -374,6 +388,8 @@ class PostIndividual extends React.Component {
       </div>
     );
   }
+
+
 
   render(post = this.state.post) {
       if (this.state.edit) {
@@ -408,18 +424,17 @@ class PostIndividual extends React.Component {
           post_body = this.renderTextPost(post);
       }
       if (post.own) {
-        edit_button = <button
-          onClick={ this.toggleEdit }
-          className="post_edit"></button>;
+        edit_button =
+          <a onClick={ this.toggleEdit }
+             className="post_edit">
+             <i className="fa fa-cog" aria-hidden="true"></i>
+         </a>;
       } else {
         edit_button = <div></div>;
       }
         return (
           <div className="post_whole">
-            <section className="post_profile_pic">
-              <img src={ post.profile_pic }/>
-              { this.renderFollowButton(post) }
-            </section>
+            { this.addProfPic() }
             <section className="post_body group">
               { post_body }
               <section className="edit_post_buttons group">
@@ -434,4 +449,4 @@ class PostIndividual extends React.Component {
   }
 }
 
-export default PostIndividual;
+export default withRouter(PostIndividual);

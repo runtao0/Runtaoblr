@@ -5,6 +5,7 @@ export const RECEIVE_ONE_POST = "RECEIVE_ONE_POST";
 export const POST_ERRORS = "POST_ERRORS";
 export const REMOVE_POST = "REMOVE_POST";
 export const REMOVE_UNFOLLOW = "REMOVE_UNFOLLOW";
+export const CLEAR_POSTS = "CLEAR_POSTS";
 
 // sync actions
 export const receivePosts = posts => ({
@@ -32,10 +33,13 @@ export const postError = error => ({
   error
 });
 
+export const clearPost = () => ({
+  type: CLEAR_POSTS,
+});
+
 // async actions
 export function createPost(post) {
   return (dispatch) => {
-    // right now all post actions will return all posts
     return APIUtil.createPost(post)
       .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
@@ -45,7 +49,6 @@ export function createPost(post) {
 
 export function createImagePost(post) {
   return (dispatch) => {
-    // right now all post actions will return all posts
     return APIUtil.createImagePost(post)
       .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
@@ -120,6 +123,12 @@ export function requestPosts(page) {
       .then(posts => dispatch(receivePosts(posts)),
       errors => dispatch(postError(errors))
     );
+  };
+}
+
+export function clearPosts() {
+  return (dispatch) => {
+    return () => { dispatch(clearPost); };
   };
 }
 

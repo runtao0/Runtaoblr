@@ -4,6 +4,7 @@ import thunk from '../middleware/thunk';
 import logger from '../middleware/logger';
 import { _nullUser } from "../reducers/sessions_reducer";
 
+
 const configureStore = (preloadedState = {}) => (
   createStore(
     rootReducer,

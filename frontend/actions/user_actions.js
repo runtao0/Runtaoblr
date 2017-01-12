@@ -64,6 +64,15 @@ export function follow(id) {
 
   };
 }
+
+export function requestBlog(username) {
+  return (dispatch) => {
+    return APIUtil.fetchUserBlog(username)
+      .then(blog => dispatch(receiveBlog(blog)),
+      error => dispatch(blogError(error))
+    );
+  };
+}
 //
 // export function followInSuggestion(id) {
 //   return (dispatch) => {

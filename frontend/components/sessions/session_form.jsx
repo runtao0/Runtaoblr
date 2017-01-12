@@ -15,7 +15,6 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount(){
-		console.log("The component mounted!");
     this.redirectIfLoggedIn();
   }
 

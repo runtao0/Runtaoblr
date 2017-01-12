@@ -9,7 +9,7 @@
   border-radius: 4px;
 }
 
- .follow_suggestion > h3 {
+ .follow_suggestion h3 {
   margin: 0;
   display: inline-block;
   font-size: 14px;
@@ -19,18 +19,18 @@
 }
 
 .follow_suggestion {
-  border-bottom: 1px solid #7273a5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
   padding: 10px 20px 10px 15px;
 }
 
 .sidebar > h1 {
   text-align: center;
-  border-bottom: 1px solid #7273a5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
 }
 
 .sidebar-follow, .sidebar-unfollow {
   float: right;
-  background: #7273a5;
+  background: rgba(0, 0, 0, 0.7);
   opacity: .6;
   border-radius: 4px;
   font-size: 12px;

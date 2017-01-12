@@ -1,0 +1,55 @@
+.blog .post_whole {
+  width: auto;
+  height: auto;
+  margin: 20px;
+}
+
+.blog .post_body {
+  color: #414157;
+  background: white;
+  border-radius: 4px;
+  height: auto;
+}
+
+.blog > .infinite {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog .post_body  h2 {
+  padding: 10px 10px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.blog > h1, .blog > h2 {
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog_cover_pic {
+  position: relative;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.blog_profile_pic > .button_list {
+  display: block;
+}
+
+.blog_profile_pic {
+  display: block;
+  padding: 35px 0;
+  width: 200px;
+  height: auto;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}

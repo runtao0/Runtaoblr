@@ -2,20 +2,21 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 
 const loggedInGreeting = (currentUser, out) => {
+  const linkToUserBlog = `/${currentUser.username}`
   return(
     <header className="header group">
       <div className="logo">r</div>
       <ul className="button_list">
         <li>
-          <button className="toggle_buttons"><Link to="/dashboard">Dashboard</Link></button>
-        </li>
-        <li>
-          <button className="toggle_buttons"><Link to="/user_settings">User Settings</Link></button>
-        </li>
-        <li>
           <button className="log_out" onClick={ out }>
-            Log Out
+            <i className="fa fa-power-off" aria-hidden="true"></i>
           </button>
+        </li>
+        <li>
+          <button title="User Settings"className="toggle_buttons"><Link to="/user_settings"><i className="fa fa-cogs" aria-hidden="true"></i></Link></button>
+        </li>
+        <li>
+          <button title="Your Blog" className="toggle_buttons"><Link to={linkToUserBlog}><i className="fa fa-th" aria-hidden="true"></i></Link></button>
         </li>
       </ul>
     </header>

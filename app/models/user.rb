@@ -27,9 +27,8 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   after_initialize :ensure_session_token, :default_values
-  # will this happen even if I'm editing a user?
 
-# is author to many posts
+  #TODO add constraint { :username => /[a-zA-Z0-9-_.]+/ }
   has_many(
     :posts,
     class_name: 'Post',

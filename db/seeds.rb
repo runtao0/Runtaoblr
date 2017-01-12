@@ -67,7 +67,7 @@ Follow.create(sheep_id: runtao.id, sheperd_id: jynx.id)
 
 Post.destroy_all
 10.times{ butterfree.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-10.times{ runtao.posts.create(kind: "text", title: "testing!", content: "Runtaoblr is awesome!") }
+100.times{ runtao.posts.create(kind: "text", title: "testing!", content: "Runtaoblr is awesome!") }
 10.times{ mudkip.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
 10.times{ mudkip.posts.create(kind: "text", title: "MUDKIP MUD", content: "Runtaoblr is awesome!") }
 10.times{ magikarp.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
@@ -75,4 +75,4 @@ Post.destroy_all
 10.times{ jynx.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
 10.times{ naomi.posts.create(kind: "text", title: "Wow!", content: "I did not want to be here, I was made to be here!") }
 10.times{ wes.posts.create(kind: "pic", title: "nom nom nom", content: "http://s3.amazonaws.com/mumblr-pro/posts/images/000/000/042/original/snorlax-o.gif?1443144869") }
-10.times{ rupaul.posts.create(kind: "video", title: "youuuu neeeee neeeded me", content: "https://www.youtube.com/watch?v=wfN4PVaOU5Q") }
+# 10.times{ rupaul.posts.create(kind: "video", title: "youuuu neeeee neeeded me", content: "https://www.youtube.com/watch?v=wfN4PVaOU5Q") }

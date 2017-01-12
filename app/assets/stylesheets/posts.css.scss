@@ -1,20 +1,20 @@
-.feed_posts {
-  box-sizing: content-box;
-  // margin-top: 35px;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  width: 100%;
-  height: 100%;
-  padding: 0 15px 15px 0 ;
-}
+// .feed {
+//   box-sizing: content-box;
+//   // margin-top: 35px;
+//   overflow-x: scroll;
+//   overflow-y: scroll;
+//   width: 100%;
+//   height: 100%;
+//   padding: 0 15px 15px 0 ;
+// }
 
-.post_whole:not(:first-child) {
-  width: 100%;
+.feed .post_whole {
+  width: auto;
   height: auto;
   margin-top: 35px;
 }
 
-.post_body {
+.feed .post_body {
   display: inline-block;
   width: 470px;
   color: #414157;
@@ -22,7 +22,7 @@
   border-radius: 4px;
 }
 
-.post_body h2 {
+.feed .post_body h2 {
   padding: 0 10px;
   margin: 10px;
   font-size: 18px;
@@ -46,7 +46,7 @@
   float: left;
   font-size: 16px;
   padding: 10px 20px;
-  color: #7273a5;
+  color: rgba(0, 0, 0, 0.7);
   font-weight: 400;
   margin: 0;
 }
@@ -62,12 +62,14 @@
 
 .post_edit {
   position: absolute;
-  background: asset-url("edit1.png");
-  background-size: cover;
-  width: 20px;
-  height: 20px;
-  top: 10px;
+  font-size: 24px;
+  top: 5px;
   left: 15px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.post_edit:hover {
+  color: #595974;
 }
 
 .edit_post_buttons {
@@ -84,7 +86,7 @@
 }
 
 .like {
-  color: #7273a5;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .like:hover {
@@ -108,7 +110,7 @@
 .post_profile_pic > .follow,
 .post_profile_pic > .unfollow {
   position: absolute;
-  background: grey;
+  background: rgba(0, 0, 0, 0.7);
   opacity: .6;
   border-radius: 4px;
   font-size: 12px;

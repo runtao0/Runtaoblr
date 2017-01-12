@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resource :session, only: [:create, :destroy]
 
-    resources :users, only: [:create, :update, :show] do
+    resources :users, only: [:create, :update] do
       member do
         post :follow
         post :unfollow
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       collection do
         get :suggestion
         get :followings
+        get :show, :path => '/:username', :constrain => { :username => /[a-zA-Z0-9\-\_\.]+/ }
       end
     end
 
@@ -22,7 +23,9 @@ Rails.application.routes.draw do
         post :follow
         post :unfollow
         get :feed
+        get :blog_posts, :path => '/:page', :constrain => { :id => /[0-9]+/}
       end
+
     end
   end
 

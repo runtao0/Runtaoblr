@@ -45,6 +45,7 @@ export function destroyPost(post) {
 }
 
 export function fetchPosts(page) {
+  console.log(page);
   return $.ajax({
     method: "GET",
     url: `api/posts/${page}/feed`,

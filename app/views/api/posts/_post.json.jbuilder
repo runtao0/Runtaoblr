@@ -1,5 +1,6 @@
 json.id post.id
 json.author_id post.author_id
+json.username post.author.username
 json.profile_pic asset_path(post.author.profile_image.url)
 json.title post.title
 json.content post.content
