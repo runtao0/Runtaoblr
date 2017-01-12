@@ -139,6 +139,9 @@ class PostForm extends React.Component {
 
   handlePicSubmit(e) {
     e.preventDefault();
+    if (!this.state.post.title){
+      alert("Your title cannot be blank");
+    } else {
     const formData = new FormData();
     formData.append("post[title]", this.state.post.title);
     if (this.state.post.imageFile) {
@@ -153,6 +156,7 @@ class PostForm extends React.Component {
         buttons: true
       });
     });
+  }
   }
 
   preview() {
