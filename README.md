@@ -1,13 +1,42 @@
-#**Runtaoblr**
+# **Runtaoblr**
 
-Link: [Runtaoblr](runtaoblr.herokuapp.com)
+Live: [Runtaoblr](runtaoblr.herokuapp.com)
 
-<!-- NOTE DO NOT BE OVERWHELMED, THEY ARE NOT EXPECTING THE FIRST PROPOSAL TO BE
-PERFECT, SO JUST START WITH WHAT YOU HAVE AND EDIT -->
+Runtaoblr is a full-stack web app inspired by Tumblr built using Ruby on Rails and PostgreSQL on the back-end and JS with React and Redux on the front-end.
 
-#**Minimum Viable Product**
+## **Features and Implementation**
 
-Runtaoblr is a web app inspired by Tumblr built using Ruby on Rails and JS with React and Redux. By W9D5, I will have successfully implemented the following features with smooth navigation, no bugs, a plethora of seed data and awesome CSS styling (this was heavily appropriated from the sample):
+### Dashboard
+The dashboard is the aggregate of all the user's posts with the posts of the user's followed blogs, ordered chronologically. The dashboard features infinite scrolling, and a back to top button that appears after having scrolled down. Each post is a React component, and the overall Redux store keeps track of all the individual posts states. Furthermore, a user can edit his/her own post within the feed.
+![dashboard](app/assets/images/production_gifs/auth.gif)
+### Posts
+The user can post multiple forms of media. Text and quotes are stored as strings. Images. Videos and audio currently can only be added from urls, and are imbedded in the post. Posts are stored in one table in the database, although I may consider having a table for each type of media later on, which would allow uploads of audio and video content.
+![posts](app/assets/images/production_gifs/post.gif)
+
+### Likes
+Users can like other posts, and notes keep track of the likability of each post. A join table keeps track of which users like which posts.
+![likes](app/assets/images/production_gifs/likes.gif)
+
+### Follows
+Users can follow/unfollow other users from the suggested sidebar, the newsfeed avatar, and from user blog pages. A join table keeps track of which users follow whom.
+![follows](app/assets/images/production_gifs/follows.gif)
+
+### Blog Display
+Every user has a blog page that contains all their posts. Other users can access and view these pages by clicking on each respective user's avatar, username on the sidebar, or just by typing in runtaoblr.com/[username]. This is down with the React router library. This then translates a query to a ReSTful route with show action.
+![blog](app/assets/images/production_gifs/blog.gif)
+### User Settings
+Users can change their username, profile description, profile picture, and blog cover photo. This is easily accessed from the dashboard.
+![user settings](app/assets/images/production_gifs/user_settings.gif)
+
+## **Future Directions**
+**Reblogs**
+A core feature that makes Tumblr media go viral is the ability to make instant "reblog" posts. I plan to implement this by creating posts with tree structures and recursion.
+
+**Explore**
+Tumblr also suggests posts and blogs to follow based on a user's blogging behavior (post content, followed blog similarities). I plan on studying social networking and implement a suggested media feature.
+<!-- ## **Minimum Viable Product**
+
+ By W9D5, I will have successfully implemented the following features with smooth navigation, no bugs, a plethora of seed data and awesome CSS styling (this was heavily appropriated from the sample):
 
 - [x] Hosting on Heroku
 - [x] New account, login, and guest/demo login
@@ -78,4 +107,4 @@ more if there's time:
 ## Phase 5: Final touches/CSS (1 day, 9 total)
 **objectives**
 - Proofread
-- edit
+- edit -->
