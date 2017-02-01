@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218215349) do
+ActiveRecord::Schema.define(version: 20170131033649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,18 +37,26 @@ ActiveRecord::Schema.define(version: 20161218215349) do
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "kind",                       null: false
-    t.string   "title",                      null: false
+    t.string   "kind",               null: false
+    t.string   "title",              null: false
     t.text     "content"
-    t.integer  "author_id",                  null: false
+    t.integer  "author_id",          null: false
     t.integer  "previous_post_id"
     t.integer  "source_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "media_content_file_name"
-    t.string   "media_content_content_type"
-    t.integer  "media_content_file_size"
-    t.datetime "media_content_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "audio_file_name"
+    t.string   "audio_content_type"
+    t.integer  "audio_file_size"
+    t.datetime "audio_updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
