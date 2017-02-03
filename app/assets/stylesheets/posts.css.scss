@@ -1,13 +1,3 @@
-// .feed {
-//   box-sizing: content-box;
-//   // margin-top: 35px;
-//   overflow-x: scroll;
-//   overflow-y: scroll;
-//   width: 100%;
-//   height: 100%;
-//   padding: 0 15px 15px 0 ;
-// }
-
 .feed .post_whole {
   width: auto;
   height: auto;
@@ -29,7 +19,7 @@
   font-weight: 600;
 }
 
-.post_body p {
+.dashboard .post_body p {
   padding: 0 10px;
   margin: 10px;
   font-size: 18px;
@@ -39,7 +29,6 @@
 .post_body img {
   width: 100%;
   height: auto;
-  //take this out later when you have like and reblog buttons
 }
 
 .post_body h3 {
@@ -69,7 +58,8 @@
 }
 
 .post_edit:hover {
-  color: #595974;
+  color: #77779a;
+  cursor: pointer;
 }
 
 .edit_post_buttons {
@@ -90,7 +80,7 @@
 }
 
 .like:hover {
-  color: #595974;
+  color: #77779a;
 }
 
 .unlike {
@@ -101,7 +91,6 @@
   width: 66px;
   height: 66px;
   background-size: cover;
-  // background-position: center center;
   margin: 0 25px;
   display: inline-block;
   position: relative;
@@ -137,7 +126,6 @@
 
 .feed {
   width: 700px;
-  // padding-bottom: 50px;
   overflow: hidden;
 }
 

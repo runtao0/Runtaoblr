@@ -1,7 +1,7 @@
 .blog .post_whole {
-  width: auto;
+  width: calc(33% - 20px);
   height: auto;
-  margin: 20px;
+  margin: 10px;
 }
 
 .blog .post_body {
@@ -15,16 +15,25 @@
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  width: 80%;
+  align-items: center;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.blog .post_body  h2 {
-  padding: 10px 10px;
-  margin: 10px;
+.blog .post_body h2 {
+  padding: 10px 20px;
   font-size: 18px;
   font-weight: 600;
+}
+
+.post_body p:not(:first-child) {
+  min-width: 200px;
+  margin: 0 20px;
+}
+
+p:first-child {
+  padding: 10px 20px;
 }
 
 .blog > h1, .blog > h2 {

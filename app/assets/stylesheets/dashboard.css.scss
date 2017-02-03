@@ -26,7 +26,7 @@
   padding: 0 25px
 }
 
-#return-to-top {
+#return-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -46,7 +46,7 @@
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-#return-to-top i {
+#return-top i {
     color: #fff;
     margin: 0;
     position: relative;
@@ -59,10 +59,10 @@
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-#return-to-top:hover {
+#return-top:hover {
     background: rgba(0, 0, 0, 0.9);
 }
-#return-to-top:hover i {
+#return-top:hover i {
     color: #fff;
     top: 5px;
 }
