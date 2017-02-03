@@ -14,8 +14,6 @@ export const receiveErrors = errors => ({
   errors,
 });
 
-
-
 // thunk action creators
 export function showUser() {
   return (dispatch) => {

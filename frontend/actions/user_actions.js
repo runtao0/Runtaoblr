@@ -41,7 +41,7 @@ export function requestSuggestions() {
 export function requestFollowings() {
   return (dispatch) => {
     return APIUtil.fetchFollowings()
-      .then(followings => dispatch(receiveFollowings(followings)),
+      .then(suggestions => dispatch(receiveSuggestions(suggestions)),
       error => dispatch(followingsError(error))
     );
   };
@@ -50,7 +50,7 @@ export function requestFollowings() {
 export function unfollow(id) {
   return (dispatch) => {
     return APIUtil.unfollow(id)
-      .then(followings => dispatch(receiveFollowings(followings)),
+      .then(suggestions => dispatch(receiveSuggestions(suggestions)),
       error => dispatch(followingsError(error))
     );
   };
@@ -73,12 +73,3 @@ export function requestBlog(username) {
     );
   };
 }
-//
-// export function followInSuggestion(id) {
-//   return (dispatch) => {
-//     return APIUtil.follow(id)
-//       .then(suggestions => dispatch(receiveSuggestions(suggestions)),
-//       error => dispatch(followingsError(error))
-//     );
-//   };
-// }

@@ -73,14 +73,7 @@ export function unlikePost(post) {
     );
   };
 }
-// export function followPost(post) {
-//   return (dispatch) => {
-//     return APIUtil.followPost(post)
-//       .then(posts => dispatch(receivePosts(posts)),
-//       errors => dispatch(postError(errors))
-//     );
-//   };
-// }
+
 export function unfollowPost(post) {
   return (dispatch) => {
     return APIUtil.unfollowPost(post)
@@ -99,9 +92,9 @@ export function editPost(post) {
   };
 }
 
-export function editPicPost(post) {
+export function editFilePost(post) {
   return (dispatch) => {
-    return APIUtil.editPicPost(post)
+    return APIUtil.editFilePost(post)
       .then(onePost => dispatch(receiveOnePost(onePost)),
       errors => dispatch(postError(errors))
     );
