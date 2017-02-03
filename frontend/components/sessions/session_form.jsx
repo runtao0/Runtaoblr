@@ -8,15 +8,53 @@ class SessionForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	componentDidMount(){
+		this.redirectIfLoggedIn();
+	}
+
   redirectIfLoggedIn() {
     if (this.props.loggedIn) {
       this.props.router.push("/");
     }
   }
 
-  componentDidMount(){
-    this.redirectIfLoggedIn();
-  }
+	renderErrors() {
+		return (
+			<ul className="error_list">
+				{this.props.errors.map((error, ind) => (
+					<li className="error" key={`error-${ind}`}>{ error }</li>
+				))}
+			</ul>
+		);
+	}
+
+	submitButton() {
+		const submitButton = (this.props.formType === "login") ? "Log In" : "Create Account";
+		return(
+			<input type="submit"
+				className="submit" value={ submitButton } />
+		);
+	}
+
+	usernameInput() {
+		return(
+			<input type="text"
+				placeholder="Username"
+				value={this.state.username}
+				onChange={this.update("username")}
+				className="login-input" />
+		);
+	}
+
+	passwordInput() {
+		return(
+			<input type="password"
+				placeholder="Password"
+				value={this.state.password}
+				onChange={this.update("password")}
+				className="login-input" />
+		);
+	}
 
   handleSubmit(e) {
     e.preventDefault();
@@ -31,40 +69,16 @@ class SessionForm extends React.Component {
     });
   }
 
-  renderErrors() {
-
-    return (
-      <ul className="error_list">
-				{this.props.errors.map((error, ind) => (
-					<li className="error" key={`error-${ind}`}>{ error }</li>
-				))}
-      </ul>
-    );
-  }
-
-
   render() {
-		// refactor material
-		const submitButton = (this.props.formType === "login") ? "Log In" : "Create Account";
-
     return(
       <div className="login_form_container">
 				<form onSubmit={this.handleSubmit} className="login-form-box">
 					{this.renderErrors()}
 					<div className="login-form">
-							<input type="text"
-								placeholder="Username"
-								value={this.state.username}
-								onChange={this.update("username")}
-								className="login-input" />
-							<input type="password"
-								placeholder="Password"
-								value={this.state.password}
-								onChange={this.update("password")}
-								className="login-input" />
+						{ this.usernameInput() }
+						{ this.passwordInput() }
 					</div>
-					<input type="submit"
-						className="submit" value={submitButton} />
+					{ this.submitButton() }
 				</form>
       </div>
     );
