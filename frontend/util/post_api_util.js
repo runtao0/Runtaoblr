@@ -18,7 +18,6 @@ export function createPost(post) {
   });
 }
 
-
 export function editPost(post) {
   return $.ajax({
     method: "PATCH",
@@ -27,7 +26,7 @@ export function editPost(post) {
   });
 }
 
-export function editPicPost(post) {
+export function editFilePost(post) {
   return $.ajax({
     method: "PATCH",
     url: `api/posts/${post.get("id")}`,
@@ -45,7 +44,6 @@ export function destroyPost(post) {
 }
 
 export function fetchPosts(page) {
-  console.log(page);
   return $.ajax({
     method: "GET",
     url: `api/posts/${page}/feed`,
@@ -86,6 +84,3 @@ export function unfollowPost(post) {
     url: `api/posts/${post.id}/unfollow`,
   });
 }
-
-// export function getPosts
-// export function getOnePost

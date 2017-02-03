@@ -18,8 +18,6 @@ const SuggestionReducer = (state = {}, action) => {
       const suggestion = action.suggestion[0];
       const suggestionToAdd = { [suggestion.id]: suggestion };
       newState = merge({}, state, suggestionToAdd);
-      // suggestion is already and id only
-      // debugger
       delete newState[action.id];
       return newState;
     case SUGGESTION_ERRORS:
