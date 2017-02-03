@@ -12,22 +12,22 @@ class Dashboard extends React.Component {
   //
   componentDidMount() {
     $(window).scroll(function() {
-      if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+      if ($(this).scrollTop() >= 200) {
+        $('#return-top').fadeIn(200);
       } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        $('#return-top').fadeOut(200);
       }
     });
-    $('#return-to-top').click(function() {      // When arrow is clicked
+    $('#return-top').click(function() {
       $('body,html').animate({
-          scrollTop : 0                       // Scroll to top of body
+          scrollTop : 0
         }, 500);
     });
   }
 
   componentWillUnmount() {
     $(window).off('scroll');
-    $('#return-to-top').off('click');
+    $('#return-top').off('click');
   }
 
   render() {
@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
           <GreetingContainer/>
         </section>
 
-        <a id="return-to-top"><i className="icon-chevron-up"></i></a>
+        <a id="return-top"><i className="icon-chevron-up"></i></a>
         <div className="feed_and_sidebar">
           <SidebarContainer/>
 

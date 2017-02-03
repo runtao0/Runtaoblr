@@ -18,17 +18,7 @@ class Sidebar extends React.Component {
   handleFollow(follow, id) {
     return (e) => {
       e.preventDefault();
-      // if (follow) {
-      //   const suggestions = this.state.suggestions;
-      //   // suggestions[id].follow = false;
-      //   this.props.unfollow(id).then(() => {
-      //     this.setState({ suggestions });
-      //   });
-      // } else {
-      //   const suggestions = this.state.suggestions;
-        // suggestions[id].follow = true;
         this.props.follow(id);
-      // }
     };
   }
 

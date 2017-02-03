@@ -45,6 +45,4 @@ const Root = ({ store }) => {
     </Provider>);
 }
 
-// <Route path="/following" component={ FollowingContainer } onEnter={_redirectIfNotLoggedIn} />
-// <IndexRoute component={SessionFormContainer} />
 export default Root;

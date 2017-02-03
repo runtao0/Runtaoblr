@@ -10,7 +10,7 @@ class App extends React.Component {
   }
 
   chooseBG () {
-    const bgs = ["bg-1", "bg-2", "bg-3", "bg-4", "bg-5"];
+    const bgs = ["bg-1", "bg-2", "bg-3", "bg-4"];
     return (
       bgs[Math.floor(Math.random() * bgs.length)]
     );
