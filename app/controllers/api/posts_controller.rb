@@ -1,8 +1,4 @@
 class Api::PostsController < ApplicationController
-  # def index
-  #   @all_posts = Post.includes(:author).all
-  # end
-
   def show
     render json: Post.includes(:author).find(params[:id])
   end
@@ -10,9 +6,6 @@ class Api::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      # @feed_posts = Post.includes(:author).feed_posts(current_user.id)
-
-      #TODO still need to make it so that creation causes a receiveOnePost
       @feed_posts = [@post]
       render :feed
     else
@@ -78,16 +71,16 @@ class Api::PostsController < ApplicationController
 
   end
 
-  # def follow
-  #   post = Post.find(params[:id])
-  #   new_follow = Follow.new(sheperd_id: post.author_id, sheep_id: current_user.id)
-  #   if new_follow.save
-  #     @feed_posts = Post.includes(:author).feed_posts(current_user.id)
-  #     render :feed
-  #   else
-  #     render json: new_follow.errors.full_messages, status: 422
-  #   end
-  # end
+  def follow
+    post = Post.find(params[:id])
+    new_follow = Follow.new(sheperd_id: post.author_id, sheep_id: current_user.id)
+    if new_follow.save
+      @feed_posts = Post.includes(:author).feed_posts(current_user.id)
+      render :feed
+    else
+      render json: new_follow.errors.full_messages, status: 422
+    end
+  end
 
   def unfollow
     post = Post.find(params[:id])
@@ -102,7 +95,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:kind, :title, :content, :media_content, :last_post_id)
+    params.require(:post).permit(:kind, :title, :content, :image, :audio, :video, :last_post_id)
   end
 
 end
