@@ -1,110 +1,210 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
+import { validateUrl } from 'youtube-validator'
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: {kind: "", title: "", content: " " },
+      post: {kind: "", title: "", content: "" },
       buttons: true
     };
 
-    this.profile_pic = this.props.currentUser.profile_pic;
-    this.changeDisplay = this.changeDisplay.bind(this);
-    this.resetDisplay = this.resetDisplay.bind(this);
     this.update = this.update.bind(this);
-    this.handleTextSubmit = this.handleTextSubmit.bind(this);
-    this.ImageForm = this.ImageForm.bind(this);
-    this.AudioForm = this.AudioForm.bind(this);
-    this.TextForm = this.TextForm.bind(this);
-    this.VideoForm = this.VideoForm.bind(this);
     this.updateFile = this.updateFile.bind(this);
-    this.handlePicSubmit = this.handlePicSubmit.bind(this);
-    this.getImage = this.getImage.bind(this);
-    this.parseYoutube = this.parseYoutube.bind(this);
-    this.getVideo = this.getVideo.bind(this);
-    this.handleVideoSubmit = this.handleVideoSubmit.bind(this);
+    this.handleTextSubmit = this.handleTextSubmit.bind(this);
+    this.handleFileSubmit = this.handleFileSubmit.bind(this);
+    this.changeDisplay = this.changeDisplay.bind(this);
+    this.updateFile = this.updateFile.bind(this);
   }
 
-  handleVideoSubmit(e) {
-    e.preventDefault();
-    const post = this.state.post;
-    if (!post.title || !post.content){
-      alert("Your edit cannot be blank");
-    } else {
-      if (this.parseYoutube()) {
-        post.content = this.parseYoutube();
+  // component elements
+  profilePicture() {
+    const linkToUserBlog = `/${this.props.currentUser.username}`;
+    return (
+      <Link to={ linkToUserBlog }>
+        <div className="profile_pic">
+          <img src={this.props.currentUser.profile_pic}></img>
+        </div>
+      </Link>
+    );
+  }
+
+  usernameHeader(kind) {
+    return(
+      <h1>Share your { kind } with everyone ♥ </h1>
+    );
+  }
+
+  closeButton() {
+    return (
+      <button className="close_post_form" onClick={ this.resetDisplay.bind(this) }>Close</button>
+    );
+  }
+
+  inputTitle() {
+    let title = "Title"
+    if (this.state.post.kind === "quote") title = "Who said this?"
+    return (
+      <input type="text"
+        placeholder={title}
+        value={this.state.title}
+        onChange={this.update("title")}
+        className="post_title-input"/>
+    );
+  }
+
+  getMedia() {
+    if (this.state.post.path) {
+      switch (this.state.post.kind) {
+        case "pic":
+          return <img src={ this.state.post.path } />;
+        case "video":
+          return <video controls src={ this.state.post.path } />;
+        case "audio":
+          return <audio controls src={ this.state.post.path } />;
       }
-      this.props.createPost({ post }).then(() =>{
-        this.setState({
-          post: {kind: "", title: "", content: "" },
-          buttons: true,
-        });
-      });
-    }
-  }
-
-  parseYoutube() {
-    if (this.state.post.content.includes("youtube")) {
-      const youtubeURL = this.state.post.content.split("&")[0];
-      const embedded = "https://youtube.com/embed/"
-                        .concat(youtubeURL.substr(youtubeURL.length - 11));
-      return embedded;
     } else {
-      return false;
+      if (this.state.post.kind === "pic" && this.state.post.content !== "") {
+        return <img src={ this.state.post.content }/>;
+      } else {
+        return <h2 className="select-image">Select a file!</h2>;
+      }
     }
   }
 
-  getVideo() {
-    if (this.parseYoutube()) {
-      return (<iframe width="560" height="315" src={ this.parseYoutube() } ></iframe>);
-    } else {
-      return (<h2>This is not a valid youtube video</h2>);
-    }
+  inputButton() {
+    return (
+      <input type="file" name="file"
+        onChange={ this.updateFile }/>
+    );
   }
 
-  getImage() {
-    if (this.state.post.imageURL) {
-      return <img src={ this.state.post.imageURL }/>;
-    } else {
-      return <h2 className="select-image">Select a file!</h2>;
+  createPostButton() {
+    let submitFunc = this.handleFileSubmit;
+    if (this.state.post.kind === "text" || this.state.post.kind === "quote") {
+      submitFunc = this.handleTextSubmit;
     }
+    return (
+      <button className="submit_post"
+              onClick={ submitFunc }>Post</button>
+    );
   }
 
-  changeDisplay(atype) {
-    // neato!
-    return () => {
-      this.setState({
-        post: { kind: atype, title: "", content: "" },
-        buttons: false
-      });
-    };
+  postButton(kind) {
+    let buttonText = "";
+    const buttonClass = kind + "_icon";
+    switch (kind) {
+      case "text":
+        buttonText = "Text";
+        break;
+      case "pic":
+        buttonText = "Photo";
+        break;
+      case "quote":
+        buttonText = "Quote";
+        break;
+      case "audio":
+        buttonText = "Audio";
+        break;
+      case "video":
+        buttonText = "Video";
+        break;
+    }
+    return (
+      <li className="post_button">
+        <button onClick={this.changeDisplay(kind)}>
+          <div className={ buttonClass }></div>
+          { buttonText }</button>
+      </li>
+    );
   }
 
-  resetDisplay() {
-    const confirmDeletDraft = confirm("Are you sure you want to throw away your post?");
-    if (confirmDeletDraft === true) {
-      this.setState({
-        post: {kind: "", title: "", content: "" },
-        buttons: true
-      });
-    }
+  // forms
+
+  inputContent() {
+    let placeholder = "Your content here";
+      switch (this.state.post.kind) {
+        case "pic":
+          placeholder = "Or use a URL";
+          break;
+        case "quote":
+          placeholder = "What was said?";
+          break;
+      }
+    return (
+      <textarea placeholder={ placeholder }
+      onChange={this.update("content")}
+      rows="3"/>
+    );
   }
 
-  handleTextSubmit(e) {
-    e.preventDefault();
-    const post = this.state.post;
-    if (!post.title || !post.content){
-      alert("Your post cannot be blank");
-    } else {
-      this.props.createPost({ post }).then(() =>{
-        this.setState({
-          post: {kind: "", title: "", content: "" },
-          buttons: true
-        });
-      });
+  textForm() {
+    if (this.state.post.kind === "quote") {
+      return(
+        <div className="post_form_container group">
+          { this.profilePicture() }
+          <section className="post_form">
+            <form className="form_content">
+              { this.usernameHeader("quote") }
+              { this.inputContent() }
+              { this.inputTitle() }
+            </form>
+            { this.createPostButton() }
+            { this.closeButton() }
+          </section>
+        </div>
+      );
     }
+    return(
+      <div className="post_form_container group">
+        { this.profilePicture() }
+        <section className="post_form">
+          <form className="form_content">
+            { this.usernameHeader("text") }
+            { this.inputTitle() }
+            { this.inputContent() }
+          </form>
+          { this.createPostButton() }
+          { this.closeButton() }
+        </section>
+      </div>
+    );
   }
+
+  imageAudioVideoForm() {
+    let kind = "image";
+    let imageUrl = <div/>;
+    switch(this.state.post.kind) {
+      case "pic":
+        imageUrl = this.inputContent();
+        break;
+      case "video":
+        kind = "video";
+        break;
+      case "audio":
+        kind = "audio";
+        break;
+    }
+    return (
+      <div className="post_form_container group">
+        { this.profilePicture() }
+        <section className="post_form">
+          <form className="form_content">
+            { this.usernameHeader(kind) }
+            { this.inputTitle() }
+            { this.getMedia() }
+            { this.inputButton() }
+            { imageUrl }
+          </form>
+          { this.createPostButton() }
+          { this.closeButton() }
+        </section>
+      </div>
+    );
+  }
+
+  // update inputs
 
   update(field) {
     return e => {
@@ -129,23 +229,56 @@ class PostForm extends React.Component {
         post: {
           kind,
           title,
-          imageFile: file,
-          imageURL: fileReader.result
+          file,
+          path: fileReader.result
         },
         buttons: false,
       });
     }.bind(this);
   }
 
-  handlePicSubmit(e) {
+  changeDisplay(atype) {
+    return () => {
+      this.setState({
+        post: { kind: atype, title: "", content: "" },
+        buttons: false
+      });
+    };
+  }
+
+  resetDisplay() {
+    const confirmDeletDraft = confirm("Are you sure you want to throw away your post?");
+    if (confirmDeletDraft === true) {
+      this.setState({
+        post: {kind: "", title: "", content: "" },
+        buttons: true
+      });
+    }
+  }
+
+  // handle submits
+
+  handleFileSubmit(e) {
     e.preventDefault();
     if (!this.state.post.title){
       alert("Your title cannot be blank");
     } else {
     const formData = new FormData();
     formData.append("post[title]", this.state.post.title);
-    if (this.state.post.imageFile) {
-      formData.append("post[media_content]", this.state.post.imageFile);
+    if (this.state.post.file) {
+      switch(this.state.post.kind) {
+        case "pic":
+          formData.append("post[image]", this.state.post.file);
+          break;
+        case "video":
+          formData.append("post[video]", this.state.post.file);
+          break;
+        case "audio":
+          formData.append("post[audio]", this.state.post.file);
+          break;
+        default:
+          break;
+      }
     }
     formData.append("post[kind]", this.state.post.kind);
     formData.append("post[content]", this.state.post.content);
@@ -159,121 +292,19 @@ class PostForm extends React.Component {
   }
   }
 
-  preview() {
-    if (this.state.post.imageUrl) {
-      return <img src={ this.state.post.imageUrl } />;
+  handleTextSubmit(e) {
+    e.preventDefault();
+    const post = this.state.post;
+    if (!post.title || !post.content){
+      alert("Your post cannot be blank");
     } else {
-      return <div/>;
+      this.props.createPost({ post }).then(() =>{
+        this.setState({
+          post: {kind: "", title: "", content: "" },
+          buttons: true
+        });
+      });
     }
-  }
-
-  TextForm() {
-    return(
-      <div className="post_form_container group">
-        <div className="profile_pic">
-          <img src={this.profile_pic}></img>
-        </div>
-        <section className="post_form">
-          <form className="form_content" onSubmit={this.handleTextSubmit}>
-            <h1>{this.props.currentUser.username} ♥ </h1>
-            <input type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.update("title")}
-              className="post_title-input"/>
-            <textarea placeholder="Your content here"
-              onChange={this.update("content")}
-              rows="3"/>
-          </form>
-          <button className="submit_post"
-                  onClick={this.handleTextSubmit}>Post</button>
-          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-        </section>
-      </div>
-    );
-  }
-
-  ImageForm () {
-    return (
-      <div className="post_form_container group">
-        <div className="profile_pic">
-          <img src={this.profile_pic}></img>
-        </div>
-        <section className="post_form">
-          <form className="form_content">
-            <h1>{this.props.currentUser.username} ♥ </h1>
-            <input type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.update("title")}
-              className="post_title-input"/>
-            {this.getImage()}
-            <input type="file" className="image_input_field" name="file"
-              encType="multipart/form-data"
-              onChange={this.updateFile} />
-            <textarea placeholder="or use a url"
-              onChange={this.update("content")}
-              rows="3"/>
-          </form>
-          <button className="submit_post"
-                  onClick={this.handlePicSubmit}>Post</button>
-          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-        </section>
-      </div>
-    );
-  }
-
-  AudioForm () {
-    return (
-      <div className="post_form_container group">
-        <div className="profile_pic">
-          <img src={this.profile_pic}></img>
-        </div>
-        <section className="post_form">
-          <form className="form_content">
-            <h1>{this.props.currentUser.username} ♥ </h1>
-            <input type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.update("title")}
-              className="post_title-input"/>
-            <textarea placeholder="audio URL"
-              onChange={this.update("content")}
-              rows="3"/>
-          </form>
-          <button className="submit_post"
-                  onClick={this.handleTextSubmit}>Post</button>
-          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-        </section>
-      </div>
-    );
-  }
-
-  VideoForm () {
-    return (
-      <div className="post_form_container group">
-        <div className="profile_pic">
-          <img src={this.profile_pic}></img>
-        </div>
-        <section className="post_form">
-          <form className="form_content">
-            <h1>{this.props.currentUser.username} ♥ </h1>
-            <input type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.update("title")}
-              className="post_title-input"/>
-            { this.getVideo () }
-            <textarea placeholder="youtube video URL"
-              onChange={this.update("content")}
-              rows="3"/>
-          </form>
-          <button className="submit_post"
-                  onClick={this.handleVideoSubmit}>Post</button>
-          <button className="close_post_form" onClick={this.resetDisplay}>Close</button>
-        </section>
-      </div>
-    );
   }
 
   render() {
@@ -281,56 +312,30 @@ class PostForm extends React.Component {
         if(this.state.buttons) {
           return(
           <div className="post_form_container group">
-            <div className="profile_pic">
-              <img src={this.profile_pic}></img>
-            </div>
+            { this.profilePicture() }
             <section className="post_buttons">
               <ul className="post_button_list">
-                <li className="post_button">
-                  <button onClick={this.changeDisplay("text")}>
-                    <div className="text_icon"></div>
-                    Text</button>
-                </li>
-                <li className="post_button photo">
-                  <button onClick={this.changeDisplay("pic")}>
-                    <div className="pic_icon"></div>
-                    Photo</button>
-                </li>
-                <li className="post_button">
-                  <button onClick={this.changeDisplay("quote")}>
-                    <div className="quote_icon"></div>
-                    Quote</button>
-                </li>
-                <li className="post_button">
-                  <button onClick={this.changeDisplay("audio")}>
-                    <div className="audio_icon"></div>
-                    Audio</button>
-                </li>
-                <li className="post_button">
-                  <button onClick={this.changeDisplay("video")}>
-                    <div className="video_icon"></div>
-                    Video</button>
-                </li>
+                { this.postButton("text") }
+                { this.postButton("pic") }
+                { this.postButton("quote") }
+                { this.postButton("audio") }
+                { this.postButton("video") }
               </ul>
             </section>
           </div>
         );
       } else {
         switch (this.state.post.kind) {
-          case("pic"):
-            return this.ImageForm();
           case("text"):
-            return this.TextForm();
-          case("audio"):
-            return this.AudioForm();
-          case("video"):
-            return this.VideoForm();
+            return this.textForm();
+          case("quote"):
+            return this.textForm();
           default:
-            return this.TextForm();
+            return this.imageAudioVideoForm();
         }
       }
     } else {
-        return <div></div>;
+        return <div/>;
       }
     }
   }
