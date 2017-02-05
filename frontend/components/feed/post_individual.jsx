@@ -10,8 +10,6 @@ class PostIndividual extends React.Component {
       edit: false,
     };
 
-    const linkToUserBlog = `/${this.props.post.author}`;
-
     this.handleFileSubmit = this.handleFileSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleEdit = this.handleEdit.bind(this);

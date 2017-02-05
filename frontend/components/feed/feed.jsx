@@ -28,7 +28,7 @@ class Feed extends React.Component {
   renderFeedPosts() {
     let blogBool = false;
     if (this.props.blog) blogBool = true;
-    const arr = allPosts(this.props.posts).reverse().map((post) => {
+    const postsAsComponents = allPosts(this.props.posts).reverse().map((post) => {
       return (
         <PostsContainer
           post={ post }
@@ -36,7 +36,7 @@ class Feed extends React.Component {
           blog={ blogBool }/>
       );
     });
-    return arr;
+    return postsAsComponents;
   }
 
   handleInfiniteLoad() {

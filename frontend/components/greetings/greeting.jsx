@@ -42,7 +42,6 @@ const notLoggedInGreeting = (demoUser) => (
   </header>
 );
 
-// these are unpacked props from container (mapped shit)
 const Greeting = ({ currentUser, logOut, demoUser, router}) => {
   function logInDemo() {
     demoUser().then(() => {router.push("/dashboard");})

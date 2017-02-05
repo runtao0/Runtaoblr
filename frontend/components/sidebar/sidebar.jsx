@@ -28,18 +28,16 @@ class Sidebar extends React.Component {
       const buttonDisplay = suggestion.follow ? "-" : "+";
       const linkToUserBlog = `/${suggestion.username}`;
       return (
-        <li key={ind} className="follow_suggestion group">
-          <Link to={linkToUserBlog}>
-          <section className="suggestion_profile_pic">
-            <img src={suggestion.profile_pic} />
-          </section>
-          <h3>
-            {suggestion.username}
-          </h3>
+        <li key={ suggestion.id } className="follow_suggestion group">
+          <Link to={ linkToUserBlog }>
+            <section className="suggestion_profile_pic">
+              <img src={ suggestion.profile_pic } />
+            </section>
+            <h3> { suggestion.username } </h3>
           </Link>
-          <button onClick={this.handleFollow(suggestion.follow, suggestion.id, ind)}
-            className={buttonClass}>
-            {buttonDisplay}
+          <button onClick={ this.handleFollow(suggestion.follow, suggestion.id, ind) }
+            className={ buttonClass }>
+            { buttonDisplay }
           </button>
         </li>
       );

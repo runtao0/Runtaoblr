@@ -6,7 +6,7 @@ const mapStateToProps = ({ session }) => {
   return {
   currentUser: session.currentUser
 }}
-//  move this to the back end, don't let ppl see
+
 const DEMO = { user: { username: "runtao", password: "runtao" } };
 
 const mapDispatchToProps = (dispatch) => ({

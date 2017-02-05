@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
   }
-  //
+
   componentDidMount() {
     $(window).scroll(function() {
       if ($(this).scrollTop() >= 200) {
@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
     return(
       <div className="dashboard">
         <section className="dashboard-header group">
-          <GreetingContainer/>
+          <GreetingContainer />
         </section>
 
         <a id="return-top"><i className="icon-chevron-up"></i></a>
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
           <SidebarContainer/>
 
           <section className="feed">
-            <PostFormContainer/>
+            <PostFormContainer />
             <FeedContainer />
           </section>
         </div>

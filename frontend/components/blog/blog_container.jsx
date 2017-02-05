@@ -6,7 +6,6 @@ import { clearPosts } from '../../actions/post_actions';
 
 const mapStateToProps = ({ session, blogUser }) => ({
   currentUser: session.currentUser,
-  // blog_errors: blog.errors,
   blogUser: blogUser,
 });
 
