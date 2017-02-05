@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
   )
 #fills default values for user settings
   def default_values
-    self.description ||= "Description goes here"
+    self.description ||= "Hi! I'm #{self.username}, welcome to my blog!"
   end
 
   def post?(post)
