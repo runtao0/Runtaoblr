@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   entry: './frontend/entry.jsx',
