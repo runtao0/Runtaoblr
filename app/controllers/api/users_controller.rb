@@ -2,6 +2,18 @@ class Api::UsersController<ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # default users to follow
+      rupaul = User.find_by(username: "rupaul")
+      runtao = User.find_by(username: "runtao")
+      david = User.find_by(username: "davidKarp")
+      naomi = User.find_by(username: "naomi")
+      pikachu = User.find_by(username: "pikachu")
+      Follow.create(sheep_id: @user.id, sheperd_id: rupaul.id)
+      Follow.create(sheep_id: @user.id, sheperd_id: runtao.id)
+      Follow.create(sheep_id: @user.id, sheperd_id: david.id)
+      Follow.create(sheep_id: @user.id, sheperd_id: naomi.id)
+      Follow.create(sheep_id: @user.id, sheperd_id: pikachu.id)
+      
       log_in(@user)
       render :show
     else
@@ -22,7 +34,6 @@ class Api::UsersController<ApplicationController
     @user = User.find_by(:username => params[:username])
   end
 
-# This is going to cause duplications, so improve later
   def suggestion
     @suggested_users = User.suggestions(current_user.id, 5)
   end

@@ -20,7 +20,7 @@ class Api::PostsController < ApplicationController
   def blog_posts
     blog_user = User.find_by(:id => params[:id])
     if blog_user
-      @feed_posts = blog_user.posts.order(:created_at => :desc).page(params[:page]).per(18)
+      @feed_posts = blog_user.posts.order(:created_at => :desc).page(params[:page]).per(15)
       render :feed
     else
       render json: blog_user.errors.full_messages, status: 404
