@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import { validateUrl } from 'youtube-validator'
 
 class PostForm extends React.Component {
   constructor(props) {
