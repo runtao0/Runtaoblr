@@ -1,13 +1,24 @@
-const path = require('path');
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
   context: __dirname,
   entry: './frontend/entry.jsx',
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    path: "./app/assets/javascripts",
     filename: 'bundle.js'
   },
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{
+        warnings: true
+      }
+    })
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -23,17 +34,5 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-maps',
-  plugins:[
-    new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: true
-      }
-    })
-  ]
+  devtool: 'source-map'
 };
