@@ -6,7 +6,8 @@ class PostForm extends React.Component {
     super(props);
     this.state = {
       post: {kind: "", title: "", content: "" },
-      buttons: true
+      buttons: true,
+      loading: false
     };
 
     this.update = this.update.bind(this);
@@ -18,6 +19,10 @@ class PostForm extends React.Component {
   }
 
   // component elements
+  loadingWheel() {
+    return <div className="loader"/>;
+  }
+
   profilePicture() {
     const linkToUserBlog = `/${this.props.currentUser.username}`;
     return (
@@ -255,10 +260,19 @@ class PostForm extends React.Component {
     }
   }
 
+  toggleLoaderState() {
+    this.setState({
+      post: {kind: "", title: "", content: "" },
+      buttons: true,
+      loading: true,
+    });
+  }
+
   // handle submits
 
   handleFileSubmit(e) {
     e.preventDefault();
+    this.toggleLoaderState()
     if (!this.state.post.title){
       alert("Your title cannot be blank");
     } else {
@@ -285,7 +299,8 @@ class PostForm extends React.Component {
     this.props.createImagePost(formData).then(() =>{
       this.setState({
         post: {kind: "", title: "", content: "" },
-        buttons: true
+        buttons: true,
+        loading: false
       });
     });
   }
@@ -293,6 +308,8 @@ class PostForm extends React.Component {
 
   handleTextSubmit(e) {
     e.preventDefault();
+    this.toggleLoaderState();
+
     const post = this.state.post;
     if (!post.title || !post.content){
       alert("Your post cannot be blank");
@@ -300,7 +317,8 @@ class PostForm extends React.Component {
       this.props.createPost({ post }).then(() =>{
         this.setState({
           post: {kind: "", title: "", content: "" },
-          buttons: true
+          buttons: true,
+          loading: false
         });
       });
     }
@@ -308,7 +326,18 @@ class PostForm extends React.Component {
 
   render() {
       if (this.props.currentUser) {
-        if(this.state.buttons) {
+        if (this.state.loading) {
+          return(
+            <div className="post_form_container group">
+              { this.profilePicture() }
+              <section className="post_buttons">
+                <ul className="post_button_list purple group">
+                  { this.loadingWheel() }
+                </ul>
+              </section>
+            </div>
+          );
+        } else if (this.state.buttons) {
           return(
           <div className="post_form_container group">
             { this.profilePicture() }

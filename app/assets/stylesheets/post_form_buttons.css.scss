@@ -6,12 +6,26 @@
   font-weight: 300;
 }
 
+.post_form_container {
+  width: 586px;
+}
+
 .post_button_list {
   background: white;
   color: #414157;
   font-size: 14px;
   padding: 20px 0;
   border-radius: 4px;
+  height: auto;
+}
+
+.purple {
+  background: #46477e;
+  height: 150px;
+}
+
+.post_button_list > .loader {
+  margin: 50px 200px 0 200px;
 }
 
 .post_button {

@@ -43,10 +43,9 @@
 .post_buttons {
   float: right;
   display: inline;
-  width: auto;
+  width: calc(100% - 116px);
   height: auto;
   position: relative;
-  margin-right: 115px;
 }
 
 .post_edit {
