@@ -13,7 +13,7 @@ class Api::UsersController<ApplicationController
       Follow.create(sheep_id: @user.id, sheperd_id: david.id)
       Follow.create(sheep_id: @user.id, sheperd_id: naomi.id)
       Follow.create(sheep_id: @user.id, sheperd_id: pikachu.id)
-      
+
       log_in(@user)
       render :show
     else

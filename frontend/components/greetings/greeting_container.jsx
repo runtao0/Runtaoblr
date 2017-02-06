@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import { logIn, signUp, logOut } from '../../actions/session_actions';
 import Greeting from './greeting';
 
-const mapStateToProps = ({ session }) => {
-  return {
+const mapStateToProps = ({ session }) => ({
   currentUser: session.currentUser
-}}
+})
 
 const DEMO = { user: { username: "runtao", password: "runtao" } };
 

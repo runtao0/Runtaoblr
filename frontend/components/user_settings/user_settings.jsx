@@ -16,9 +16,6 @@ class UserSettings extends React.Component {
     this.renderEditSection = this.renderEditSection.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.update = this.update.bind(this);
-    this.getProfile = this.getProfile.bind(this);
-    this.getProfile = this.getProfile.bind(this);
-    this.getCover = this.getCover.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -43,6 +40,52 @@ class UserSettings extends React.Component {
       return <img
         className="edit-cover-pic"
         src={this.state.currentUser.cover_pic}/>;
+    }
+  }
+
+  getHeader() {
+    return(
+      <section className="dashboard-header group">
+        <GreetingContainer/>
+      </section>
+    );
+  }
+
+  getUsername() {
+    if (this.state.edit) {
+      return(
+        <li className="edit-username group">
+          <input type="text"
+            className="edit-username-form"
+            value={this.state.currentUser.username}
+            onChange={this.update("username")}/>
+        </li>
+      );
+    } else {
+      return(
+        <li className="edit-username group">
+          <h2>{this.state.currentUser.username}</h2>
+        </li>
+      );
+    }
+  }
+
+  getDescription() {
+    if (this.state.edit) {
+      return(
+        <li className="edit-description group">
+          <textarea
+            className="edit-description-form"
+            value={this.state.currentUser.description}
+            onChange={this.update("description")}/>
+        </li>
+      );
+    } else {
+      return(
+        <li className="edit-description group">
+          <p>{this.state.currentUser.description}</p>
+        </li>
+      );
     }
   }
 
@@ -96,7 +139,6 @@ class UserSettings extends React.Component {
     }
     formData.append("user[username]", this.state.currentUser.username);
     formData.append("user[description]", this.state.currentUser.description);
-    // post request, then reset to buttons
     this.props.editUser(formData).then(() =>{
       this.setState({
         currentUser: this.props.currentUser,
@@ -114,17 +156,9 @@ class UserSettings extends React.Component {
       const fileReader = new FileReader();
       let otherField;
       if (field === "profile_image") {
-        if (this.state.newCover) {
-          otherField = this.state.newCover;
-        } else {
-          otherField = this.state.currentUser.cover_pic;
-        }
+        otherField = this.state.newCover;
       } else {
-        if (this.state.newProfile) {
-          otherField = this.state.newProfile;
-        } else {
-          otherField = this.state.currentUser.profile_image;
-        }
+        otherField = this.state.newProfile;
       }
       const currentUser = Object.assign({}, this.state.currentUser);
 
@@ -152,27 +186,20 @@ class UserSettings extends React.Component {
       };
     }
 
-
   renderProfile() {
     return (
       <section className="user-edit">
         <div className="edit-content-container group">
           <h1>Account Info</h1>
           <div className="cover_pic-wrapper">
-            <img className="edit-cover-pic"
-              src={this.state.currentUser.cover_pic}/>
+            { this.getCover() }
           </div>
           <div className="profile_pic-wrapper">
-            <img className="edit-profile-pic"
-              src={this.state.currentUser.profile_image}/>
+            { this.getProfile() }
           </div>
           <ul className="edit-text">
-            <li className="edit-username group">
-              <h2>{this.state.currentUser.username}</h2>
-            </li>
-            <li className="edit-description group">
-              <p>{this.state.currentUser.description}</p>
-            </li>
+            { this.getUsername() }
+            { this.getDescription() }
           </ul>
         </div>
         <button className="account-edit-toggle"
@@ -202,18 +229,8 @@ class UserSettings extends React.Component {
               id="profile-pic-file-form"/>
           </label>
           <ul className="edit-text">
-            <li className="edit-username group">
-              <input type="text"
-                className="edit-username-form"
-                value={this.state.currentUser.username}
-                onChange={this.update("username")}/>
-            </li>
-            <li className="edit-description group">
-              <textarea
-                className="edit-description-form"
-                value={this.state.currentUser.description}
-                onChange={this.update("description")}/>
-            </li>
+            { this.getUsername() }
+            { this.getDescription() }
           </ul>
         </div>
         <button className="account-edit-toggle"
@@ -234,9 +251,7 @@ class UserSettings extends React.Component {
     if (this.state.loading) {
       return (
         <div className="following group">
-          <section className="dashboard-header group">
-            <GreetingContainer/>
-          </section>
+          { this.getHeader() }
           <div className="feed_and_sidebar group">
             <div className="loader"/>
             <SidebarContainer/>
@@ -247,9 +262,7 @@ class UserSettings extends React.Component {
     } else {
       return (
         <div className="following group">
-          <section className="dashboard-header group">
-            <GreetingContainer/>
-          </section>
+          { this.getHeader() }
           <div className="feed_and_sidebar group">
             { accountInfo }
             <SidebarContainer/>

@@ -36,9 +36,8 @@ class Blog extends React.Component {
   blogProfilePic() {
     return (
       <div className="profile_container">
-      <img className="blog_profile_pic"
-           src={this.props.blogUser.profile_image}/>
-         </div>
+        <img className="blog_profile_pic" src={this.props.blogUser.profile_image}/>
+      </div>
     );
   }
 
@@ -69,7 +68,7 @@ class Blog extends React.Component {
     } else {
       text = "follow";
     }
-    if (currentUser.id !== this.props.blogUser.id) {
+    if (this.props.currentUser.id !== this.props.blogUser.id) {
       return (
         <li>
           <button onClick={this.handleFollow} className="toggle_buttons">{text}</button>

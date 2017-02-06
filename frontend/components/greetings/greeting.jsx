@@ -1,65 +1,131 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-const loggedInGreeting = (currentUser, out, dash) => {
-  const linkToUserBlog = `/${currentUser.username}`
-  let dashboardButton = <div/>;
-  if (dash) {
-    dashboardButton = <li>
-      <button title="dashboard" className="toggle_buttons"><Link to="/dashboard"><i className="fa fa-tachometer" aria-hidden="true"></i></Link></button>
-    </li>;
+function Greeting(props) {
+
+  const linkToUserBlog = () => {
+    return `/${props.currentUser.username}`;
   }
-  return(
-    <header className="header group">
+
+  const logOut = () => {
+    props.logOut().then(() => { props.router.push("/"); });
+  }
+
+  const logInDemo = () => {
+    props.demoUser().then(() => { props.router.push("/dashboard"); })
+  }
+
+  function getLogo() {
+    return(
       <div className="logo">r</div>
-      <ul className="button_list">
-        <li>
-          <button className="log_out" onClick={ out }>
-            <i className="fa fa-power-off" aria-hidden="true"></i>
-          </button>
-        </li>
-        <li>
-          <button title="User Settings"className="toggle_buttons"><Link to="/user_settings"><i className="fa fa-cogs" aria-hidden="true"></i></Link></button>
-        </li>
-        <li>
-          <button title="Your Blog" className="toggle_buttons"><Link to={linkToUserBlog}><i className="fa fa-th" aria-hidden="true"></i></Link></button>
-        </li>
-        { dashboardButton }
-      </ul>
-    </header>
-  );
-}
-
-const notLoggedInGreeting = (demoUser) => (
-  <header className="log_buttons group">
-    <div className="logo">r</div>
-    <ul className="button_list">
-      <li><button className="toggle_buttons" onClick={ demoUser }>Demo User</button></li>
-      <li><button className="toggle_buttons"><Link to="/login">Log In</Link></button></li>
-      <li><button className="toggle_buttons"><Link to="/signup">Sign Up</Link></button></li>
-
-    </ul>
-  </header>
-);
-
-const Greeting = ({ currentUser, logOut, demoUser, router}) => {
-  function logInDemo() {
-    demoUser().then(() => {router.push("/dashboard");})
+    );
   }
 
-  function out() {
-    return logOut().then(() => {
-      router.push("/");})
+  function getDashboardButton() {
+    if (props.router.location.pathname === "/dashboard") {
+      return <div/>;
+    } else {
+      return(
+        <li>
+          <Link to="/dashboard"
+            title="dashboard" className="toggle_buttons">
+            <i className="fa fa-tachometer" aria-hidden="true"/>
+          </Link>
+        </li>
+      );
+    }
   }
 
-  let dashBool = true;
-  if (router.location.pathname === "/dashboard") dashBool = false;
+  function getUserBlogButton() {
+    return(
+      <li>
+        <Link to={ linkToUserBlog() }
+          title="Your Blog" className="toggle_buttons">
+          <i className="fa fa-th" aria-hidden="true"/>
+        </Link>
+      </li>
+    );
+  }
 
-  if (currentUser === null) {
-    return notLoggedInGreeting(logInDemo.bind(this));
+  function getUserSettingsButton() {
+    return(
+      <li>
+        <Link to="/user_settings"
+          title="User Settings"className="toggle_buttons">
+          <i className="fa fa-cogs" aria-hidden="true"/>
+        </Link>
+      </li>
+    );
+  }
+
+  function getLogOutButton() {
+    return(
+      <li>
+        <button className="log_out" onClick={ logOut.bind(this) }>
+          <i className="fa fa-power-off" aria-hidden="true"/>
+        </button>
+      </li>
+    );
+  }
+
+  function loggedInGreeting() {
+    return(
+      <header className="header group">
+        { getLogo() }
+        <ul className="button_list">
+          { getLogOutButton() }
+          { getUserSettingsButton() }
+          { getUserBlogButton() }
+          { getDashboardButton() }
+        </ul>
+      </header>
+    );
+  }
+
+  function getDemoUserButton() {
+    // demo user
+    return(
+      <li>
+        <button className="toggle_buttons" onClick={ logInDemo.bind(this) }>Demo User</button>
+      </li>
+    );
+  }
+
+  function getLogInButton() {
+    return(
+      <li>
+        <Link to="/login" className="toggle_buttons">Log In</Link>
+      </li>
+    );
+  }
+
+  function getSignUpButton() {
+    return(
+      <li>
+        <Link to="/signup" className="toggle_buttons">Sign Up</Link>
+      </li>
+    );
+  }
+
+  function notLoggedInGreeting() {
+    return(
+      <header className="log_buttons group">
+        { getLogo() }
+        <ul className="button_list">
+          { getDemoUserButton() }
+          { getLogInButton() }
+          { getSignUpButton() }
+        </ul>
+      </header>
+    );
+  }
+
+  if (props.currentUser === null) {
+    return notLoggedInGreeting();
   } else {
-    return loggedInGreeting(currentUser, out.bind(this), dashBool);
+    return loggedInGreeting();
   }
+
 }
 
 export default withRouter(Greeting);
