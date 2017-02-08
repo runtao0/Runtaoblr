@@ -1,6 +1,6 @@
 # **Runtaoblr**
 
-Live: [Runtaoblr](runtaoblr.herokuapp.com)
+Live: [Runtaoblr](http://runtaoblr.com)
 
 Runtaoblr is a full-stack web app inspired by Tumblr built using Ruby on Rails and PostgreSQL on the back-end and JS with React and Redux on the front-end.
 

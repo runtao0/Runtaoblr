@@ -75,7 +75,7 @@ class PostIndividual extends React.Component {
   }
 
   contentTextInput() {
-    return <textarea placeholder={this.state.post.content}
+    return <textarea value={this.state.post.content}
       onChange={this.update("content")}
       rows="3"/>;
   }
@@ -242,7 +242,7 @@ class PostIndividual extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
-    post.file = file;
+    post.newFile = file;
     fileReader.onloadend = function () {
       this.setState({
         post,
@@ -287,16 +287,16 @@ class PostIndividual extends React.Component {
     const formData = new FormData();
     formData.append("post[title]", this.state.post.title);
     formData.append("id", this.state.post.id);
-    if (this.state.post.file) {
+    if (this.state.post.newFile) {
       switch(this.state.post.kind) {
         case "pic":
-          formData.append("post[image]", this.state.post.file);
+          formData.append("post[image]", this.state.post.newFile);
           break;
         case "video":
-          formData.append("post[video]", this.state.post.file);
+          formData.append("post[video]", this.state.post.newFile);
           break;
         case "audio":
-          formData.append("post[audio]", this.state.post.file);
+          formData.append("post[audio]", this.state.post.newFile);
           break;
         default:
           break;
