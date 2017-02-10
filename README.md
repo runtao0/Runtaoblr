@@ -9,32 +9,32 @@ Runtaoblr is a full-stack web app inspired by Tumblr built using Ruby on Rails a
 ### Dashboard
 The dashboard is the aggregate of all the user's posts with the posts of the user's followed blogs, ordered chronologically. The dashboard features infinite scrolling, and a back to top button that appears after having scrolled down. Each post is a React component, and the overall Redux store keeps track of all the individual posts states. Furthermore, a user can edit his/her own post within the feed.
 
-![dashboard](app/assets/images/production_gifs/auth.gif)
+![dashboard](https://68.media.tumblr.com/b98669d20519c36a686f293cc757fe8a/tumblr_ol6835B9nM1qans75o4_500.gif)
 
 ### Posts
 The user can post multiple forms of media. Text and quotes are stored as strings. Images. Videos and audio currently can only be added from urls, and are imbedded in the post. Posts are stored in one table in the database, although I may consider having a table for each type of media later on, which would allow uploads of audio and video content.
 
-![posts](app/assets/images/production_gifs/post.gif)
+![posts](https://68.media.tumblr.com/446ea0b046a3f8b7801d9bf6162789cd/tumblr_ol6835B9nM1qans75o6_250.gif)
 
 ### Likes
 Users can like other posts, and notes keep track of the likability of each post. A join table keeps track of which users like which posts.
 
-![likes](app/assets/images/production_gifs/likes.gif)
+![likes](https://68.media.tumblr.com/5c00f4256947947ab915d4a082abc4c9/tumblr_ol6835B9nM1qans75o2_500.gif)
 
 ### Follows
 Users can follow/unfollow other users from the suggested sidebar, the newsfeed avatar, and from user blog pages. A join table keeps track of which users follow whom.
 
-![follows](app/assets/images/production_gifs/follows.gif)
+![follows](https://68.media.tumblr.com/61df344186a845b113719aece171df94/tumblr_ol6835B9nM1qans75o1_500.gif)
 
 ### Blog Display
 Every user has a blog page that contains all their posts. Other users can access and view these pages by clicking on each respective user's avatar, username on the sidebar, or just by typing in runtaoblr.com/[username]. This is down with the React router library. This then translates a query to a ReSTful route with show action.
 
-![blog](app/assets/images/production_gifs/blog.gif)
+![blog](https://68.media.tumblr.com/37ab12d4d8873351b9e543a22d047843/tumblr_ol6835B9nM1qans75o5_250.gif)
 
 ### User Settings
 Users can change their username, profile description, profile picture, and blog cover photo. This is easily accessed from the dashboard.
 
-![user settings](app/assets/images/production_gifs/user_settings.gif)
+![user settings](https://68.media.tumblr.com/d5843059ac6e263b992850ea9e642b48/tumblr_ol6835B9nM1qans75o3_500.gif)
 
 ## **Future Directions**
 **Reblogs**
