@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 import GreetingContainer from '../greetings/greeting_container';
-import PostFormContainer from '../post_form/post_form_container';
+import PostFormContainer from '../post_buttons/post_form_container';
 import SidebarContainer from '../sidebar/sidebar_container';
 import FeedContainer from '../feed/feed_container';
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PostForm from './post_form';
+import PostButtons from './post_buttons';
 import { createPost, createImagePost } from '../../actions/post_actions';
 
 const mapStateToProps = ({ session }) => ({
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostForm)
+)(PostButtons)

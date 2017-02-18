@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/runtao0/your_greatest_achievement.git"
+    "url": "git+https://github.com/runtao0/runtaoblr.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/runtao0/your_greatest_achievement/issues"
+    "url": "https://github.com/runtao0/runtaoblr/issues"
   },
-  "homepage": "https://github.com/runtao0/your_greatest_achievement#readme",
+  "homepage": "https://github.com/runtao0/runtaoblrt#readme",
   "dependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
