@@ -10,7 +10,7 @@ User.destroy_all
 
 runtao =
 User.create(username: "runtao", password: "runtao", description: "Welcome to my blog! I hope you enjoy it",
-  profile_image: open("http://cdn.bulbagarden.net/upload/thumb/a/a4/186Politoed.png/250px-186Politoed.png"))
+  profile_image: open("https://cdn.bulbagarden.net/upload/thumb/a/a4/186Politoed.png/250px-186Politoed.png"))
 david =
 User.create(username: "davidKarp", password: "davidKarp", description: "I am the creator of Tumblr and I think this app is wonderful!",
   profile_image: open("http://static.logomaker.com.s3-us-west-2.amazonaws.com/wp-content/uploads/2014/02/David-Karp.jpg"))
