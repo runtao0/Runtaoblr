@@ -35,115 +35,115 @@ profile_image: "http://i180.photobucket.com/albums/x290/KajunKiwi619/newyork.jpg
 
 pikachu =
 User.create(username: "pikachu", password: "pikachu",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/250px-025Pikachu.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/250px-025Pikachu.png"))
 dratini =
 User.create(username: "dratini", password: "dratini",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/c/cc/147Dratini.png/250px-147Dratini.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/c/cc/147Dratini.png/250px-147Dratini.png"))
 jynx =
 User.create(username: "jynx", password: "jynxjynx",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/7/7c/124Jynx.png/250px-124Jynx.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/7/7c/124Jynx.png/250px-124Jynx.png"))
 poliwag =
 User.create(username: "poliwag", password: "poliwag",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/4/49/060Poliwag.png/250px-060Poliwag.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/4/49/060Poliwag.png/250px-060Poliwag.png"))
 mudkip =
 User.create(username: "mudkip", password: "mudkip",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/6/60/258Mudkip.png/250px-258Mudkip.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/6/60/258Mudkip.png/250px-258Mudkip.png"))
 butterfree =
 User.create(username: "butterfree", password: "butterfree",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/d/d1/012Butterfree.png/250px-012Butterfree.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/d/d1/012Butterfree.png/250px-012Butterfree.png"))
 gloom =
 User.create(username: "gloom", password: "gloomgloom",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/2/2a/044Gloom.png/250px-044Gloom.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/2/2a/044Gloom.png/250px-044Gloom.png"))
 charizard =
 User.create(username: "charizard", password: "charizard",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/7/7e/006Charizard.png/250px-006Charizard.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/7/7e/006Charizard.png/250px-006Charizard.png"))
 togepi =
 User.create(username: "togepi", password: "togepi",
-profile_image: open("http://cdn.bulbagarden.net/upload/thumb/6/6b/175Togepi.png/250px-175Togepi.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/thumb/6/6b/175Togepi.png/250px-175Togepi.png"))
 magikarp =
 User.create(username: "magikarp", password: "magikarp",
 profile_image: open("http://static.pokemonpets.com/images/monsters-images-300-300/2129-Shiny-Magikarp.png"))
 wigglytuff =
 User.create(username: "wigglytuff", password: "wigglytuff",
-profile_image: open("http://cdn.bulbagarden.net/upload/9/92/040Wigglytuff.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/9/92/040Wigglytuff.png"))
 ninetales =
 User.create(username: "ninetales", password: "ninetales",
-profile_image: open("http://cdn.bulbagarden.net/upload/0/05/038Ninetales.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/0/05/038Ninetales.png"))
 sandslash =
 User.create(username: "sandslash", password: "sandslash",
-profile_image: open("http://cdn.bulbagarden.net/upload/0/0b/028Sandslash.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/0/0b/028Sandslash.png"))
 meowth =
 User.create(username: "meowth", password: "meowth",
-profile_image: open("http://cdn.bulbagarden.net/upload/d/d6/052Meowth.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/d/d6/052Meowth.png"))
 persian =
 User.create(username: "persian", password: "persian",
-profile_image: open("http://cdn.bulbagarden.net/upload/1/13/053Persian.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/1/13/053Persian.png"))
 psyduck =
 User.create(username: "psyduck", password: "psyduck",
-profile_image: open("http://cdn.bulbagarden.net/upload/5/53/054Psyduck.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/5/53/054Psyduck.png"))
 goldduck =
 User.create(username: "goldduck", password: "goldduck",
-profile_image: open("http://cdn.bulbagarden.net/upload/f/fe/055Golduck.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/f/fe/055Golduck.png"))
 mankey =
 User.create(username: "mankey", password: "mankey",
-profile_image: open("http://cdn.bulbagarden.net/upload/4/41/056Mankey.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/4/41/056Mankey.png"))
 primape =
 User.create(username: "primape", password: "primape",
-profile_image: open("http://cdn.bulbagarden.net/upload/9/9a/057Primeape.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/9/9a/057Primeape.png"))
 arcanine =
 User.create(username: "arcanine", password: "arcanine",
-profile_image: open("http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png"))
 poliwhirl =
 User.create(username: "poliwhirl", password: "poliwhirl",
-profile_image: open("http://cdn.bulbagarden.net/upload/a/a9/061Poliwhirl.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/a/a9/061Poliwhirl.png"))
 abra =
 User.create(username: "abra", password: "abraabra",
-profile_image: open("http://cdn.bulbagarden.net/upload/6/62/063Abra.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/6/62/063Abra.png"))
 machop =
 User.create(username: "machop", password: "machop",
-profile_image: open("http://cdn.bulbagarden.net/upload/8/85/066Machop.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/8/85/066Machop.png"))
 weepingbell =
 User.create(username: "weepingbell", password: "weepingbell",
-profile_image: open("http://cdn.bulbagarden.net/upload/9/9f/070Weepinbell.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/9/9f/070Weepinbell.png"))
 tentacruel =
 User.create(username: "tentacruel", password: "tentacruel",
-profile_image: open("http://cdn.bulbagarden.net/upload/f/f6/073Tentacruel.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/f/f6/073Tentacruel.png"))
 ponyta =
 User.create(username: "ponyta", password: "ponyta",
-profile_image: open("http://cdn.bulbagarden.net/upload/3/3b/077Ponyta.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/3/3b/077Ponyta.png"))
 dewgong =
 User.create(username: "dewgong", password: "dewgong",
-profile_image: open("http://cdn.bulbagarden.net/upload/c/c7/087Dewgong.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/c/c7/087Dewgong.png"))
 grimer =
 User.create(username: "grimer", password: "grimer",
-profile_image: open("http://cdn.bulbagarden.net/upload/a/a0/088Grimer.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/a/a0/088Grimer.png"))
 cloister =
 User.create(username: "cloister", password: "cloister",
-profile_image: open("http://cdn.bulbagarden.net/upload/1/1d/091Cloyster.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/1/1d/091Cloyster.png"))
 onyx =
 User.create(username: "onyx", password: "onyxonyx",
-profile_image: open("http://cdn.bulbagarden.net/upload/9/9a/095Onix.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/9/9a/095Onix.png"))
 gengar =
 User.create(username: "gengar", password: "gengar",
-profile_image: open("http://cdn.bulbagarden.net/upload/c/c6/094Gengar.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/c/c6/094Gengar.png"))
 gyarados =
 User.create(username: "gyarados", password: "gyarados",
-profile_image: open("http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/4/41/130Gyarados.png"))
 gengar =
 User.create(username: "gengar", password: "gengar",
-profile_image: open("http://cdn.bulbagarden.net/upload/c/c6/094Gengar.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/c/c6/094Gengar.png"))
 eevee =
 User.create(username: "eevee", password: "eeveeeevee",
-profile_image: open("http://cdn.bulbagarden.net/upload/e/e2/133Eevee.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/e/e2/133Eevee.png"))
 vaporeon =
 User.create(username: "vaporeon", password: "vaporeon",
-profile_image: open("http://cdn.bulbagarden.net/upload/f/fd/134Vaporeon.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/f/fd/134Vaporeon.png"))
 jolteon =
 User.create(username: "jolteon", password: "jolteon",
-profile_image: open("http://cdn.bulbagarden.net/upload/b/bb/135Jolteon.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/b/bb/135Jolteon.png"))
 flareon =
 User.create(username: "flareon", password: "flareon",
-profile_image: open("http://cdn.bulbagarden.net/upload/d/dd/136Flareon.png"))
+profile_image: open("https://cdn.bulbagarden.net/upload/d/dd/136Flareon.png"))
 
 
 Follow.destroy_all
